@@ -1,0 +1,30 @@
+{
+  "name": "event-sourcing-things",
+  "version": "0.0.1",
+  "description": "objects to help build an event sourcing system",
+  "main": "./lib/index.js",
+  "scripts": {
+    "build": "tsc",
+    "test": "jest"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/thomaslule/event-home.git"
+  },
+  "author": "thomaslule",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/thomaslule/event-home/issues"
+  },
+  "homepage": "https://github.com/thomaslule/event-home#readme",
+  "devDependencies": {
+    "@types/jest": "^23.3.2",
+    "@types/node": "^10.9.4",
+    "babel-core": "^6.26.3",
+    "babel-jest": "^23.6.0",
+    "jest": "^23.6.0",
+    "ts-jest": "^23.1.4",
+    "tslint": "^5.11.0",
+    "typescript": "^3.0.3"
+  }
+}
