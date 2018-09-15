@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thomaslule/event-home.git"
+    "url": "git+https://github.com/thomaslule/event-sourcing-things.git"
   },
   "author": "thomaslule",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/thomaslule/event-home/issues"
+    "url": "https://github.com/thomaslule/event-sourcing-things/issues"
   },
-  "homepage": "https://github.com/thomaslule/event-home#readme",
+  "homepage": "https://github.com/thomaslule/event-sourcing-things#readme",
   "devDependencies": {
     "@types/jest": "^23.3.2",
     "@types/node": "^10.9.4",
