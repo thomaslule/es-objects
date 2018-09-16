@@ -1,5 +1,4 @@
-import { makeDecisionReducer, Projection } from "../src";
-import { DecisionState } from "../src/decision-state";
+import { DecisionState, makeDecisionReducer, Projection } from "../src";
 import { Cat, catFedReducer, fedEvent } from "./util";
 
 describe("Entity", () => {

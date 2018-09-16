@@ -1,6 +1,5 @@
 import * as toArray from "stream-to-array";
-import { EventBus } from "../src";
-import { InMemoryEventStorage } from "../src/in-memory";
+import { EventBus, InMemoryEventStorage } from "../src";
 import { fedEvent } from "./util";
 
 describe("EventBus", () => {

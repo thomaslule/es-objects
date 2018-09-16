@@ -1,5 +1,4 @@
-import { EventBus, StoredEntityProjection } from "../src";
-import { InMemoryEventStorage, InMemoryKeyValueStorage } from "../src/in-memory";
+import { EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, StoredEntityProjection } from "../src";
 import { catFedReducer, fedEvent, FedState } from "./util";
 
 describe("StoredEntityProjection", () => {

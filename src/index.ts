@@ -1,7 +1,11 @@
 export { DecisionProvider } from "./decision-provider";
+export { DecisionState } from "./decision-state";
 export { Entity } from "./entity";
 export { Event } from "./event";
 export { EventBus } from "./event-bus";
+export { InMemoryEventStorage } from "./in-memory/event-storage";
+export { InMemoryKeyValueStorage } from "./in-memory/key-value-storage";
+export { InMemoryValueStorage } from "./in-memory/value-storage";
 export { makeDecisionReducer } from "./make-decision-reducer";
 export { Projection } from "./projection";
 export { Reducer } from "./reducer";

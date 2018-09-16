@@ -1,6 +1,4 @@
-import { EventBus, StoredDecisionProvider } from "../src";
-import { DecisionState } from "../src/decision-state";
-import { InMemoryEventStorage, InMemoryKeyValueStorage } from "../src/in-memory";
+import { DecisionState, EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, StoredDecisionProvider } from "../src";
 import { catFedReducer, fedEvent } from "./util";
 
 describe("StoredDecisionProvider", () => {

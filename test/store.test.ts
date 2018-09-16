@@ -1,5 +1,4 @@
-import { Store, StoredDecisionProvider } from "../src";
-import { InMemoryKeyValueStorage } from "../src/in-memory";
+import { InMemoryKeyValueStorage, Store, StoredDecisionProvider } from "../src";
 import { Cat, catFedReducer } from "./util";
 
 describe("Store", () => {

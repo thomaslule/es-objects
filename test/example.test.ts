@@ -1,7 +1,14 @@
 import {
-  EventBus, Reducer, Store, StoredDecisionProvider, StoredEntityProjection, StoredProjection,
+  EventBus,
+  InMemoryEventStorage,
+  InMemoryKeyValueStorage,
+  InMemoryValueStorage,
+  Reducer,
+  Store,
+  StoredDecisionProvider,
+  StoredEntityProjection,
+  StoredProjection,
 } from "../src";
-import { InMemoryEventStorage, InMemoryKeyValueStorage, InMemoryValueStorage } from "../src/in-memory";
 import { Cat, catFedReducer, FedState } from "./util";
 
 const nbMealsServed: Reducer<number> = (state = 0, event) => {
