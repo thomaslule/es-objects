@@ -12,7 +12,7 @@ describe("EventBus", () => {
     bus = new EventBus(storage);
   });
 
-  test("publish shoud add the event to the storage", async () => {
+  test("publish should add the event to the storage", async () => {
     await bus.publish(fedEvent);
 
     const events = await toArray(storage.getAllEvents());
