@@ -2,9 +2,7 @@ import {
   EventBus, Reducer, Store, StoredDecisionProvider, StoredEntityProjection, StoredProjection,
 } from "../src";
 import { InMemoryEventStorage, InMemoryKeyValueStorage, InMemoryValueStorage } from "../src/in-memory";
-import { Cat, catFedReducer } from "./util";
-
-interface FedState { fed: boolean; }
+import { Cat, catFedReducer, FedState } from "./util";
 
 const nbMealsServed: Reducer<number> = (state = 0, event) => {
   if (event.type === "fed") {

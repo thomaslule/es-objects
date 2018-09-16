@@ -27,3 +27,5 @@ export const fedEvent = {
   insertDate: new Date("2018-01-01").toISOString(),
   type: "fed",
 };
+
+export interface FedState { fed: boolean; }
