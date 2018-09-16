@@ -1,5 +1,5 @@
 import {
-  DecisionProjection, Entity, EventBus, Reducer, Store, StoredEntityProjection, StoredProjection,
+  Entity, EventBus, Reducer, Store, StoredDecisionProvider, StoredEntityProjection, StoredProjection,
 } from "../src";
 import { InMemoryEventStorage, InMemoryKeyValueStorage, InMemoryValueStorage } from "../src/in-memory";
 
@@ -38,8 +38,8 @@ class User extends Entity {
 test("usage example", async () => {
   const bus = new EventBus(new InMemoryEventStorage());
 
-  const userDecisionProjection = new DecisionProjection(decisionReducer, new InMemoryKeyValueStorage());
-  const userStore = new Store<User>("user", User, userDecisionProjection, bus);
+  const userDecisionProvider = new StoredDecisionProvider(decisionReducer, new InMemoryKeyValueStorage());
+  const userStore = new Store<User>("user", User, userDecisionProvider, bus);
 
   const nbUsersProjection = new StoredProjection<number>(nbUsersReducer, new InMemoryValueStorage());
   const identityProjection = new StoredEntityProjection<Identity>(

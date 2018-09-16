@@ -1,9 +1,11 @@
-export { DecisionProjection } from "./decision-projection";
+export { DecisionProvider } from "./decision-provider";
 export { Entity } from "./entity";
 export { Event } from "./event";
 export { EventBus } from "./event-bus";
+export { makeDecisionReducer } from "./make-decision-reducer";
 export { Projection } from "./projection";
 export { Reducer } from "./reducer";
 export { Store } from "./store";
+export { StoredDecisionProvider } from "./stored-decision-provider";
 export { StoredEntityProjection } from "./stored-entity-projection";
 export { StoredProjection } from "./stored-projection";
