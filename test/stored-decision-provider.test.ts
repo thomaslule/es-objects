@@ -1,6 +1,6 @@
-import { StoredDecisionProvider } from "../src";
+import { EventBus, StoredDecisionProvider } from "../src";
 import { DecisionState } from "../src/decision-state";
-import { InMemoryKeyValueStorage } from "../src/in-memory";
+import { InMemoryEventStorage, InMemoryKeyValueStorage } from "../src/in-memory";
 import { catFedReducer, fedEvent } from "./util";
 
 describe("StoredDecisionProvider", () => {
@@ -28,5 +28,17 @@ describe("StoredDecisionProvider", () => {
     await provider.handleEvent({ ...fedEvent, id: "molotov", sequence: 15 }, { sequence: 15, decision: { fed: true }});
     const storedDecision = await storage.get("molotov");
     expect(storedDecision).toEqual({ sequence: 15, decision: { fed: true }});
+  });
+
+  test("getRebuilder should return a rebuilder that can rebuild the provider", async () => {
+    storage = new InMemoryKeyValueStorage<DecisionState>();
+    provider = new StoredDecisionProvider(catFedReducer, storage);
+    const rebuilder = provider.getRebuilder();
+    const bus = new EventBus(new InMemoryEventStorage([fedEvent]));
+
+    await bus.replayEvents([rebuilder]);
+
+    const proj = await provider.getDecisionProjection("felix");
+    expect(proj.getState()).toEqual({ sequence: 0, decision: { fed: true } });
   });
 });
