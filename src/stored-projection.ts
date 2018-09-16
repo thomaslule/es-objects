@@ -10,15 +10,19 @@ export class StoredProjection<T> {
   public async handleEvent(event: Event) {
     const proj = await this.getProjection();
     proj.handleEvent(event);
-    await this.storage.store(proj.getState());
+    await this.storeState(proj.getState());
   }
 
   public async getState() {
     return (await this.getProjection()).getState();
   }
 
-  private async getProjection() {
+  public async getProjection() {
     const state = await this.storage.get();
     return new Projection(this.reducer, state);
+  }
+
+  public async storeState(state: T) {
+    await this.storage.store(state);
   }
 }
