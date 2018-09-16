@@ -1,24 +1,14 @@
-import { Event, makeDecisionReducer } from "../src";
-
-const event: Event = {
-  aggregate: "cat",
-  id: "felix",
-  sequence: 5,
-  insertDate: new Date("2018-01-01").toISOString(),
-};
+import { makeDecisionReducer } from "../src";
+import { catFedReducer, fedEvent } from "./util";
 
 describe("makeDecisionReducer", () => {
   test("should add a sequence to the reducer", () => {
-    const originalReducer = (state, event) => ({
-      custom: true,
-    });
+    const reducer = makeDecisionReducer(catFedReducer);
 
-    const reducer = makeDecisionReducer(originalReducer);
-
-    const state = reducer(undefined, event);
+    const state = reducer(undefined, fedEvent);
     expect(state).toEqual({
-      sequence: 5,
-      decision: { custom: true },
+      sequence: 0,
+      decision: { fed: true },
     });
   });
 });

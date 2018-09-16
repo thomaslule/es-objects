@@ -1,65 +1,43 @@
 import {
-  Entity, EventBus, Reducer, Store, StoredDecisionProvider, StoredEntityProjection, StoredProjection,
+  EventBus, Reducer, Store, StoredDecisionProvider, StoredEntityProjection, StoredProjection,
 } from "../src";
 import { InMemoryEventStorage, InMemoryKeyValueStorage, InMemoryValueStorage } from "../src/in-memory";
+import { Cat, catFedReducer } from "./util";
 
-const decisionReducer: Reducer<any> = (state = { registered: false }, event) => {
-  if (event.type === "registered") {
-    return { registered: true };
-  }
-  return state;
-};
+interface FedState { fed: boolean; }
 
-interface Identity { name?: string; }
-
-const identityReducer: Reducer<Identity> = (state = {}, event) => {
-  if (event.type === "registered") {
-    return { name: event.name };
-  }
-  return state;
-};
-
-const nbUsersReducer: Reducer<number> = (state = 0, event) => {
-  if (event.type === "registered") {
+const nbMealsServed: Reducer<number> = (state = 0, event) => {
+  if (event.type === "fed") {
     return state + 1;
   }
   return state;
 };
 
-class User extends Entity {
-  public async register(name) {
-    if (this.getDecision().registered) {
-      throw new Error("user already registered");
-    }
-    await this.publishAndApply({ type: "registered", name });
-  }
-}
-
 test("usage example", async () => {
   const bus = new EventBus(new InMemoryEventStorage());
 
-  const userDecisionProvider = new StoredDecisionProvider(decisionReducer, new InMemoryKeyValueStorage());
-  const userStore = new Store<User>("user", User, userDecisionProvider, bus);
+  const catDecisionProvider = new StoredDecisionProvider(catFedReducer, new InMemoryKeyValueStorage());
+  const catStore = new Store<Cat>("cat", Cat, catDecisionProvider, bus);
 
-  const nbUsersProjection = new StoredProjection<number>(nbUsersReducer, new InMemoryValueStorage());
-  const identityProjection = new StoredEntityProjection<Identity>(
-    identityReducer,
+  const nbMealsServedProjection = new StoredProjection<number>(nbMealsServed, new InMemoryValueStorage());
+  const catFedProjection = new StoredEntityProjection<FedState>(
+    catFedReducer,
     new InMemoryKeyValueStorage(),
   );
 
-  bus.onAggregateEvent("user", async (event) => {
-    try { await nbUsersProjection.handleEvent(event); } catch (err) { console.log(err); }
+  bus.onAggregateEvent("cat", async (event) => {
+    try { await nbMealsServedProjection.handleEvent(event); } catch (err) { console.log(err); }
   });
-  bus.onAggregateEvent("user", async (event) => {
-    try { await identityProjection.handleEvent(event); } catch (err) { console.log(err); }
+  bus.onAggregateEvent("cat", async (event) => {
+    try { await catFedProjection.handleEvent(event); } catch (err) { console.log(err); }
   });
 
-  const user = await userStore.get("user123");
-  await user.register("John Doe");
+  const felix = await catStore.get("felix");
+  await felix.feed();
 
-  const nbUsers = await nbUsersProjection.getState();
-  expect(nbUsers).toBe(1);
+  const nbCatsFed = await nbMealsServedProjection.getState();
+  expect(nbCatsFed).toBe(1);
 
-  const identity = await identityProjection.getState("user123");
-  expect(identity).toEqual({ name: "John Doe" });
+  const felixFed = await catFedProjection.getState("felix");
+  expect(felixFed).toEqual({ fed: true });
 });
