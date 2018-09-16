@@ -17,6 +17,9 @@
     "url": "https://github.com/thomaslule/event-sourcing-things/issues"
   },
   "homepage": "https://github.com/thomaslule/event-sourcing-things#readme",
+  "dependencies": {
+    "stream-to-array": "^2.3.0"
+  },
   "devDependencies": {
     "@types/jest": "^23.3.2",
     "@types/node": "^10.9.4",
