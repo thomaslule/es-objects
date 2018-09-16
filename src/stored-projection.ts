@@ -1,5 +1,6 @@
 import { Event } from "./event";
 import { Projection } from "./projection";
+import { Rebuilder } from "./rebuilder";
 import { Reducer } from "./reducer";
 import { ValueStorage } from "./storage/value-storage";
 
@@ -24,5 +25,24 @@ export class StoredProjection<T> {
 
   public async storeState(state: T) {
     await this.storage.store(state);
+  }
+
+  public getRebuilder(): Rebuilder {
+    return new StoredProjectionRebuilder(this.reducer, this.storage);
+  }
+}
+
+class StoredProjectionRebuilder<T> implements Rebuilder {
+  private projection: Projection<T>;
+  constructor(reducer: Reducer<T>, private storage: ValueStorage<T>) {
+    this.projection = new Projection(reducer);
+  }
+
+  public handleEvent(event: Event) {
+    this.projection.handleEvent(event);
+  }
+
+  public async finalize() {
+    await this.storage.store(this.projection.getState());
   }
 }
