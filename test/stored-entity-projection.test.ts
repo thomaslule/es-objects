@@ -1,5 +1,5 @@
-import { StoredEntityProjection } from "../src";
-import { InMemoryKeyValueStorage } from "../src/in-memory";
+import { EventBus, StoredEntityProjection } from "../src";
+import { InMemoryEventStorage, InMemoryKeyValueStorage } from "../src/in-memory";
 import { catFedReducer, fedEvent, FedState } from "./util";
 
 describe("StoredEntityProjection", () => {
@@ -35,5 +35,16 @@ describe("StoredEntityProjection", () => {
   test("storeState should directly store the new state", async () => {
     await projection.storeState("molotov", { fed: true });
     expect(await storage.get("molotov")).toEqual({ fed: true });
+  });
+
+  test("getRebuilder should return a rebuilder that can rebuild the projection state", async () => {
+    const emptyStorage = new InMemoryKeyValueStorage<FedState>();
+    projection = new StoredEntityProjection<FedState>(catFedReducer, emptyStorage);
+    const rebuilder = projection.getRebuilder();
+    const bus = new EventBus(new InMemoryEventStorage([fedEvent]));
+
+    expect(await projection.getState("felix")).toEqual({ fed: false });
+    await bus.replayEvents([rebuilder]);
+    expect(await projection.getState("felix")).toEqual({ fed: true });
   });
 });

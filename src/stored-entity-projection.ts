@@ -1,5 +1,6 @@
 import { Event } from "./event";
 import { Projection } from "./projection";
+import { Rebuilder } from "./rebuilder";
 import { Reducer } from "./reducer";
 import { KeyValueStorage } from "./storage/key-value-storage";
 import { ValueStorage } from "./storage/value-storage";
@@ -25,6 +26,10 @@ export class StoredEntityProjection<T> {
     await this.getStoredProjectionFor(id).storeState(state);
   }
 
+  public getRebuilder(): Rebuilder {
+    return new StoredEntityProjectionRebuilder(this.reducer, this.storage);
+  }
+
   private getStoredProjectionFor(id: string): StoredProjection<T> {
     return new StoredProjection(this.reducer, this.getStorageFor(id));
   }
@@ -34,5 +39,25 @@ export class StoredEntityProjection<T> {
       get: () => this.storage.get(id),
       store: (state) => this.storage.store(id, state),
     };
+  }
+}
+
+class StoredEntityProjectionRebuilder<T> implements Rebuilder {
+  private projections: { [id: string]: Projection<T> } = {};
+
+  constructor(private reducer: Reducer<T>, private storage: KeyValueStorage<T>) {
+  }
+
+  public handleEvent(event: Event) {
+    if (!this.projections[event.id]) {
+      this.projections[event.id] = new Projection<T>(this.reducer);
+    }
+    this.projections[event.id].handleEvent(event);
+  }
+
+  public async finalize() {
+    const promises = Object.entries(this.projections)
+      .map(([id, projection]) => this.storage.store(id, projection.getState()));
+    await Promise.all(promises);
   }
 }

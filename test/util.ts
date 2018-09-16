@@ -1,4 +1,4 @@
-import { Entity } from "../src";
+import { Entity, Event, Reducer } from "../src";
 
 export class Cat extends Entity {
   public async feed() {
@@ -13,14 +13,14 @@ export class Cat extends Entity {
   }
 }
 
-export const catFedReducer = (state = { fed: false }, event) => {
+export const catFedReducer: Reducer<FedState> = (state = { fed: false }, event) => {
   if (event.type === "fed") {
     return { fed: true };
   }
   return state;
 };
 
-export const fedEvent = {
+export const fedEvent: Event = {
   aggregate: "cat",
   id: "felix",
   sequence: 0,
