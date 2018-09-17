@@ -11,7 +11,7 @@ import {
 } from "../src";
 import { Cat, catFedReducer, FedState } from "./util";
 
-const nbMealsServed: Reducer<number> = (state = 0, event) => {
+const nbMealsReducer: Reducer<number> = (state = 0, event) => {
   if (event.type === "fed") {
     return state + 1;
   }
@@ -24,13 +24,17 @@ test("usage example", async () => {
   const catDecisionProvider = new StoredDecisionProvider(catFedReducer, new InMemoryKeyValueStorage());
   const catStore = new Store<Cat>("cat", Cat, catDecisionProvider, bus);
 
-  const nbMealsServedProjection = new StoredProjection<number>(nbMealsServed, new InMemoryValueStorage());
+  const nbMealsServedProjection = new StoredProjection<number>(
+    nbMealsReducer,
+    new InMemoryValueStorage(),
+    (e) => e.aggregate === "cat",
+  );
   const catFedProjection = new StoredEntityProjection<FedState>(
     catFedReducer,
     new InMemoryKeyValueStorage(),
   );
 
-  bus.onAggregateEvent("cat", async (event) => {
+  bus.onEvent(async (event) => {
     try { await nbMealsServedProjection.handleEvent(event); } catch (err) { console.log(err); }
   });
   bus.onAggregateEvent("cat", async (event) => {

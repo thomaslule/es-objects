@@ -5,13 +5,18 @@ import { Reducer } from "./reducer";
 import { ValueStorage } from "./storage/value-storage";
 
 export class StoredProjection<T> {
-  constructor(private reducer: Reducer<T>, private storage: ValueStorage<T>) {
+  constructor(
+    private reducer: Reducer<T>,
+    private storage: ValueStorage<T>,
+    private eventFilter: (e: Event) => boolean = (e) => true) {
   }
 
   public async handleEvent(event: Event) {
-    const proj = await this.getProjection();
-    proj.handleEvent(event);
-    await this.storeState(proj.getState());
+    if (this.eventFilter(event)) {
+      const proj = await this.getProjection();
+      proj.handleEvent(event);
+      await this.storeState(proj.getState());
+    }
   }
 
   public async getState() {
@@ -28,18 +33,20 @@ export class StoredProjection<T> {
   }
 
   public getRebuilder(): Rebuilder {
-    return new StoredProjectionRebuilder(this.reducer, this.storage);
+    return new StoredProjectionRebuilder(this.reducer, this.storage, this.eventFilter);
   }
 }
 
 class StoredProjectionRebuilder<T> implements Rebuilder {
   private projection: Projection<T>;
-  constructor(reducer: Reducer<T>, private storage: ValueStorage<T>) {
+  constructor(reducer: Reducer<T>, private storage: ValueStorage<T>, private eventFilter: (e: Event) => boolean) {
     this.projection = new Projection(reducer);
   }
 
   public handleEvent(event: Event) {
-    this.projection.handleEvent(event);
+    if (this.eventFilter(event)) {
+      this.projection.handleEvent(event);
+    }
   }
 
   public async finalize() {

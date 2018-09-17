@@ -10,8 +10,8 @@ describe("StoredEntityProjection", () => {
   beforeEach(() => {
     storage = new InMemoryValueStorage({ fed: true });
     storageEmpty = new InMemoryValueStorage();
-    projection = new StoredProjection(catFedReducer, storage);
-    projectionEmpty = new StoredProjection(catFedReducer, storageEmpty);
+    projection = new StoredProjection(catFedReducer, storage, (e) => e.aggregate === "cat");
+    projectionEmpty = new StoredProjection(catFedReducer, storageEmpty, (e) => e.aggregate === "cat");
   });
 
   test("getState should get the state from storage", async () => {
@@ -25,6 +25,11 @@ describe("StoredEntityProjection", () => {
   test("handleEvent should calculate and store the new state", async () => {
     await projectionEmpty.handleEvent(fedEvent);
     expect(await storageEmpty.get()).toEqual({ fed: true });
+  });
+
+  test("handleEvent should do nothing if the event doesnt match the filter", async () => {
+    await projectionEmpty.handleEvent({ ...fedEvent, aggregate: "dog" });
+    expect(await projectionEmpty.getState()).toEqual({ fed: false });
   });
 
   test("getProjection should return a Projection constructed with the state and the reducer", async () => {
@@ -48,5 +53,13 @@ describe("StoredEntityProjection", () => {
     expect(await projectionEmpty.getState()).toEqual({ fed: false });
     await bus.replayEvents([rebuilder]);
     expect(await projectionEmpty.getState()).toEqual({ fed: true });
+  });
+
+  test("getRebuilder object should ignore events that dont match filter", async () => {
+    const rebuilder = projectionEmpty.getRebuilder();
+    const bus = new EventBus(new InMemoryEventStorage([{ ...fedEvent, aggregate: "dog" }]));
+
+    await bus.replayEvents([rebuilder]);
+    expect(await projectionEmpty.getState()).toEqual({ fed: false });
   });
 });
