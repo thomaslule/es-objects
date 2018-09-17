@@ -7,7 +7,10 @@ import { ValueStorage } from "./storage/value-storage";
 import { StoredProjection } from "./stored-projection";
 
 export class StoredEntityProjection<T> {
-  constructor(private reducer: Reducer<T>, private storage: KeyValueStorage<T>) {
+  constructor(
+    private reducer: Reducer<T>,
+    private storage: KeyValueStorage<T>,
+    private eventFilter: (e: Event) => boolean = (e) => true) {
   }
 
   public async handleEvent(event: Event) {
@@ -27,11 +30,11 @@ export class StoredEntityProjection<T> {
   }
 
   public getRebuilder(): Rebuilder {
-    return new StoredEntityProjectionRebuilder(this.reducer, this.storage);
+    return new StoredEntityProjectionRebuilder(this.reducer, this.storage, this.eventFilter);
   }
 
   private getStoredProjectionFor(id: string): StoredProjection<T> {
-    return new StoredProjection(this.reducer, this.getStorageFor(id));
+    return new StoredProjection(this.reducer, this.getStorageFor(id), this.eventFilter);
   }
 
   private getStorageFor(id: string): ValueStorage<T> {
@@ -45,14 +48,20 @@ export class StoredEntityProjection<T> {
 class StoredEntityProjectionRebuilder<T> implements Rebuilder {
   private projections: { [id: string]: Projection<T> } = {};
 
-  constructor(private reducer: Reducer<T>, private storage: KeyValueStorage<T>) {
+  constructor(
+    private reducer: Reducer<T>,
+    private storage: KeyValueStorage<T>,
+    private eventFilter: (e: Event) => boolean,
+  ) {
   }
 
   public handleEvent(event: Event) {
-    if (!this.projections[event.id]) {
-      this.projections[event.id] = new Projection<T>(this.reducer);
+    if (this.eventFilter(event)) {
+      if (!this.projections[event.id]) {
+        this.projections[event.id] = new Projection<T>(this.reducer);
+      }
+      this.projections[event.id].handleEvent(event);
     }
-    this.projections[event.id].handleEvent(event);
   }
 
   public async finalize() {

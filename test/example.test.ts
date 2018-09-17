@@ -32,12 +32,13 @@ test("usage example", async () => {
   const catFedProjection = new StoredEntityProjection<FedState>(
     catFedReducer,
     new InMemoryKeyValueStorage(),
+    (e) => e.aggregate === "cat",
   );
 
   bus.onEvent(async (event) => {
     try { await nbMealsServedProjection.handleEvent(event); } catch (err) { console.log(err); }
   });
-  bus.onAggregateEvent("cat", async (event) => {
+  bus.onEvent(async (event) => {
     try { await catFedProjection.handleEvent(event); } catch (err) { console.log(err); }
   });
 
