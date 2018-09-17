@@ -27,24 +27,6 @@ describe("EventBus", () => {
     expect(handler).toHaveBeenCalledWith(fedEvent);
   });
 
-  test("onAggregateEvent should be called on right aggregate", async () => {
-    const handler = jest.fn();
-    bus.onAggregateEvent("cat", handler);
-
-    await bus.publish(fedEvent);
-
-    expect(handler).toHaveBeenCalledWith(fedEvent);
-  });
-
-  test("onAggregateEvent should not be called on wrong aggregate", async () => {
-    const handler = jest.fn();
-    bus.onAggregateEvent("dog", handler);
-
-    await bus.publish(fedEvent);
-
-    expect(handler).not.toHaveBeenCalled();
-  });
-
   test("replayEvents should call handleEvent for each event then call finalize", async () => {
     await storage.store(fedEvent);
     const fedEvent2 = { ...fedEvent, id: "molotov" };

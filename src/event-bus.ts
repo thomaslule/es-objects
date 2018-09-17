@@ -15,12 +15,6 @@ export class EventBus implements EventPublisher {
     this.bus.on("event", handler);
   }
 
-  public onAggregateEvent(aggregate: string, handler: (event: Event) => void) {
-    this.bus.on("event", (event) => {
-      if (event.aggregate === aggregate) { handler(event); }
-    });
-  }
-
   public async publish(event: Event) {
     await this.eventStorage.store(event);
     this.bus.emit("event", event);
