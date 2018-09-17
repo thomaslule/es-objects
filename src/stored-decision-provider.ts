@@ -11,8 +11,8 @@ import { StoredEntityProjection } from "./stored-entity-projection";
 export class StoredDecisionProvider implements DecisionProvider {
   private storedProjection: StoredEntityProjection<DecisionState>;
 
-  constructor(reducer: Reducer<any>, storage: KeyValueStorage<DecisionState>) {
-    this.storedProjection = new StoredEntityProjection(makeDecisionReducer(reducer), storage);
+  constructor(reducer: Reducer<any>, storage: KeyValueStorage<DecisionState>, eventFilter?: (e: Event) => boolean) {
+    this.storedProjection = new StoredEntityProjection(makeDecisionReducer(reducer), storage, eventFilter);
   }
 
   public async getDecisionProjection(id: string): Promise<Projection<DecisionState>> {

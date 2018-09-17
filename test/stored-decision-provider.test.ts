@@ -9,7 +9,7 @@ describe("StoredDecisionProvider", () => {
     storage = new InMemoryKeyValueStorage<DecisionState>({
       felix: { sequence: 3, decision: { fed: true } },
     });
-    provider = new StoredDecisionProvider(catFedReducer, storage);
+    provider = new StoredDecisionProvider(catFedReducer, storage, (e) => e.aggregate === "cat");
   });
 
   test("getDecisionProjection should retrieve the decision from the storage", async () => {

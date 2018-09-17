@@ -21,7 +21,11 @@ const nbMealsReducer: Reducer<number> = (state = 0, event) => {
 test("usage example", async () => {
   const bus = new EventBus(new InMemoryEventStorage());
 
-  const catDecisionProvider = new StoredDecisionProvider(catFedReducer, new InMemoryKeyValueStorage());
+  const catDecisionProvider = new StoredDecisionProvider(
+    catFedReducer,
+    new InMemoryKeyValueStorage(),
+    (e) => e.aggregate === "cat",
+  );
   const catStore = new Store<Cat>("cat", Cat, catDecisionProvider, bus);
 
   const nbMealsServedProjection = new StoredProjection<number>(
