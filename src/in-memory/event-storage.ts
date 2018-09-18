@@ -9,7 +9,8 @@ const arrayToStream = (arr: any[]): Stream => {
   return stream;
 };
 
-const duplicate = (e1, e2) => e1.aggregate === e2.aggregate && e1.id === e2.id && e1.sequence === e2.sequence;
+const duplicate = (e1: Event, e2: Event) =>
+  e1.aggregate === e2.aggregate && e1.id === e2.id && e1.sequence === e2.sequence;
 
 export class InMemoryEventStorage implements EventStorage {
   constructor(private events: Event[] = []) {

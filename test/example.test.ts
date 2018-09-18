@@ -26,7 +26,7 @@ test("usage example", async () => {
     new InMemoryKeyValueStorage(),
     (e) => e.aggregate === "cat",
   );
-  const catStore = new Store<Cat>("cat", Cat, catDecisionProvider, bus);
+  const catStore = new Store<Cat, FedState>("cat", Cat, catDecisionProvider, bus);
 
   const nbMealsServedProjection = new StoredProjection<number>(
     nbMealsReducer,

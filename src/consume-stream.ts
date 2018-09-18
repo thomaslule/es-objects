@@ -1,6 +1,6 @@
 import { Stream, Writable } from "stream";
 
-export const consumeStream = async (stream: Stream, handler: (object) => void | Promise<void>) => {
+export const consumeStream = async (stream: Stream, handler: (object: any) => void | Promise<void>) => {
   await new Promise((resolve, reject) => {
     const writable = new Writable({
       objectMode: true,

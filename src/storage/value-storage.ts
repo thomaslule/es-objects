@@ -1,4 +1,4 @@
 export interface ValueStorage<T> {
-  get: () => Promise<T>;
-  store: (T) => Promise<void>;
+  get: () => Promise<T | undefined>;
+  store: (value: T) => Promise<void>;
 }

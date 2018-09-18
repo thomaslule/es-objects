@@ -16,7 +16,12 @@ export class Store<T extends Entity<TDecision>, TDecision> {
 
   public async get(id: string): Promise<T> {
     const decisionProjection = await this.decisionProvider.getDecisionProjection(id);
-    return new this.EntityClass(this.aggregate, id, decisionProjection, (e, d) => this.publish(e, d));
+    return new this.EntityClass(
+      this.aggregate,
+      id,
+      decisionProjection,
+      (e: Event, d: DecisionSequence<TDecision>) => this.publish(e, d),
+    );
   }
 
   private async publish(event: Event, decision: DecisionSequence<TDecision>) {

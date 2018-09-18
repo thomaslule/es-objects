@@ -1,3 +1,3 @@
 import { Event } from "./event";
 
-export type Reducer<T> = (state: T, event: Event) => T;
+export type Reducer<T> = (state: T | undefined, event: Event) => T;

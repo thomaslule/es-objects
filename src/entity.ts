@@ -19,7 +19,7 @@ export abstract class Entity<TDecision> {
     return this.decisionProjection.getState().decision;
   }
 
-  protected async publishAndApply(eventData) {
+  protected async publishAndApply(eventData: { [x: string]: any }) {
     const sequence = this.decisionProjection.getState().sequence + 1;
     const insertDate = new Date().toISOString();
     const event: Event = { ...eventData, aggregate: this.aggregate, id: this.id, sequence, insertDate };

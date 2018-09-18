@@ -2,8 +2,8 @@ import { DecisionSequence } from "./decision-sequence";
 import { Reducer } from "./reducer";
 
 export function makeDecisionReducer<T>(reducer: Reducer<T>): Reducer<DecisionSequence<T>> {
-  return (state = { decision: undefined, sequence: -1 }, event) => ({
-    decision: reducer(state.decision, event),
+  return (state, event) => ({
+    decision: reducer(state ? state.decision : undefined, event),
     sequence: event.sequence,
   });
 }

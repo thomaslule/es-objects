@@ -4,7 +4,7 @@ export class InMemoryValueStorage<T> implements ValueStorage<T> {
   constructor(private value?: T) {
   }
 
-  public async get() {
+  public async get(): Promise<T | undefined> {
     return this.value;
   }
 

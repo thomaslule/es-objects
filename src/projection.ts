@@ -9,9 +9,13 @@ const INIT_EVENT = {
 };
 
 export class Projection<T> {
-  constructor(private reducer: Reducer<T>, private state?) {
-    if (this.state === undefined) {
-      this.handleEvent(INIT_EVENT);
+  private state: T;
+
+  constructor(private reducer: Reducer<T>, state?: T) {
+    if (state === undefined) {
+      this.state = reducer(undefined, INIT_EVENT);
+    } else {
+      this.state = state;
     }
   }
 
