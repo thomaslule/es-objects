@@ -1,7 +1,7 @@
 export interface Event {
-  aggregate: string;
-  id: string;
-  sequence: number;
-  insertDate: string;
-  [x: string]: any;
+  readonly aggregate: string;
+  readonly id: string;
+  readonly sequence: number;
+  readonly insertDate: string;
+  readonly [x: string]: any;
 }

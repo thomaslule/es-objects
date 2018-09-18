@@ -18,7 +18,8 @@
                 "check-typecast"
             ]
         },
-        "max-classes-per-file": false
+        "max-classes-per-file": false,
+        "no-null-keyword": true
     },
     "rulesDirectory": []
 }

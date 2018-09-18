@@ -1,7 +1,7 @@
 import { KeyValueStorage } from "../storage/key-value-storage";
 
 export class InMemoryKeyValueStorage<T> implements KeyValueStorage<T> {
-  constructor(private values: { [id: string]: T } = {}) {
+  constructor(private values: { [id: string]: T | undefined } = {}) {
   }
 
   public async get(id: string): Promise<T | undefined> {
