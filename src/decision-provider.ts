@@ -1,8 +1,8 @@
-import { DecisionState } from "./decision-state";
+import { DecisionSequence } from "./decision-sequence";
 import { Event } from "./event";
 import { Projection } from "./projection";
 
 export interface DecisionProvider {
-  getDecisionProjection: (id: string) => Promise<Projection<DecisionState>>;
-  handleEvent?: (event: Event, decision: DecisionState) => Promise<void>;
+  getDecisionProjection: (id: string) => Promise<Projection<DecisionSequence>>;
+  handleEvent?: (event: Event, decision: DecisionSequence) => Promise<void>;
 }

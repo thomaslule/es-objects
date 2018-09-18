@@ -1,5 +1,5 @@
 export { DecisionProvider } from "./decision-provider";
-export { DecisionState } from "./decision-state";
+export { DecisionSequence } from "./decision-sequence";
 export { Entity } from "./entity";
 export { Event } from "./event";
 export { EventBus } from "./event-bus";

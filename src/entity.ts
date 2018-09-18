@@ -1,4 +1,4 @@
-import { DecisionState } from "./decision-state";
+import { DecisionSequence } from "./decision-sequence";
 import { Event } from "./event";
 import { Projection } from "./projection";
 
@@ -6,8 +6,8 @@ export abstract class Entity {
   constructor(
     private aggregate: string,
     private id: string,
-    private decisionProjection: Projection<DecisionState>,
-    private publish: (event: Event, decision: DecisionState) => Promise<void>,
+    private decisionProjection: Projection<DecisionSequence>,
+    private publish: (event: Event, decision: DecisionSequence) => Promise<void>,
   ) {
   }
 

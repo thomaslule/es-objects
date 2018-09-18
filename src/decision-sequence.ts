@@ -1,4 +1,4 @@
-export interface DecisionState {
+export interface DecisionSequence {
   decision: any;
   sequence: number;
 }

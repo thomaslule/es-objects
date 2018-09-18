@@ -1,5 +1,5 @@
 import { DecisionProvider } from "./decision-provider";
-import { DecisionState } from "./decision-state";
+import { DecisionSequence } from "./decision-sequence";
 import { Entity } from "./entity";
 import { Event } from "./event";
 import { EventPublisher } from "./event-publisher";
@@ -19,7 +19,7 @@ export class Store<T extends Entity> {
     return new this.EntityClass(this.aggregate, id, decisionProjection, (e, d) => this.publish(e, d));
   }
 
-  private async publish(event: Event, decision: DecisionState) {
+  private async publish(event: Event, decision: DecisionSequence) {
     await this.eventPublisher.publish(event);
     if (this.decisionProvider.handleEvent) {
       await this.decisionProvider.handleEvent(event, decision);
