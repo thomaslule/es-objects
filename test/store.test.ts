@@ -1,9 +1,9 @@
 import { InMemoryKeyValueStorage, Store, StoredDecisionProvider } from "../src";
-import { Cat, catFedReducer } from "./util";
+import { Cat, catFedReducer, FedState } from "./util";
 
 describe("Store", () => {
-  let store: Store<Cat>;
-  let decisionProvider: StoredDecisionProvider;
+  let store: Store<Cat, FedState>;
+  let decisionProvider: StoredDecisionProvider<FedState>;
   let publisher;
 
   beforeEach(() => {

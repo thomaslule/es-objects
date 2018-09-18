@@ -8,18 +8,18 @@ import { Reducer } from "./reducer";
 import { KeyValueStorage } from "./storage/key-value-storage";
 import { StoredEntityProjection } from "./stored-entity-projection";
 
-export class StoredDecisionProvider implements DecisionProvider {
-  private storedProjection: StoredEntityProjection<DecisionSequence>;
+export class StoredDecisionProvider<T> implements DecisionProvider<T> {
+  private storedProjection: StoredEntityProjection<DecisionSequence<T>>;
 
-  constructor(reducer: Reducer<any>, storage: KeyValueStorage<DecisionSequence>, eventFilter?: (e: Event) => boolean) {
-    this.storedProjection = new StoredEntityProjection(makeDecisionReducer(reducer), storage, eventFilter);
+  constructor(reducer: Reducer<T>, storage: KeyValueStorage<DecisionSequence<T>>, eventFilter?: (e: Event) => boolean) {
+    this.storedProjection = new StoredEntityProjection(makeDecisionReducer<T>(reducer), storage, eventFilter);
   }
 
-  public async getDecisionProjection(id: string): Promise<Projection<DecisionSequence>> {
+  public async getDecisionProjection(id: string): Promise<Projection<DecisionSequence<T>>> {
     return this.storedProjection.getProjection(id);
   }
 
-  public async handleEvent(event: Event, decision: DecisionSequence) {
+  public async handleEvent(event: Event, decision: DecisionSequence<T>) {
     await this.storedProjection.storeState(event.id, decision);
   }
 

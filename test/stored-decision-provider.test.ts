@@ -1,12 +1,14 @@
-import { DecisionSequence, EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, StoredDecisionProvider } from "../src";
-import { catFedReducer, fedEvent } from "./util";
+import {
+  DecisionSequence, EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, StoredDecisionProvider,
+} from "../src";
+import { catFedReducer, fedEvent, FedState } from "./util";
 
 describe("StoredDecisionProvider", () => {
-  let storage: InMemoryKeyValueStorage<DecisionSequence>;
-  let provider: StoredDecisionProvider;
+  let storage: InMemoryKeyValueStorage<DecisionSequence<FedState>>;
+  let provider: StoredDecisionProvider<FedState>;
 
   beforeEach(() => {
-    storage = new InMemoryKeyValueStorage<DecisionSequence>({
+    storage = new InMemoryKeyValueStorage<DecisionSequence<FedState>>({
       felix: { sequence: 3, decision: { fed: true } },
     });
     provider = new StoredDecisionProvider(catFedReducer, storage, (e) => e.aggregate === "cat");
@@ -29,7 +31,7 @@ describe("StoredDecisionProvider", () => {
   });
 
   test("getRebuilder should return a rebuilder that can rebuild the provider", async () => {
-    storage = new InMemoryKeyValueStorage<DecisionSequence>();
+    storage = new InMemoryKeyValueStorage<DecisionSequence<FedState>>();
     provider = new StoredDecisionProvider(catFedReducer, storage);
     const rebuilder = provider.getRebuilder();
     const bus = new EventBus(new InMemoryEventStorage([fedEvent]));

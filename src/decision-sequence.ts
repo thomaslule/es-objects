@@ -1,4 +1,4 @@
-export interface DecisionSequence {
-  decision: any;
+export interface DecisionSequence<T> {
+  decision: T;
   sequence: number;
 }

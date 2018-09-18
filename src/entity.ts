@@ -2,20 +2,20 @@ import { DecisionSequence } from "./decision-sequence";
 import { Event } from "./event";
 import { Projection } from "./projection";
 
-export abstract class Entity {
+export abstract class Entity<TDecision> {
   constructor(
     private aggregate: string,
     private id: string,
-    private decisionProjection: Projection<DecisionSequence>,
-    private publish: (event: Event, decision: DecisionSequence) => Promise<void>,
+    private decisionProjection: Projection<DecisionSequence<TDecision>>,
+    private publish: (event: Event, decision: DecisionSequence<TDecision>) => Promise<void>,
   ) {
   }
 
-  public getId() {
+  public getId(): string {
     return this.id;
   }
 
-  protected getDecision() {
+  protected getDecision(): TDecision {
     return this.decisionProjection.getState().decision;
   }
 

@@ -1,6 +1,6 @@
 import { Entity, Event, Reducer } from "../src";
 
-export class Cat extends Entity {
+export class Cat extends Entity<FedState> {
   public async feed() {
     if (this.getDecision().fed) {
       throw new Error("cat already fed!");

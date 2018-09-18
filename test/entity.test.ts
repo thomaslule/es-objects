@@ -1,12 +1,12 @@
 import { DecisionSequence, makeDecisionReducer, Projection } from "../src";
-import { Cat, catFedReducer, fedEvent } from "./util";
+import { Cat, catFedReducer, fedEvent, FedState } from "./util";
 
 describe("Entity", () => {
   let cat: Cat;
   let publish;
 
   beforeEach(() => {
-    const decision = new Projection<DecisionSequence>(makeDecisionReducer(catFedReducer));
+    const decision = new Projection<DecisionSequence<FedState>>(makeDecisionReducer<FedState>(catFedReducer));
     publish = jest.fn().mockReturnValue(Promise.resolve());
     cat = new Cat("cat", "felix", decision, publish);
   });
