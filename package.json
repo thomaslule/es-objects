@@ -1,5 +1,5 @@
 {
-  "name": "event-sourcing-things",
+  "name": "es-objects",
   "version": "0.0.1",
   "description": "objects to help build an event sourcing system",
   "main": "./lib/index.js",
@@ -10,14 +10,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/thomaslule/event-sourcing-things.git"
+    "url": "git+https://github.com/thomaslule/es-objects.git"
   },
   "author": "thomaslule",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/thomaslule/event-sourcing-things/issues"
+    "url": "https://github.com/thomaslule/es-objects/issues"
   },
-  "homepage": "https://github.com/thomaslule/event-sourcing-things#readme",
+  "homepage": "https://github.com/thomaslule/es-objects#readme",
   "dependencies": {
     "stream-to-array": "^2.3.0"
   },
