@@ -30,7 +30,7 @@ test("usage example", async () => {
     "cat",
     (id, decisionState, publish) => new Cat(id, decisionState, publish),
     catDecisionProvider,
-    bus,
+    (event) => bus.publish(event),
   );
 
   const nbMealsServedProjection = new StoredProjection<number>(

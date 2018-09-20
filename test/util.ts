@@ -4,9 +4,9 @@ export class Cat extends Entity<FedState> {
   constructor(
     private id: string,
     decisionState: FedState,
-    publish: (eventData: any) => Promise<Event>,
+    createAndPublish: (eventData: any) => Promise<Event>,
   ) {
-    super(decisionState, catFedReducer, publish);
+    super(decisionState, catFedReducer, createAndPublish);
   }
 
   public async feed() {

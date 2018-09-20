@@ -3,7 +3,6 @@ export { DecisionSequence } from "./decision-sequence";
 export { Entity } from "./entity";
 export { Event } from "./event";
 export { EventBus } from "./event-bus";
-export { EventPublisher } from "./event-publisher";
 export { InMemoryEventStorage } from "./in-memory/event-storage";
 export { InMemoryKeyValueStorage } from "./in-memory/key-value-storage";
 export { InMemoryValueStorage } from "./in-memory/value-storage";

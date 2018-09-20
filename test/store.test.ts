@@ -4,20 +4,18 @@ import { Cat, catFedReducer, FedState } from "./util";
 describe("Store", () => {
   let store: Store<Cat, FedState>;
   let decisionProvider: StoredDecisionProvider<FedState>;
-  let publisher;
+  let publish;
 
   beforeEach(() => {
     decisionProvider = new StoredDecisionProvider(catFedReducer, new InMemoryKeyValueStorage({
       felix: { sequence: 1, decision: { fed: true }},
     }));
-    publisher = {
-      publish: jest.fn().mockReturnValue(Promise.resolve()),
-    };
+    publish = jest.fn().mockReturnValue(Promise.resolve());
     store = new Store(
       "cat",
-      (id, decisionState, publish) => new Cat(id, decisionState, publish),
+      (id, decisionState, createAndPublish) => new Cat(id, decisionState, createAndPublish),
       decisionProvider,
-      publisher,
+      publish,
     );
   });
 
@@ -32,14 +30,14 @@ describe("Store", () => {
     await molotov.feed();
     await molotov.pet();
 
-    expect(publisher.publish).toHaveBeenCalledTimes(2);
-    expect(publisher.publish.mock.calls[0][0]).toMatchObject({
+    expect(publish).toHaveBeenCalledTimes(2);
+    expect(publish.mock.calls[0][0]).toMatchObject({
       aggregate: "cat",
       id: "molotov",
       sequence: 0,
       type: "fed",
     });
-    expect(publisher.publish.mock.calls[1][0]).toMatchObject({
+    expect(publish.mock.calls[1][0]).toMatchObject({
       aggregate: "cat",
       id: "molotov",
       sequence: 1,

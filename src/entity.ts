@@ -5,7 +5,7 @@ export abstract class Entity<TDecision> {
   constructor(
     private decisionState: TDecision,
     private decisionReducer: Reducer<TDecision>,
-    private publish: (eventData: any) => Promise<Event>,
+    private createAndPublish: (eventData: any) => Promise<Event>,
   ) {
   }
 
@@ -14,7 +14,7 @@ export abstract class Entity<TDecision> {
   }
 
   protected async publishAndApply(eventData: any): Promise<Event> {
-    const event = await this.publish(eventData);
+    const event = await this.createAndPublish(eventData);
     this.decisionState = this.decisionReducer(this.decisionState, event);
     return event;
   }

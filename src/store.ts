@@ -1,6 +1,5 @@
 import { DecisionProvider } from "./decision-provider";
 import { Event } from "./event";
-import { EventPublisher } from "./event-publisher";
 import { Projection } from "./projection";
 
 export class Store<TEntity, TDecision> {
@@ -9,10 +8,10 @@ export class Store<TEntity, TDecision> {
     private createEntity: (
       id: string,
       decisionState: TDecision,
-      publish: (eventData: any) => Promise<Event>,
+      createAndPublish: (eventData: any) => Promise<Event>,
     ) => TEntity,
     private decisionProvider: DecisionProvider<TDecision>,
-    private eventPublisher: EventPublisher,
+    private publish: (event: Event) => Promise<void>,
   ) {
   }
 
@@ -21,11 +20,11 @@ export class Store<TEntity, TDecision> {
     return this.createEntity(
       id,
       decisionProjection.getState().decision,
-      (eventData: any) => this.publish(id, eventData, decisionProjection),
+      (eventData: any) => this.createAndPublish(id, eventData, decisionProjection),
     );
   }
 
-  private async publish(id: string, eventData: any, decisionProjection: Projection<any>): Promise<Event> {
+  private async createAndPublish(id: string, eventData: any, decisionProjection: Projection<any>): Promise<Event> {
     const event: Event = {
       ...eventData,
       aggregate: this.aggregate,
@@ -34,7 +33,7 @@ export class Store<TEntity, TDecision> {
       insertDate: new Date().toISOString(),
     };
     decisionProjection.handleEvent(event);
-    await this.eventPublisher.publish(event);
+    await this.publish(event);
     if (this.decisionProvider.handleEvent) {
       await this.decisionProvider.handleEvent(event, decisionProjection.getState());
     }
