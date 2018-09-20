@@ -1,8 +1,12 @@
 import { Entity, Event, Reducer } from "../src";
 
 export class Cat extends Entity<FedState> {
-  public getAggregate() {
-    return "cat";
+  constructor(
+    private id: string,
+    decisionState: FedState,
+    publish: (eventData: any) => Promise<Event>,
+  ) {
+    super(decisionState, catFedReducer, publish);
   }
 
   public async feed() {
@@ -10,6 +14,10 @@ export class Cat extends Entity<FedState> {
       throw new Error("cat already fed!");
     }
     await this.publishAndApply({ type: "fed" });
+  }
+
+  public async pet() {
+    await this.publishAndApply({ type: "pet" });
   }
 
   public isFed() {

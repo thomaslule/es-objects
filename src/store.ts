@@ -1,35 +1,43 @@
 import { DecisionProvider } from "./decision-provider";
-import { DecisionSequence } from "./decision-sequence";
-import { Entity } from "./entity";
 import { Event } from "./event";
 import { EventPublisher } from "./event-publisher";
 import { Projection } from "./projection";
 
-export class Store<T extends Entity<TDecision>, TDecision> {
+export class Store<TEntity, TDecision> {
   constructor(
+    private aggregate: string,
     private createEntity: (
       id: string,
-      decisionProjection: Projection<DecisionSequence<TDecision>>,
-      publish: (event: Event, decision: DecisionSequence<TDecision>) => Promise<void>,
-    ) => T,
+      decisionState: TDecision,
+      publish: (eventData: any) => Promise<Event>,
+    ) => TEntity,
     private decisionProvider: DecisionProvider<TDecision>,
     private eventPublisher: EventPublisher,
   ) {
   }
 
-  public async get(id: string): Promise<T> {
+  public async get(id: string): Promise<TEntity> {
     const decisionProjection = await this.decisionProvider.getDecisionProjection(id);
     return this.createEntity(
       id,
-      decisionProjection,
-      (e: Event, d: DecisionSequence<TDecision>) => this.publish(e, d),
+      decisionProjection.getState().decision,
+      (eventData: any) => this.publish(id, eventData, decisionProjection),
     );
   }
 
-  private async publish(event: Event, decision: DecisionSequence<TDecision>) {
+  private async publish(id: string, eventData: any, decisionProjection: Projection<any>): Promise<Event> {
+    const event: Event = {
+      ...eventData,
+      aggregate: this.aggregate,
+      id,
+      sequence: decisionProjection.getState().sequence + 1,
+      insertDate: new Date().toISOString(),
+    };
+    decisionProjection.handleEvent(event);
     await this.eventPublisher.publish(event);
     if (this.decisionProvider.handleEvent) {
-      await this.decisionProvider.handleEvent(event, decision);
+      await this.decisionProvider.handleEvent(event, decisionProjection.getState());
     }
+    return event;
   }
 }

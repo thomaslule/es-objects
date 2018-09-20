@@ -1,22 +1,18 @@
-import { DecisionSequence, makeDecisionReducer, Projection } from "../src";
-import { Cat, catFedReducer, fedEvent, FedState } from "./util";
+import { Cat, fedEvent } from "./util";
 
 describe("Entity", () => {
   let cat: Cat;
   let publish;
 
   beforeEach(() => {
-    const decision = new Projection<DecisionSequence<FedState>>(makeDecisionReducer<FedState>(catFedReducer));
-    publish = jest.fn().mockReturnValue(Promise.resolve());
-    cat = new Cat("felix", decision, publish);
+    publish = jest.fn().mockReturnValue(Promise.resolve(fedEvent));
+    cat = new Cat("felix", { fed: false }, publish);
   });
 
   test("publishAndApply should publish the Event", async () => {
     await cat.feed();
 
-    expect(publish).toHaveBeenCalled();
-    const { insertDate, ...eventWithoutDate } = fedEvent;
-    expect(publish.mock.calls[0][0]).toMatchObject(eventWithoutDate);
+    expect(publish).toHaveBeenCalledWith({ type: "fed" });
   });
 
   test("publishAndApply should apply the Event to self", async () => {

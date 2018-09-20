@@ -27,7 +27,8 @@ test("usage example", async () => {
     (e) => e.aggregate === "cat",
   );
   const catStore = new Store<Cat, FedState>(
-    (id, decisionProjection, publish) => new Cat(id, decisionProjection, publish),
+    "cat",
+    (id, decisionState, publish) => new Cat(id, decisionState, publish),
     catDecisionProvider,
     bus,
   );
