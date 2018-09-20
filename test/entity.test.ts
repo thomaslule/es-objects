@@ -8,7 +8,7 @@ describe("Entity", () => {
   beforeEach(() => {
     const decision = new Projection<DecisionSequence<FedState>>(makeDecisionReducer<FedState>(catFedReducer));
     publish = jest.fn().mockReturnValue(Promise.resolve());
-    cat = new Cat("cat", "felix", decision, publish);
+    cat = new Cat("felix", decision, publish);
   });
 
   test("publishAndApply should publish the Event", async () => {

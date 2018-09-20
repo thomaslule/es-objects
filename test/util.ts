@@ -1,6 +1,10 @@
 import { Entity, Event, Reducer } from "../src";
 
 export class Cat extends Entity<FedState> {
+  public getAggregate() {
+    return "cat";
+  }
+
   public async feed() {
     if (this.getDecision().fed) {
       throw new Error("cat already fed!");

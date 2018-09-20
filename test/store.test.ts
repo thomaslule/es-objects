@@ -13,7 +13,11 @@ describe("Store", () => {
     publisher = {
       publish: jest.fn().mockReturnValue(Promise.resolve()),
     };
-    store = new Store("cat", Cat, decisionProvider, publisher);
+    store = new Store(
+      (id, decisionProjection, publish) => new Cat(id, decisionProjection, publish),
+      decisionProvider,
+      publisher,
+    );
   });
 
   test("get should create an Entity with its decision retrieved from the provider", async () => {

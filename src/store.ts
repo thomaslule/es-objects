@@ -3,12 +3,15 @@ import { DecisionSequence } from "./decision-sequence";
 import { Entity } from "./entity";
 import { Event } from "./event";
 import { EventPublisher } from "./event-publisher";
+import { Projection } from "./projection";
 
 export class Store<T extends Entity<TDecision>, TDecision> {
-
   constructor(
-    private aggregate: string,
-    private EntityClass: new (...args: any[]) => T,
+    private createEntity: (
+      id: string,
+      decisionProjection: Projection<DecisionSequence<TDecision>>,
+      publish: (event: Event, decision: DecisionSequence<TDecision>) => Promise<void>,
+    ) => T,
     private decisionProvider: DecisionProvider<TDecision>,
     private eventPublisher: EventPublisher,
   ) {
@@ -16,8 +19,7 @@ export class Store<T extends Entity<TDecision>, TDecision> {
 
   public async get(id: string): Promise<T> {
     const decisionProjection = await this.decisionProvider.getDecisionProjection(id);
-    return new this.EntityClass(
-      this.aggregate,
+    return this.createEntity(
       id,
       decisionProjection,
       (e: Event, d: DecisionSequence<TDecision>) => this.publish(e, d),
