@@ -5,10 +5,12 @@ import { fedEvent } from "./util";
 describe("EventBus", () => {
   let storage: InMemoryEventStorage;
   let bus: EventBus;
+  let errorHandler: (...args: any[]) => any;
 
   beforeEach(() => {
     storage = new InMemoryEventStorage();
-    bus = new EventBus(storage);
+    errorHandler = jest.fn();
+    bus = new EventBus(storage, errorHandler);
   });
 
   test("publish should add the event to the storage", async () => {
@@ -42,5 +44,22 @@ describe("EventBus", () => {
     expect(rebuilder.handleEvent.mock.calls[0][0]).toEqual(fedEvent);
     expect(rebuilder.handleEvent.mock.calls[1][0]).toEqual(fedEvent2);
     expect(rebuilder.finalize).toHaveBeenCalled();
+  });
+
+  test("onEventHandler catch sync handler errors", async () => {
+    bus.onEvent(() => {
+      throw new Error("any error");
+    });
+    await bus.publish(fedEvent);
+    expect(errorHandler).toHaveBeenCalledWith(new Error("any error"));
+  });
+
+  test("onEventHandler catch async handler errors", async () => {
+    bus.onEvent(async () => {
+      throw new Error("any error");
+    });
+    await bus.publish(fedEvent);
+    await Promise.resolve();
+    expect(errorHandler).toHaveBeenCalledWith(new Error("any error"));
   });
 });
