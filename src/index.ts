@@ -12,6 +12,7 @@ export { makeDecisionReducer } from "./make-decision-reducer";
 export { InMemoryReduceProjection } from "./projection/in-memory-reduce-projection";
 export { PersistedEntityReduceProjection } from "./projection/persisted-entity-reduce-projection";
 export { PersistedReduceProjection } from "./projection/persisted-reduce-projection";
+export { projectFromEvents } from "./projection/project-from-events";
 export { Reducer } from "./reducer";
 export { EventStorage } from "./storage/event-storage";
 export { KeyValueStorage } from "./storage/key-value-storage";

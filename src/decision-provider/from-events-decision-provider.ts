@@ -1,22 +1,21 @@
-import { consumeStream } from "../consume-stream";
 import { DecisionSequence } from "../decision-sequence";
-import { Event } from "../event";
 import { makeDecisionReducer } from "../make-decision-reducer";
 import { InMemoryReduceProjection } from "../projection/in-memory-reduce-projection";
+import { projectFromEvents } from "../projection/project-from-events";
 import { Reducer } from "../reducer";
 import { EventStorage } from "../storage/event-storage";
 import { DecisionProvider } from "./decision-provider";
 
 export class FromEventsDecisionProvider<T> implements DecisionProvider<T> {
-  constructor(private aggregate: string, private reducer: Reducer<T>, private eventStorage: EventStorage) {
+  private reducer: Reducer<DecisionSequence<T>>;
+
+  constructor(private aggregate: string, reducer: Reducer<T>, private eventStorage: EventStorage) {
+    this.reducer = makeDecisionReducer(reducer);
   }
 
   public async getDecisionProjection(id: string): Promise<InMemoryReduceProjection<DecisionSequence<T>>> {
-    const projection = new InMemoryReduceProjection(makeDecisionReducer(this.reducer));
-    await consumeStream(this.eventStorage.getEvents(this.aggregate, id), (event: Event) => {
-      projection.handleEvent(event);
-    });
-    return projection;
+    const state = await projectFromEvents(this.reducer, this.eventStorage.getEvents(this.aggregate, id));
+    return new InMemoryReduceProjection(this.reducer, state);
   }
 
 }
