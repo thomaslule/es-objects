@@ -1,5 +1,5 @@
-import { FromEventsDecisionProvider, InMemoryEventStorage } from "../src";
-import { catFedReducer, fedEvent } from "./util";
+import { FromEventsDecisionProvider, InMemoryEventStorage } from "../../src";
+import { catFedReducer, fedEvent } from "../util";
 
 describe("FromEventsDecisionProvider", () => {
   test("getDecisionProjection should calculate the decision from the events", async () => {

@@ -1,7 +1,7 @@
 import {
   DecisionSequence, EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, PersistedDecisionProvider,
-} from "../src";
-import { catFedReducer, fedEvent, FedState } from "./util";
+} from "../../src";
+import { catFedReducer, fedEvent, FedState } from "../util";
 
 describe("PersistedDecisionProvider", () => {
   let storage: InMemoryKeyValueStorage<DecisionSequence<FedState>>;
