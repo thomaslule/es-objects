@@ -1,7 +1,7 @@
 import { FromEventsDecisionProvider, InMemoryEventStorage } from "../src";
 import { catFedReducer, fedEvent } from "./util";
 
-describe("PersistedDecisionProvider", () => {
+describe("FromEventsDecisionProvider", () => {
   test("getDecisionProjection should calculate the decision from the events", async () => {
     const eventStorage = new InMemoryEventStorage([fedEvent]);
     const provider = new FromEventsDecisionProvider("cat", catFedReducer, eventStorage);
