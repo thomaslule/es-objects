@@ -1,4 +1,4 @@
-import { InMemoryKeyValueStorage, PersistedDecisionProvider, Store } from "../src";
+import { EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, PersistedDecisionProvider, Store } from "../src";
 import { Cat, catFedReducer, FedState } from "./util";
 
 describe("Store", () => {
@@ -55,5 +55,22 @@ describe("Store", () => {
     await molotov.feed();
     const decisionProjection2 = await decisionProvider.getDecisionProjection("molotov");
     expect(decisionProjection2.getState()).toEqual({ sequence: 1, decision: { fed: true }});
+  });
+
+  test("on duplicate event sequence, the entity command should throw", async () => {
+    const bus = new EventBus(new InMemoryEventStorage());
+    const storeWithEventBus = new Store(
+      "cat",
+      (id, decisionState, createAndPublish) => new Cat(id, decisionState, createAndPublish),
+      decisionProvider,
+      (event) => bus.publish(event),
+    );
+
+    const felix = await storeWithEventBus.get("felix");
+    const felix2 = await storeWithEventBus.get("felix");
+
+    await felix.pet();
+    await expect(felix2.pet())
+      .rejects.toEqual(new Error("an event with same aggregate, id and sequence already exists"));
   });
 });

@@ -18,7 +18,7 @@ export class InMemoryEventStorage implements EventStorage {
 
   public async store(event: Event) {
     if (this.events.filter((e) => duplicate(e, event)).length) {
-      throw new Error("duplicate");
+      throw new Error("an event with same aggregate, id and sequence already exists");
     }
     this.events.push(event);
   }
