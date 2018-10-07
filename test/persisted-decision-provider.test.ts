@@ -11,7 +11,7 @@ describe("PersistedDecisionProvider", () => {
     storage = new InMemoryKeyValueStorage<DecisionSequence<FedState>>({
       felix: { sequence: 3, decision: { fed: true } },
     });
-    provider = new PersistedDecisionProvider(catFedReducer, storage, (e) => e.aggregate === "cat");
+    provider = new PersistedDecisionProvider("cat", catFedReducer, storage);
   });
 
   test("getDecisionProjection should retrieve the decision from the storage", async () => {
@@ -32,7 +32,7 @@ describe("PersistedDecisionProvider", () => {
 
   test("getRebuilder should return a rebuilder that can rebuild the provider", async () => {
     storage = new InMemoryKeyValueStorage<DecisionSequence<FedState>>();
-    provider = new PersistedDecisionProvider(catFedReducer, storage);
+    provider = new PersistedDecisionProvider("cat", catFedReducer, storage);
     const rebuilder = provider.getRebuilder();
     const bus = new EventBus(new InMemoryEventStorage([fedEvent]));
 

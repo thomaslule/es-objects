@@ -7,7 +7,7 @@ describe("Store", () => {
   let publish;
 
   beforeEach(() => {
-    decisionProvider = new PersistedDecisionProvider(catFedReducer, new InMemoryKeyValueStorage({
+    decisionProvider = new PersistedDecisionProvider("cat", catFedReducer, new InMemoryKeyValueStorage({
       felix: { sequence: 1, decision: { fed: true }},
     }));
     publish = jest.fn().mockReturnValue(Promise.resolve());

@@ -11,11 +11,11 @@ import { DecisionProvider } from "./decision-provider";
 export class PersistedDecisionProvider<T> implements DecisionProvider<T> {
   private decisionProjection: PersistedEntityReduceProjection<DecisionSequence<T>>;
 
-  constructor(reducer: Reducer<T>, storage: KeyValueStorage<DecisionSequence<T>>, eventFilter?: (e: Event) => boolean) {
+  constructor(aggregate: string, reducer: Reducer<T>, storage: KeyValueStorage<DecisionSequence<T>>) {
     this.decisionProjection = new PersistedEntityReduceProjection(
       makeDecisionReducer<T>(reducer),
       storage,
-      eventFilter,
+      (event) => event.aggregate === aggregate,
     );
   }
 
