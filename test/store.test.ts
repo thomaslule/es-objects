@@ -31,13 +31,13 @@ describe("Store", () => {
     await molotov.pet();
 
     expect(publish).toHaveBeenCalledTimes(2);
-    expect(publish.mock.calls[0][0]).toMatchObject({
+    expect(publish.mock.calls[0][0]).toEqual({
       aggregate: "cat",
       id: "molotov",
       sequence: 0,
       type: "fed",
     });
-    expect(publish.mock.calls[1][0]).toMatchObject({
+    expect(publish.mock.calls[1][0]).toEqual({
       aggregate: "cat",
       id: "molotov",
       sequence: 1,

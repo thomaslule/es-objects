@@ -36,7 +36,6 @@ export const fedEvent: Event = {
   aggregate: "cat",
   id: "felix",
   sequence: 0,
-  insertDate: new Date("2018-01-01").toISOString(),
   type: "fed",
 };
 

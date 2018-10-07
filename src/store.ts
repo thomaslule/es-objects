@@ -34,7 +34,6 @@ export class Store<TEntity, TDecision> {
       aggregate: this.aggregate,
       id,
       sequence: decisionProjection.getState().sequence + 1,
-      insertDate: new Date().toISOString(),
     };
     decisionProjection.handleEvent(event);
     await this.publish(event);

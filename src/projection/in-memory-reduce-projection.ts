@@ -5,7 +5,6 @@ const INIT_EVENT = {
   aggregate: "__init__",
   id: "__init__",
   sequence: -1,
-  insertDate: new Date("1970-01-01").toISOString(),
 };
 
 export class InMemoryReduceProjection<T> {
