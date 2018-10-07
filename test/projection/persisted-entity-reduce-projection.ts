@@ -1,5 +1,5 @@
-import { EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, PersistedEntityReduceProjection } from "../src";
-import { catFedReducer, fedEvent, FedState } from "./util";
+import { EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, PersistedEntityReduceProjection } from "../../src";
+import { catFedReducer, fedEvent, FedState } from "../util";
 
 describe("PersistedEntityReduceProjection", () => {
   let projection: PersistedEntityReduceProjection<FedState>;

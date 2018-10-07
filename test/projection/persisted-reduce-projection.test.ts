@@ -1,5 +1,5 @@
-import { EventBus, InMemoryEventStorage, InMemoryValueStorage, PersistedReduceProjection } from "../src";
-import { catFedReducer, fedEvent, FedState } from "./util";
+import { EventBus, InMemoryEventStorage, InMemoryValueStorage, PersistedReduceProjection } from "../../src";
+import { catFedReducer, fedEvent, FedState } from "../util";
 
 describe("PersistedReduceProjection", () => {
   let storage: InMemoryValueStorage<FedState>;

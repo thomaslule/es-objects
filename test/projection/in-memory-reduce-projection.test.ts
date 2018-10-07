@@ -1,5 +1,5 @@
-import { InMemoryReduceProjection } from "../src";
-import { catFedReducer, fedEvent, FedState } from "./util";
+import { InMemoryReduceProjection } from "../../src";
+import { catFedReducer, fedEvent, FedState } from "../util";
 
 describe("InMemoryReduceProjection", () => {
   test("should be initialized with state if provided", () => {

@@ -1,9 +1,9 @@
 import { DecisionProvider } from "./decision-provider";
 import { DecisionSequence } from "./decision-sequence";
 import { Event } from "./event";
-import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 import { makeDecisionReducer } from "./make-decision-reducer";
-import { PersistedEntityReduceProjection } from "./persisted-entity-reduce-projection";
+import { InMemoryReduceProjection } from "./projection/in-memory-reduce-projection";
+import { PersistedEntityReduceProjection } from "./projection/persisted-entity-reduce-projection";
 import { Rebuilder } from "./rebuilder";
 import { Reducer } from "./reducer";
 import { KeyValueStorage } from "./storage/key-value-storage";
