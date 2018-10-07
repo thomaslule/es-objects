@@ -1,13 +1,13 @@
-import { InMemoryKeyValueStorage, Store, StoredDecisionProvider } from "../src";
+import { InMemoryKeyValueStorage, PersistedDecisionProvider, Store } from "../src";
 import { Cat, catFedReducer, FedState } from "./util";
 
 describe("Store", () => {
   let store: Store<Cat, FedState>;
-  let decisionProvider: StoredDecisionProvider<FedState>;
+  let decisionProvider: PersistedDecisionProvider<FedState>;
   let publish;
 
   beforeEach(() => {
-    decisionProvider = new StoredDecisionProvider(catFedReducer, new InMemoryKeyValueStorage({
+    decisionProvider = new PersistedDecisionProvider(catFedReducer, new InMemoryKeyValueStorage({
       felix: { sequence: 1, decision: { fed: true }},
     }));
     publish = jest.fn().mockReturnValue(Promise.resolve());

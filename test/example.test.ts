@@ -3,11 +3,11 @@ import {
   InMemoryEventStorage,
   InMemoryKeyValueStorage,
   InMemoryValueStorage,
+  PersistedDecisionProvider,
+  PersistedEntityReduceProjection,
+  PersistedReduceProjection,
   Reducer,
   Store,
-  StoredDecisionProvider,
-  StoredEntityProjection,
-  StoredProjection,
 } from "../src";
 import { Cat, catFedReducer, FedState } from "./util";
 
@@ -21,7 +21,7 @@ const nbMealsReducer: Reducer<number> = (state = 0, event) => {
 test("usage example", async () => {
   const bus = new EventBus(new InMemoryEventStorage());
 
-  const catDecisionProvider = new StoredDecisionProvider(
+  const catDecisionProvider = new PersistedDecisionProvider(
     catFedReducer,
     new InMemoryKeyValueStorage(),
     (e) => e.aggregate === "cat",
@@ -33,12 +33,12 @@ test("usage example", async () => {
     (event) => bus.publish(event),
   );
 
-  const nbMealsServedProjection = new StoredProjection<number>(
+  const nbMealsServedProjection = new PersistedReduceProjection<number>(
     nbMealsReducer,
     new InMemoryValueStorage(),
     (e) => e.aggregate === "cat",
   );
-  const catFedProjection = new StoredEntityProjection<FedState>(
+  const catFedProjection = new PersistedEntityReduceProjection<FedState>(
     catFedReducer,
     new InMemoryKeyValueStorage(),
     (e) => e.aggregate === "cat",

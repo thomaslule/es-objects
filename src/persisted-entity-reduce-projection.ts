@@ -1,12 +1,12 @@
 import { Event } from "./event";
-import { Projection } from "./projection";
+import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
+import { PersistedReduceProjection } from "./persisted-reduce-projection";
 import { Rebuilder } from "./rebuilder";
 import { Reducer } from "./reducer";
 import { KeyValueStorage } from "./storage/key-value-storage";
 import { ValueStorage } from "./storage/value-storage";
-import { StoredProjection } from "./stored-projection";
 
-export class StoredEntityProjection<T> {
+export class PersistedEntityReduceProjection<T> {
   constructor(
     private reducer: Reducer<T>,
     private storage: KeyValueStorage<T>,
@@ -14,27 +14,27 @@ export class StoredEntityProjection<T> {
   }
 
   public async handleEvent(event: Event) {
-    await this.getStoredProjectionFor(event.id).handleEvent(event);
+    await this.getProjectionFor(event.id).handleEvent(event);
   }
 
   public async getState(id: string): Promise<T> {
-    return this.getStoredProjectionFor(id).getState();
+    return this.getProjectionFor(id).getState();
   }
 
-  public async getProjection(id: string): Promise<Projection<T>> {
-    return this.getStoredProjectionFor(id).getProjection();
+  public async getInMemoryProjection(id: string): Promise<InMemoryReduceProjection<T>> {
+    return this.getProjectionFor(id).getInMemoryProjection();
   }
 
   public async storeState(id: string, state: T) {
-    await this.getStoredProjectionFor(id).storeState(state);
+    await this.getProjectionFor(id).storeState(state);
   }
 
   public getRebuilder(): Rebuilder {
-    return new StoredEntityProjectionRebuilder(this.reducer, this.storage, this.eventFilter);
+    return new PersistedEntityReduceProjectionRebuilder(this.reducer, this.storage, this.eventFilter);
   }
 
-  private getStoredProjectionFor(id: string): StoredProjection<T> {
-    return new StoredProjection(this.reducer, this.getStorageFor(id), this.eventFilter);
+  private getProjectionFor(id: string): PersistedReduceProjection<T> {
+    return new PersistedReduceProjection(this.reducer, this.getStorageFor(id), this.eventFilter);
   }
 
   private getStorageFor(id: string): ValueStorage<T> {
@@ -45,8 +45,8 @@ export class StoredEntityProjection<T> {
   }
 }
 
-class StoredEntityProjectionRebuilder<T> implements Rebuilder {
-  private projections: { [id: string]: Projection<T> } = {};
+class PersistedEntityReduceProjectionRebuilder<T> implements Rebuilder {
+  private projections: { [id: string]: InMemoryReduceProjection<T> } = {};
 
   constructor(
     private reducer: Reducer<T>,
@@ -58,7 +58,7 @@ class StoredEntityProjectionRebuilder<T> implements Rebuilder {
   public handleEvent(event: Event) {
     if (this.eventFilter(event)) {
       if (!this.projections[event.id]) {
-        this.projections[event.id] = new Projection<T>(this.reducer);
+        this.projections[event.id] = new InMemoryReduceProjection<T>(this.reducer);
       }
       this.projections[event.id].handleEvent(event);
     }

@@ -1,17 +1,17 @@
-import { EventBus, InMemoryEventStorage, InMemoryValueStorage, StoredProjection } from "../src";
+import { EventBus, InMemoryEventStorage, InMemoryValueStorage, PersistedReduceProjection } from "../src";
 import { catFedReducer, fedEvent, FedState } from "./util";
 
-describe("StoredEntityProjection", () => {
+describe("PersistedReduceProjection", () => {
   let storage: InMemoryValueStorage<FedState>;
   let storageEmpty: InMemoryValueStorage<FedState>;
-  let projection: StoredProjection<FedState>;
-  let projectionEmpty: StoredProjection<FedState>;
+  let projection: PersistedReduceProjection<FedState>;
+  let projectionEmpty: PersistedReduceProjection<FedState>;
 
   beforeEach(() => {
     storage = new InMemoryValueStorage({ fed: true });
     storageEmpty = new InMemoryValueStorage();
-    projection = new StoredProjection(catFedReducer, storage, (e) => e.aggregate === "cat");
-    projectionEmpty = new StoredProjection(catFedReducer, storageEmpty, (e) => e.aggregate === "cat");
+    projection = new PersistedReduceProjection(catFedReducer, storage, (e) => e.aggregate === "cat");
+    projectionEmpty = new PersistedReduceProjection(catFedReducer, storageEmpty, (e) => e.aggregate === "cat");
   });
 
   test("getState should get the state from storage", async () => {
@@ -32,10 +32,10 @@ describe("StoredEntityProjection", () => {
     expect(await projectionEmpty.getState()).toEqual({ fed: false });
   });
 
-  test("getProjection should return a Projection constructed with the state and the reducer", async () => {
-    const proj = await projection.getProjection();
+  test("getInMemoryProjection should return a Projection constructed with the state and the reducer", async () => {
+    const proj = await projection.getInMemoryProjection();
     expect(proj.getState()).toEqual({ fed: true });
-    const proj2 = await projectionEmpty.getProjection();
+    const proj2 = await projectionEmpty.getInMemoryProjection();
     expect(proj2.getState()).toEqual({ fed: false });
     proj2.handleEvent(fedEvent);
     expect(proj2.getState()).toEqual({ fed: true });

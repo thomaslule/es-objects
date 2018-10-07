@@ -1,6 +1,6 @@
 import { DecisionProvider } from "./decision-provider";
 import { Event } from "./event";
-import { Projection } from "./projection";
+import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 
 export class Store<TEntity, TDecision> {
   constructor(
@@ -24,7 +24,11 @@ export class Store<TEntity, TDecision> {
     );
   }
 
-  private async createAndPublish(id: string, eventData: any, decisionProjection: Projection<any>): Promise<Event> {
+  private async createAndPublish(
+    id: string,
+    eventData: any,
+    decisionProjection: InMemoryReduceProjection<any>,
+  ): Promise<Event> {
     const event: Event = {
       ...eventData,
       aggregate: this.aggregate,

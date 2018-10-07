@@ -8,7 +8,7 @@ const INIT_EVENT = {
   insertDate: new Date("1970-01-01").toISOString(),
 };
 
-export class Projection<T> {
+export class InMemoryReduceProjection<T> {
   private state: T;
 
   constructor(private reducer: Reducer<T>, state?: T) {
