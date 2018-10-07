@@ -20,7 +20,7 @@ const nbMealsReducer: Reducer<number> = (state = 0, event) => {
 
 test("usage example", async () => {
   const eventStorage = new InMemoryEventStorage();
-  const bus = new EventBus(eventStorage);
+  const bus = new EventBus(eventStorage, (err) => { console.log("Error in event handler", err); });
 
   const catDecisionProvider = new FromEventsDecisionProvider("cat", catFedReducer, eventStorage);
 
@@ -42,12 +42,8 @@ test("usage example", async () => {
     (e) => e.aggregate === "cat",
   );
 
-  bus.onEvent(async (event) => {
-    try { await nbMealsServedProjection.handleEvent(event); } catch (err) { console.log(err); }
-  });
-  bus.onEvent(async (event) => {
-    try { await catFedProjection.handleEvent(event); } catch (err) { console.log(err); }
-  });
+  bus.onEvent(async (event) => { await nbMealsServedProjection.handleEvent(event); });
+  bus.onEvent(async (event) => { await catFedProjection.handleEvent(event); });
 
   const felix = await catStore.get("felix");
   await felix.feed();
