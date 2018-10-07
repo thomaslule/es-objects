@@ -1,5 +1,4 @@
-import { DecisionSequence } from "./decision-sequence";
-import { Reducer } from "./reducer";
+import { DecisionSequence, Reducer } from "./types";
 
 export function makeDecisionReducer<T>(reducer: Reducer<T>): Reducer<DecisionSequence<T>> {
   return (state, event) => ({

@@ -1,5 +1,4 @@
-import { Event } from "../event";
-import { Reducer } from "../reducer";
+import { Event, Reducer } from "../types";
 
 const INIT_EVENT = {
   aggregate: "__init__",

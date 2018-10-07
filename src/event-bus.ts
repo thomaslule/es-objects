@@ -1,8 +1,6 @@
 import { EventEmitter } from "events";
 import { consumeStream } from "./consume-stream";
-import { Event } from "./event";
-import { Rebuilder } from "./rebuilder";
-import { EventStorage } from "./storage/event-storage";
+import { Event, EventStorage, Rebuilder } from "./types";
 
 export class EventBus {
   private bus = new EventEmitter();

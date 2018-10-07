@@ -1,7 +1,4 @@
-import { Event } from "../event";
-import { Rebuilder } from "../rebuilder";
-import { Reducer } from "../reducer";
-import { ValueStorage } from "../storage/value-storage";
+import { Event, Rebuilder, Reducer, ValueStorage } from "../types";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 
 export class PersistedReduceProjection<T> {

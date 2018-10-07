@@ -1,4 +1,4 @@
-import { KeyValueStorage } from "../storage/key-value-storage";
+import { KeyValueStorage } from "../types";
 
 export class InMemoryKeyValueStorage<T> implements KeyValueStorage<T> {
   constructor(private values: { [id: string]: T | undefined } = {}) {

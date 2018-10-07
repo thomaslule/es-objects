@@ -1,8 +1,4 @@
-import { Event } from "../event";
-import { Rebuilder } from "../rebuilder";
-import { Reducer } from "../reducer";
-import { KeyValueStorage } from "../storage/key-value-storage";
-import { ValueStorage } from "../storage/value-storage";
+import { Event, KeyValueStorage, Rebuilder, Reducer, ValueStorage } from "../types";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 import { PersistedReduceProjection } from "./persisted-reduce-projection";
 

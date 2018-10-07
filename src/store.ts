@@ -1,6 +1,5 @@
-import { DecisionProvider } from "./decision-provider";
-import { Event } from "./event";
 import { InMemoryReduceProjection } from "./projection/in-memory-reduce-projection";
+import { DecisionProvider, Event } from "./types";
 
 export class Store<TEntity, TDecision> {
   constructor(

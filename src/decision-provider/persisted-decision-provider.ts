@@ -1,11 +1,7 @@
-import { DecisionSequence } from "../decision-sequence";
-import { Event } from "../event";
 import { makeDecisionReducer } from "../make-decision-reducer";
 import { InMemoryReduceProjection } from "../projection/in-memory-reduce-projection";
 import { PersistedEntityReduceProjection } from "../projection/persisted-entity-reduce-projection";
-import { Rebuilder } from "../rebuilder";
-import { Reducer } from "../reducer";
-import { KeyValueStorage } from "../storage/key-value-storage";
+import { DecisionSequence, Event, KeyValueStorage, Rebuilder, Reducer } from "../types";
 import { DecisionProvider } from "./decision-provider";
 
 export class PersistedDecisionProvider<T> implements DecisionProvider<T> {

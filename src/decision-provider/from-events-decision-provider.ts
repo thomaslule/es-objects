@@ -1,10 +1,7 @@
-import { DecisionSequence } from "../decision-sequence";
 import { makeDecisionReducer } from "../make-decision-reducer";
 import { InMemoryReduceProjection } from "../projection/in-memory-reduce-projection";
 import { projectFromEvents } from "../projection/project-from-events";
-import { Reducer } from "../reducer";
-import { EventStorage } from "../storage/event-storage";
-import { DecisionProvider } from "./decision-provider";
+import { DecisionProvider, DecisionSequence, EventStorage, Reducer } from "../types";
 
 export class FromEventsDecisionProvider<T> implements DecisionProvider<T> {
   private reducer: Reducer<DecisionSequence<T>>;

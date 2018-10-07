@@ -1,4 +1,4 @@
-import { ValueStorage } from "../storage/value-storage";
+import { ValueStorage } from "../types";
 
 export class InMemoryValueStorage<T> implements ValueStorage<T> {
   constructor(private value?: T) {

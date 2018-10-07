@@ -1,6 +1,5 @@
 import { Stream } from "stream";
-import { Event } from "../event";
-import { EventStorage } from "../storage/event-storage";
+import { Event, EventStorage } from "../types";
 
 const arrayToStream = (arr: any[]): Stream => {
   const stream = new Stream.Readable({ objectMode: true });
