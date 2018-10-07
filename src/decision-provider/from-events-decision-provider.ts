@@ -1,11 +1,11 @@
-import { consumeStream } from "./consume-stream";
+import { consumeStream } from "../consume-stream";
+import { DecisionSequence } from "../decision-sequence";
+import { Event } from "../event";
+import { makeDecisionReducer } from "../make-decision-reducer";
+import { InMemoryReduceProjection } from "../projection/in-memory-reduce-projection";
+import { Reducer } from "../reducer";
+import { EventStorage } from "../storage/event-storage";
 import { DecisionProvider } from "./decision-provider";
-import { DecisionSequence } from "./decision-sequence";
-import { Event } from "./event";
-import { makeDecisionReducer } from "./make-decision-reducer";
-import { InMemoryReduceProjection } from "./projection/in-memory-reduce-projection";
-import { Reducer } from "./reducer";
-import { EventStorage } from "./storage/event-storage";
 
 export class FromEventsDecisionProvider<T> implements DecisionProvider<T> {
   constructor(private aggregate: string, private reducer: Reducer<T>, private eventStorage: EventStorage) {

@@ -1,14 +1,14 @@
-export { DecisionProvider } from "./decision-provider";
+export { DecisionProvider } from "./decision-provider/decision-provider";
+export { FromEventsDecisionProvider } from "./decision-provider/from-events-decision-provider";
+export { PersistedDecisionProvider } from "./decision-provider/persisted-decision-provider";
 export { DecisionSequence } from "./decision-sequence";
 export { Entity } from "./entity";
 export { Event } from "./event";
 export { EventBus } from "./event-bus";
-export { FromEventsDecisionProvider } from "./from-events-decision-provider";
 export { InMemoryEventStorage } from "./in-memory/event-storage";
 export { InMemoryKeyValueStorage } from "./in-memory/key-value-storage";
 export { InMemoryValueStorage } from "./in-memory/value-storage";
 export { makeDecisionReducer } from "./make-decision-reducer";
-export { PersistedDecisionProvider } from "./persisted-decision-provider";
 export { InMemoryReduceProjection } from "./projection/in-memory-reduce-projection";
 export { PersistedEntityReduceProjection } from "./projection/persisted-entity-reduce-projection";
 export { PersistedReduceProjection } from "./projection/persisted-reduce-projection";
