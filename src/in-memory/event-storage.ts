@@ -23,6 +23,12 @@ export class InMemoryEventStorage implements EventStorage {
     this.events.push(event);
   }
 
+  public getEvents(aggregate: string, id: string, fromSequence = -1) {
+    return arrayToStream(
+      this.events.filter((e) => e.aggregate === aggregate && e.id === id && e.sequence >= fromSequence),
+    );
+  }
+
   public getAllEvents() {
     return arrayToStream(this.events);
   }
