@@ -57,20 +57,30 @@ describe("Store", () => {
     expect(decisionProjection2.getState()).toEqual({ sequence: 1, decision: { fed: true }});
   });
 
-  test("on duplicate event sequence, the entity command should throw", async () => {
-    const bus = new EventBus(new InMemoryEventStorage());
-    const storeWithEventBus = new Store(
-      "cat",
-      (id, decisionState, createAndPublish) => new Cat(id, decisionState, createAndPublish),
-      decisionProvider,
-      (event) => bus.publish(event),
-    );
+  test(
+    "on duplicate event sequence, the entity command should throw and the projections should not be updated",
+    async () => {
+      const bus = new EventBus(new InMemoryEventStorage());
+      const storeWithEventBus = new Store(
+        "cat",
+        (id, decisionState, createAndPublish) => new Cat(id, decisionState, createAndPublish),
+        decisionProvider,
+        (event) => bus.publish(event),
+      );
 
-    const felix = await storeWithEventBus.get("felix");
-    const felix2 = await storeWithEventBus.get("felix");
+      // get 2 instances of the same entity
+      const molotov = await storeWithEventBus.get("molotov");
+      const molotov2 = await storeWithEventBus.get("molotov");
 
-    await felix.pet();
-    await expect(felix2.pet())
-      .rejects.toEqual(new Error("an event with same aggregate, id and sequence already exists"));
-  });
+      // publish an event for one of them
+      await molotov.pet();
+      // the second cannot publish an event
+      await expect(molotov2.feed())
+        .rejects.toEqual(new Error("an event with same aggregate, id and sequence already exists"));
+
+      // the decision projection only got the published event
+      const decisionProjection = await decisionProvider.getDecisionProjection("molotov");
+      expect(decisionProjection.getState()).toEqual({ sequence: 0, decision: { fed: false }});
+    },
+  );
 });
