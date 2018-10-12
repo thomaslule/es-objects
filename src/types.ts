@@ -19,7 +19,7 @@ export interface Event {
 }
 
 export interface EventStorage {
-  store: (event: Event) => void;
+  store: (event: Event) => Promise<void>;
   getEvents: (aggregate: string, id: string, fromSequence?: number) => Stream;
   getAllEvents: () => Stream;
 }
