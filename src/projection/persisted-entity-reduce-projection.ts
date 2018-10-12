@@ -1,4 +1,4 @@
-import { Event, KeyValueStorage, Rebuilder, Reducer, ValueStorage } from "../types";
+import { Dictionary, Event, KeyValueStorage, Rebuilder, Reducer, ValueStorage } from "../types";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 import { PersistedReduceProjection } from "./persisted-reduce-projection";
 
@@ -15,6 +15,10 @@ export class PersistedEntityReduceProjection<T> {
 
   public async getState(id: string): Promise<T> {
     return this.getProjectionFor(id).getState();
+  }
+
+  public async getAll(): Promise<Dictionary<T>> {
+    return this.storage.getAll();
   }
 
   public async getInMemoryProjection(id: string): Promise<InMemoryReduceProjection<T>> {
@@ -42,7 +46,7 @@ export class PersistedEntityReduceProjection<T> {
 }
 
 class PersistedEntityReduceProjectionRebuilder<T> implements Rebuilder {
-  private projections: { [id: string]: InMemoryReduceProjection<T> } = {};
+  private projections: Dictionary<InMemoryReduceProjection<T>> = {};
 
   constructor(
     private reducer: Reducer<T>,
@@ -56,13 +60,13 @@ class PersistedEntityReduceProjectionRebuilder<T> implements Rebuilder {
       if (!this.projections[event.id]) {
         this.projections[event.id] = new InMemoryReduceProjection<T>(this.reducer);
       }
-      this.projections[event.id].handleEvent(event);
+      (this.projections[event.id] as InMemoryReduceProjection<T>).handleEvent(event);
     }
   }
 
   public async finalize() {
     const promises = Object.entries(this.projections)
-      .map(([id, projection]) => this.storage.store(id, projection.getState()));
+      .map(([id, projection]) => this.storage.store(id, (projection as InMemoryReduceProjection<T>).getState()));
     await Promise.all(promises);
   }
 }

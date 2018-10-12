@@ -11,6 +11,10 @@ export interface DecisionSequence<T> {
   sequence: number;
 }
 
+export interface Dictionary<T> {
+  [key: string]: T | undefined;
+}
+
 export interface Event {
   readonly aggregate: string;
   readonly id: string;
@@ -27,6 +31,7 @@ export interface EventStorage {
 export interface KeyValueStorage<T> {
   get: (id: string) => Promise<T | undefined>;
   store: (id: string, value: T) => Promise<void>;
+  getAll: () => Promise<Dictionary<T>>;
 }
 
 export interface Rebuilder {

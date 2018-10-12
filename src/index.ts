@@ -11,12 +11,4 @@ export { PersistedEntityReduceProjection } from "./projection/persisted-entity-r
 export { PersistedReduceProjection } from "./projection/persisted-reduce-projection";
 export { projectFromEvents } from "./projection/project-from-events";
 export { Store } from "./store";
-export {
-  DecisionProvider,
-  DecisionSequence,
-  KeyValueStorage,
-  Event,
-  EventStorage,
-  Reducer,
-  ValueStorage,
-} from "./types";
+export * from "./types";

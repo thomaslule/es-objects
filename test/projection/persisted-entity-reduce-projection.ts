@@ -28,6 +28,11 @@ describe("PersistedEntityReduceProjection", () => {
     expect(await projection.getState("molotov")).toEqual({ fed: false });
   });
 
+  test("getAll should get all states from storage", async () => {
+    await projection.handleEvent({ ...fedEvent, id: "molotov" });
+    expect(await projection.getAll()).toEqual({ felix: { fed: true }, molotov: { fed: true }});
+  });
+
   test(
     "getInMemoryProjection should return an InMemoryReduceProjection constructed with the state and the reducer",
     async () => {
