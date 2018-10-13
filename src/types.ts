@@ -1,4 +1,4 @@
-import { Stream } from "stream";
+import { Readable } from "stream";
 import { InMemoryReduceProjection } from "./projection/in-memory-reduce-projection";
 
 export interface DecisionProvider<TDecision> {
@@ -24,8 +24,8 @@ export interface Event {
 
 export interface EventStorage {
   store: (event: Event) => Promise<void>;
-  getEvents: (aggregate: string, id: string, fromSequence?: number) => Stream;
-  getAllEvents: () => Stream;
+  getEvents: (aggregate: string, id: string, fromSequence?: number) => Readable;
+  getAllEvents: () => Readable;
 }
 
 export interface KeyValueStorage<T> {
@@ -34,9 +34,8 @@ export interface KeyValueStorage<T> {
   getAll: () => Promise<Dictionary<T>>;
 }
 
-export interface Rebuilder {
-  handleEvent: (event: Event) => void | Promise<void>;
-  finalize: () => Promise<void>;
+export interface Rebuildable {
+  rebuild: (eventStream: Readable) => Promise<void>;
 }
 
 export type Reducer<T> = (state: T | undefined, event: Event) => T;

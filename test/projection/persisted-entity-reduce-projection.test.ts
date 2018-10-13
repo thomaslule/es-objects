@@ -49,18 +49,24 @@ describe("PersistedEntityReduceProjection", () => {
     expect(await storage.get("molotov")).toEqual({ fed: true });
   });
 
-  test("getRebuilder should return a rebuilder that can rebuild the projection state", async () => {
+  test("rebuild should rebuild the projection state", async () => {
     const emptyStorage = new InMemoryKeyValueStorage<FedState>();
     projection = new PersistedEntityReduceProjection<FedState>(
       catFedReducer,
       emptyStorage,
       (e) => e.aggregate === "cat",
     );
-    const rebuilder = projection.getRebuilder();
-    const bus = new EventBus(new InMemoryEventStorage([fedEvent, { ...fedEvent, aggregate: "dog", id: "rex" }]));
+    const events = new InMemoryEventStorage([fedEvent, { ...fedEvent, aggregate: "dog", id: "rex" }]);
 
-    await bus.replayEvents([rebuilder]);
+    await projection.rebuild(events.getAllEvents());
+
     expect(await projection.getState("felix")).toEqual({ fed: true });
     expect(await projection.getState("rex")).toEqual({ fed: false }); // event doesn't match filter
+  });
+
+  test("rebuild should empty the state if no event was replayed", async () => {
+    const events = new InMemoryEventStorage();
+    await projection.rebuild(events.getAllEvents());
+    expect(await projection.getState("felix")).toEqual({ fed: false });
   });
 });

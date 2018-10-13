@@ -1,10 +1,11 @@
+import { Readable } from "stream";
 import { makeDecisionReducer } from "../make-decision-reducer";
 import { InMemoryReduceProjection } from "../projection/in-memory-reduce-projection";
 import { PersistedEntityReduceProjection } from "../projection/persisted-entity-reduce-projection";
-import { DecisionSequence, Event, KeyValueStorage, Rebuilder, Reducer } from "../types";
+import { DecisionSequence, Event, KeyValueStorage, Rebuildable, Reducer } from "../types";
 import { DecisionProvider } from "./decision-provider";
 
-export class PersistedDecisionProvider<T> implements DecisionProvider<T> {
+export class PersistedDecisionProvider<T> implements DecisionProvider<T>, Rebuildable {
   private decisionProjection: PersistedEntityReduceProjection<DecisionSequence<T>>;
 
   constructor(aggregate: string, reducer: Reducer<T>, storage: KeyValueStorage<DecisionSequence<T>>) {
@@ -23,7 +24,7 @@ export class PersistedDecisionProvider<T> implements DecisionProvider<T> {
     await this.decisionProjection.storeState(event.id, decision);
   }
 
-  public getRebuilder(): Rebuilder {
-    return this.decisionProjection.getRebuilder();
+  public async rebuild(eventStream: Readable) {
+    await this.decisionProjection.rebuild(eventStream);
   }
 }

@@ -29,23 +29,6 @@ describe("EventBus", () => {
     expect(handler).toHaveBeenCalledWith(fedEvent);
   });
 
-  test("replayEvents should call handleEvent for each event then call finalize", async () => {
-    await storage.store(fedEvent);
-    const fedEvent2 = { ...fedEvent, id: "molotov" };
-    await storage.store(fedEvent2);
-    const rebuilder = {
-      handleEvent: jest.fn(),
-      finalize: jest.fn(),
-    };
-
-    await bus.replayEvents([rebuilder]);
-
-    expect(rebuilder.handleEvent).toHaveBeenCalledTimes(2);
-    expect(rebuilder.handleEvent.mock.calls[0][0]).toEqual(fedEvent);
-    expect(rebuilder.handleEvent.mock.calls[1][0]).toEqual(fedEvent2);
-    expect(rebuilder.finalize).toHaveBeenCalled();
-  });
-
   test("onEventHandler catch sync handler errors", async () => {
     bus.onEvent(() => {
       throw new Error("any error");

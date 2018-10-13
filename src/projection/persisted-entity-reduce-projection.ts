@@ -1,8 +1,9 @@
-import { Dictionary, Event, KeyValueStorage, Rebuilder, Reducer, ValueStorage } from "../types";
+import { Readable } from "stream";
+import { Dictionary, Event, KeyValueStorage, Rebuildable, Reducer, ValueStorage } from "../types";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 import { PersistedReduceProjection } from "./persisted-reduce-projection";
 
-export class PersistedEntityReduceProjection<T> {
+export class PersistedEntityReduceProjection<T> implements Rebuildable {
   constructor(
     private reducer: Reducer<T>,
     private storage: KeyValueStorage<T>,
@@ -29,8 +30,28 @@ export class PersistedEntityReduceProjection<T> {
     await this.getProjectionFor(id).storeState(state);
   }
 
-  public getRebuilder(): Rebuilder {
-    return new PersistedEntityReduceProjectionRebuilder(this.reducer, this.storage, this.eventFilter);
+  public rebuild(eventStream: Readable) {
+    return new Promise<void>((resolve, reject) => {
+      const projections: Dictionary<InMemoryReduceProjection<T>> = {};
+      eventStream.on("data", (event) => {
+        if (this.eventFilter(event)) {
+          if (!projections[event.id]) {
+            projections[event.id] = new InMemoryReduceProjection<T>(this.reducer);
+          }
+          (projections[event.id] as InMemoryReduceProjection<T>).handleEvent(event);
+        }
+      });
+      eventStream.on("end", async () => {
+        try {
+          const promises = Object.entries(projections)
+            .map(([id, projection]) => this.storage.store(id, (projection as InMemoryReduceProjection<T>).getState()));
+          await Promise.all(promises);
+          resolve();
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
   }
 
   private getProjectionFor(id: string): PersistedReduceProjection<T> {
@@ -42,31 +63,5 @@ export class PersistedEntityReduceProjection<T> {
       get: () => this.storage.get(id),
       store: (state) => this.storage.store(id, state),
     };
-  }
-}
-
-class PersistedEntityReduceProjectionRebuilder<T> implements Rebuilder {
-  private projections: Dictionary<InMemoryReduceProjection<T>> = {};
-
-  constructor(
-    private reducer: Reducer<T>,
-    private storage: KeyValueStorage<T>,
-    private eventFilter: (e: Event) => boolean,
-  ) {
-  }
-
-  public handleEvent(event: Event) {
-    if (this.eventFilter(event)) {
-      if (!this.projections[event.id]) {
-        this.projections[event.id] = new InMemoryReduceProjection<T>(this.reducer);
-      }
-      (this.projections[event.id] as InMemoryReduceProjection<T>).handleEvent(event);
-    }
-  }
-
-  public async finalize() {
-    const promises = Object.entries(this.projections)
-      .map(([id, projection]) => this.storage.store(id, (projection as InMemoryReduceProjection<T>).getState()));
-    await Promise.all(promises);
   }
 }

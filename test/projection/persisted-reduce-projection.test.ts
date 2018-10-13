@@ -46,20 +46,18 @@ describe("PersistedReduceProjection", () => {
     expect(await storageEmpty.get()).toEqual({ fed: true });
   });
 
-  test("getRebuilder should return a rebuilder that can rebuild the projection state", async () => {
-    const rebuilder = projectionEmpty.getRebuilder();
+  test("rebuild should rebuild the projection state", async () => {
     const bus = new EventBus(new InMemoryEventStorage([fedEvent]));
 
     expect(await projectionEmpty.getState()).toEqual({ fed: false });
-    await bus.replayEvents([rebuilder]);
+    await bus.replayEvents([projectionEmpty]);
     expect(await projectionEmpty.getState()).toEqual({ fed: true });
   });
 
-  test("getRebuilder object should ignore events that dont match filter", async () => {
-    const rebuilder = projectionEmpty.getRebuilder();
+  test("rebuild should ignore events that dont match filter", async () => {
     const bus = new EventBus(new InMemoryEventStorage([{ ...fedEvent, aggregate: "dog" }]));
 
-    await bus.replayEvents([rebuilder]);
+    await bus.replayEvents([projectionEmpty]);
     expect(await projectionEmpty.getState()).toEqual({ fed: false });
   });
 });

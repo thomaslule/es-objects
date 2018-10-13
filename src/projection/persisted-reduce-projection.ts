@@ -1,7 +1,8 @@
-import { Event, Rebuilder, Reducer, ValueStorage } from "../types";
+import { Readable } from "stream";
+import { Event, Rebuildable, Reducer, ValueStorage } from "../types";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 
-export class PersistedReduceProjection<T> {
+export class PersistedReduceProjection<T> implements Rebuildable {
   constructor(
     private reducer: Reducer<T>,
     private storage: ValueStorage<T>,
@@ -29,24 +30,22 @@ export class PersistedReduceProjection<T> {
     await this.storage.store(state);
   }
 
-  public getRebuilder(): Rebuilder {
-    return new PersistedReduceProjectionRebuilder(this.reducer, this.storage, this.eventFilter);
-  }
-}
-
-class PersistedReduceProjectionRebuilder<T> implements Rebuilder {
-  private projection: InMemoryReduceProjection<T>;
-  constructor(reducer: Reducer<T>, private storage: ValueStorage<T>, private eventFilter: (e: Event) => boolean) {
-    this.projection = new InMemoryReduceProjection(reducer);
-  }
-
-  public handleEvent(event: Event) {
-    if (this.eventFilter(event)) {
-      this.projection.handleEvent(event);
-    }
-  }
-
-  public async finalize() {
-    await this.storage.store(this.projection.getState());
+  public async rebuild(eventStream: Readable) {
+    return new Promise<void>((resolve, reject) => {
+      const proj = new InMemoryReduceProjection(this.reducer);
+      eventStream.on("data", (event) => {
+        if (this.eventFilter(event)) {
+          proj.handleEvent(event);
+        }
+      });
+      eventStream.on("end", async () => {
+        try {
+          await this.storeState(proj.getState());
+          resolve();
+        } catch (err) {
+          reject(err);
+        }
+      });
+    });
   }
 }

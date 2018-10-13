@@ -1,6 +1,5 @@
 import { EventEmitter } from "events";
-import { consumeStream } from "./consume-stream";
-import { Event, EventStorage, Rebuilder } from "./types";
+import { Event, EventStorage, Rebuildable } from "./types";
 
 export class EventBus {
   private bus = new EventEmitter();
@@ -23,10 +22,8 @@ export class EventBus {
     this.bus.emit("event", event);
   }
 
-  public async replayEvents(rebuilders: Rebuilder[]) {
-    await consumeStream(this.eventStorage.getAllEvents(), async (event: Event) => {
-      await rebuilders.map((r) => r.handleEvent(event));
-    });
-    await Promise.all(rebuilders.map((r) => r.finalize()));
+  public async replayEvents(rebuildables: Rebuildable[]) {
+    const stream = this.eventStorage.getAllEvents();
+    await Promise.all(rebuildables.map((rebuildable) => rebuildable.rebuild(stream)));
   }
 }
