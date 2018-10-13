@@ -31,13 +31,14 @@ export class PersistedReduceProjection<T> implements Rebuildable {
   }
 
   public async rebuild(eventStream: Readable) {
-    return new Promise<void>((resolve, reject) => {
-      const proj = new InMemoryReduceProjection(this.reducer);
-      eventStream.on("data", (event) => {
-        if (this.eventFilter(event)) {
-          proj.handleEvent(event);
-        }
-      });
+    await this.storage.delete();
+    const proj = new InMemoryReduceProjection(this.reducer);
+    eventStream.on("data", (event) => {
+      if (this.eventFilter(event)) {
+        proj.handleEvent(event);
+      }
+    });
+    await new Promise<void>((resolve, reject) => {
       eventStream.on("end", async () => {
         try {
           await this.storeState(proj.getState());

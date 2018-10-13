@@ -30,17 +30,18 @@ export class PersistedEntityReduceProjection<T> implements Rebuildable {
     await this.getProjectionFor(id).storeState(state);
   }
 
-  public rebuild(eventStream: Readable) {
-    return new Promise<void>((resolve, reject) => {
-      const projections: Dictionary<InMemoryReduceProjection<T>> = {};
-      eventStream.on("data", (event) => {
-        if (this.eventFilter(event)) {
-          if (!projections[event.id]) {
-            projections[event.id] = new InMemoryReduceProjection<T>(this.reducer);
-          }
-          (projections[event.id] as InMemoryReduceProjection<T>).handleEvent(event);
+  public async rebuild(eventStream: Readable) {
+    await this.storage.deleteAll();
+    const projections: Dictionary<InMemoryReduceProjection<T>> = {};
+    eventStream.on("data", (event) => {
+      if (this.eventFilter(event)) {
+        if (!projections[event.id]) {
+          projections[event.id] = new InMemoryReduceProjection<T>(this.reducer);
         }
-      });
+        (projections[event.id] as InMemoryReduceProjection<T>).handleEvent(event);
+      }
+    });
+    await new Promise<void>((resolve, reject) => {
       eventStream.on("end", async () => {
         try {
           const promises = Object.entries(projections)
