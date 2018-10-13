@@ -43,6 +43,27 @@ describe("consumeStream", () => {
     })).rejects.toEqual(new Error("consume error"));
   });
 
+  test("should reject if async consumer throws an error", async () => {
+    await expect(consumeStream(okStream(), () => {
+      return Promise.reject(new Error("consume error"));
+    })).rejects.toEqual(new Error("consume error"));
+  });
+
+  test("should stop reading if consumer throws an error", async () => {
+    let result = 0;
+    try {
+      await consumeStream(okStream(), (data) => {
+        if (data.count === 5) {
+          throw new Error("consume error");
+        } else {
+          result += data.count;
+        }
+      });
+    } catch (err) {
+      expect(result).toBe(1 + 2 + 3 + 4);
+    }
+  });
+
   test("should reject if readable stream emits an error", async () => {
     await expect(consumeStream(errorStream(), () => { return; }))
       .rejects.toEqual(new Error("read error"));
