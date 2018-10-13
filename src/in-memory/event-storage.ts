@@ -4,7 +4,7 @@ import { Event, EventStorage } from "../types";
 const arrayToStream = (arr: any[]): Readable => {
   const stream = new Readable({ objectMode: true });
   arr.forEach((e) => { stream.push(e); });
-  stream.push(null);
+  stream.push(null); // tslint:disable-line:no-null-keyword
   return stream;
 };
 
