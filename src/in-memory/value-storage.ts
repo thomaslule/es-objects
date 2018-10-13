@@ -11,4 +11,8 @@ export class InMemoryValueStorage<T> implements ValueStorage<T> {
   public async store(newValue: T) {
     this.value = newValue;
   }
+
+  public async delete() {
+    this.value = undefined;
+  }
 }

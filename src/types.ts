@@ -31,7 +31,9 @@ export interface EventStorage {
 export interface KeyValueStorage<T> {
   get: (id: string) => Promise<T | undefined>;
   store: (id: string, value: T) => Promise<void>;
+  delete: (id: string) => Promise<void>;
   getAll: () => Promise<Dictionary<T>>;
+  deleteAll: () => Promise<void>;
 }
 
 export interface Rebuildable {
@@ -43,4 +45,5 @@ export type Reducer<T> = (state: T | undefined, event: Event) => T;
 export interface ValueStorage<T> {
   get: () => Promise<T | undefined>;
   store: (value: T) => Promise<void>;
+  delete: () => Promise<void>;
 }

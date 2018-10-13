@@ -12,7 +12,15 @@ export class InMemoryKeyValueStorage<T> implements KeyValueStorage<T> {
     this.values[id] = value;
   }
 
+  public async delete(id: string) {
+    delete this.values[id];
+  }
+
   public async getAll() {
     return this.values;
+  }
+
+  public async deleteAll() {
+    this.values = {};
   }
 }
