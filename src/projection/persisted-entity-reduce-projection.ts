@@ -1,4 +1,5 @@
 import { Readable } from "stream";
+import { consumeStream } from "../consume-stream";
 import { Dictionary, Event, KeyValueStorage, Rebuildable, Reducer, ValueStorage } from "../types";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 import { PersistedReduceProjection } from "./persisted-reduce-projection";
@@ -33,7 +34,7 @@ export class PersistedEntityReduceProjection<T> implements Rebuildable {
   public async rebuild(eventStream: Readable) {
     await this.storage.deleteAll();
     const projections: Dictionary<InMemoryReduceProjection<T>> = {};
-    eventStream.on("data", (event) => {
+    await consumeStream(eventStream, (event) => {
       if (this.eventFilter(event)) {
         if (!projections[event.id]) {
           projections[event.id] = new InMemoryReduceProjection<T>(this.reducer);
@@ -41,18 +42,9 @@ export class PersistedEntityReduceProjection<T> implements Rebuildable {
         (projections[event.id] as InMemoryReduceProjection<T>).handleEvent(event);
       }
     });
-    await new Promise<void>((resolve, reject) => {
-      eventStream.on("end", async () => {
-        try {
-          const promises = Object.entries(projections)
-            .map(([id, projection]) => this.storage.store(id, (projection as InMemoryReduceProjection<T>).getState()));
-          await Promise.all(promises);
-          resolve();
-        } catch (err) {
-          reject(err);
-        }
-      });
-    });
+    const promises = Object.entries(projections)
+      .map(([id, projection]) => this.storage.store(id, (projection as InMemoryReduceProjection<T>).getState()));
+    await Promise.all(promises);
   }
 
   private getProjectionFor(id: string): PersistedReduceProjection<T> {
@@ -63,6 +55,7 @@ export class PersistedEntityReduceProjection<T> implements Rebuildable {
     return {
       get: () => this.storage.get(id),
       store: (state) => this.storage.store(id, state),
+      delete: () => this.storage.delete(id),
     };
   }
 }
