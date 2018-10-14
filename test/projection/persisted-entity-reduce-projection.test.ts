@@ -44,11 +44,6 @@ describe("PersistedEntityReduceProjection", () => {
     },
   );
 
-  test("storeState should directly store the new state", async () => {
-    await projection.storeState("molotov", { fed: true });
-    expect(await storage.get("molotov")).toEqual({ fed: true });
-  });
-
   test("rebuild should rebuild the projection state", async () => {
     const emptyStorage = new InMemoryKeyValueStorage<FedState>();
     projection = new PersistedEntityReduceProjection<FedState>(

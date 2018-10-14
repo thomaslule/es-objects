@@ -27,10 +27,6 @@ export class PersistedEntityReduceProjection<T> implements Rebuildable {
     return this.getProjectionFor(id).getInMemoryProjection();
   }
 
-  public async storeState(id: string, state: T) {
-    await this.getProjectionFor(id).storeState(state);
-  }
-
   public async rebuild(eventStream: Readable) {
     await this.storage.deleteAll();
     const projections: Dictionary<InMemoryReduceProjection<T>> = {};

@@ -7,10 +7,10 @@ import { DecisionProvider, DecisionSequence, Event, KeyValueStorage, Rebuildable
 export class PersistedDecisionProvider<T> implements DecisionProvider<T>, Rebuildable {
   private decisionProjection: PersistedEntityReduceProjection<DecisionSequence<T>>;
 
-  constructor(aggregate: string, reducer: Reducer<T>, storage: KeyValueStorage<DecisionSequence<T>>) {
+  constructor(aggregate: string, reducer: Reducer<T>, private storage: KeyValueStorage<DecisionSequence<T>>) {
     this.decisionProjection = new PersistedEntityReduceProjection(
       makeDecisionReducer<T>(reducer),
-      storage,
+      this.storage,
       (event) => event.aggregate === aggregate,
     );
   }
@@ -20,7 +20,7 @@ export class PersistedDecisionProvider<T> implements DecisionProvider<T>, Rebuil
   }
 
   public async handleEvent(event: Event, decision: DecisionSequence<T>) {
-    await this.decisionProjection.storeState(event.id, decision);
+    await this.storage.store(event.id, decision);
   }
 
   public async rebuild(eventStream: Readable) {

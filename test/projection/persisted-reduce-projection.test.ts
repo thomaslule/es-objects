@@ -41,11 +41,6 @@ describe("PersistedReduceProjection", () => {
     expect(proj2.getState()).toEqual({ fed: true });
   });
 
-  test("storeState should directly store the new state", async () => {
-    await projectionEmpty.storeState({ fed: true });
-    expect(await storageEmpty.get()).toEqual({ fed: true });
-  });
-
   test("rebuild should rebuild the projection state", async () => {
     const events = new InMemoryEventStorage([fedEvent]);
 

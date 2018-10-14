@@ -14,7 +14,7 @@ export class PersistedReduceProjection<T> implements Rebuildable {
     if (this.eventFilter(event)) {
       const proj = await this.getInMemoryProjection();
       proj.handleEvent(event);
-      await this.storeState(proj.getState());
+      await this.storage.store(proj.getState());
     }
   }
 
@@ -27,10 +27,6 @@ export class PersistedReduceProjection<T> implements Rebuildable {
     return new InMemoryReduceProjection(this.reducer, state);
   }
 
-  public async storeState(state: T) {
-    await this.storage.store(state);
-  }
-
   public async rebuild(eventStream: Readable) {
     await this.storage.delete();
     const proj = new InMemoryReduceProjection(this.reducer);
@@ -39,6 +35,6 @@ export class PersistedReduceProjection<T> implements Rebuildable {
         proj.handleEvent(event);
       }
     });
-    await this.storeState(proj.getState());
+    await this.storage.store(proj.getState());
   }
 }
