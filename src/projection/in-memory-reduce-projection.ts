@@ -1,4 +1,6 @@
-import { Event, Reducer } from "../types";
+import { Readable } from "stream";
+import { Event, Rebuildable, Reducer } from "../types";
+import { projectFromEvents } from "./project-from-events";
 
 const INIT_EVENT = {
   aggregate: "__init__",
@@ -6,7 +8,7 @@ const INIT_EVENT = {
   sequence: -1,
 };
 
-export class InMemoryReduceProjection<T> {
+export class InMemoryReduceProjection<T> implements Rebuildable {
   private state: T;
 
   constructor(private reducer: Reducer<T>, state?: T) {
@@ -23,5 +25,9 @@ export class InMemoryReduceProjection<T> {
 
   public getState(): T {
     return this.state;
+  }
+
+  public async rebuild(events: Readable) {
+    this.state = await projectFromEvents(this.reducer, events);
   }
 }
