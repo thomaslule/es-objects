@@ -33,17 +33,6 @@ describe("PersistedEntityReduceProjection", () => {
     expect(await projection.getAll()).toEqual({ felix: { fed: true }, molotov: { fed: true }});
   });
 
-  test(
-    "getInMemoryProjection should return an InMemoryReduceProjection constructed with the state and the reducer",
-    async () => {
-      const proj = await projection.getInMemoryProjection("felix");
-      expect(proj.getState()).toEqual({ fed: true });
-      const proj2 = await projection.getInMemoryProjection("molotov");
-      proj2.handleEvent(fedEvent);
-      expect(proj2.getState()).toEqual({ fed: true });
-    },
-  );
-
   test("rebuild should rebuild the projection state", async () => {
     const emptyStorage = new InMemoryKeyValueStorage<FedState>();
     projection = new PersistedEntityReduceProjection<FedState>(

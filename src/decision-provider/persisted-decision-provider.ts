@@ -6,17 +6,20 @@ import { DecisionProvider, DecisionSequence, Event, KeyValueStorage, Rebuildable
 
 export class PersistedDecisionProvider<T> implements DecisionProvider<T>, Rebuildable {
   private decisionProjection: PersistedEntityReduceProjection<DecisionSequence<T>>;
+  private reducerWithSequence: Reducer<DecisionSequence<T>>;
 
   constructor(aggregate: string, reducer: Reducer<T>, private storage: KeyValueStorage<DecisionSequence<T>>) {
+    this.reducerWithSequence = makeDecisionReducer<T>(reducer);
     this.decisionProjection = new PersistedEntityReduceProjection(
-      makeDecisionReducer<T>(reducer),
+      this.reducerWithSequence,
       this.storage,
       (event) => event.aggregate === aggregate,
     );
   }
 
   public async getDecisionProjection(id: string): Promise<InMemoryReduceProjection<DecisionSequence<T>>> {
-    return this.decisionProjection.getInMemoryProjection(id);
+    const state = await this.decisionProjection.getState(id);
+    return new InMemoryReduceProjection(this.reducerWithSequence, state);
   }
 
   public async handleEvent(event: Event, decision: DecisionSequence<T>) {

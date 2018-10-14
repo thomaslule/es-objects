@@ -1,8 +1,8 @@
 import { Readable } from "stream";
 import { consumeStream } from "../consume-stream";
 import { Dictionary, Event, KeyValueStorage, Rebuildable, Reducer, ValueStorage } from "../types";
+import { getInitialState } from "./get-initial-state";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
-import { PersistedReduceProjection } from "./persisted-reduce-projection";
 
 export class PersistedEntityReduceProjection<T> implements Rebuildable {
   constructor(
@@ -12,19 +12,20 @@ export class PersistedEntityReduceProjection<T> implements Rebuildable {
   }
 
   public async handleEvent(event: Event) {
-    await this.getProjectionFor(event.id).handleEvent(event);
+    if (this.eventFilter(event)) {
+      const state = await this.getState(event.id);
+      const newState = this.reducer(state, event);
+      await this.storage.store(event.id, newState);
+    }
   }
 
   public async getState(id: string): Promise<T> {
-    return this.getProjectionFor(id).getState();
+    const state = await this.storage.get(id);
+    return state !== undefined ? state : getInitialState(this.reducer);
   }
 
   public async getAll(): Promise<Dictionary<T>> {
     return this.storage.getAll();
-  }
-
-  public async getInMemoryProjection(id: string): Promise<InMemoryReduceProjection<T>> {
-    return this.getProjectionFor(id).getInMemoryProjection();
   }
 
   public async rebuild(eventStream: Readable) {
@@ -41,10 +42,6 @@ export class PersistedEntityReduceProjection<T> implements Rebuildable {
     const promises = Object.entries(projections)
       .map(([id, projection]) => this.storage.store(id, (projection as InMemoryReduceProjection<T>).getState()));
     await Promise.all(promises);
-  }
-
-  private getProjectionFor(id: string): PersistedReduceProjection<T> {
-    return new PersistedReduceProjection(this.reducer, this.getStorageFor(id), this.eventFilter);
   }
 
   private getStorageFor(id: string): ValueStorage<T> {

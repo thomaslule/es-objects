@@ -1,9 +1,9 @@
-import { Stream } from "stream";
+import { Readable } from "stream";
 import { projectFromEvents } from "../../src";
 import { catFedReducer, fedEvent } from "../util";
 
-const arrayToStream = (arr: any[]): Stream => {
-  const stream = new Stream.Readable({ objectMode: true });
+const arrayToStream = (arr: any[]): Readable => {
+  const stream = new Readable({ objectMode: true });
   arr.forEach((e) => { stream.push(e); });
   stream.push(null);
   return stream;

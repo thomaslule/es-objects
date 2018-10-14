@@ -1,22 +1,10 @@
 import { Readable } from "stream";
 import { Event, Rebuildable, Reducer } from "../types";
+import { getInitialState } from "./get-initial-state";
 import { projectFromEvents } from "./project-from-events";
 
-const INIT_EVENT = {
-  aggregate: "__init__",
-  id: "__init__",
-  sequence: -1,
-};
-
 export class InMemoryReduceProjection<T> implements Rebuildable {
-  private state: T;
-
-  constructor(private reducer: Reducer<T>, state?: T) {
-    if (state === undefined) {
-      this.state = reducer(undefined, INIT_EVENT);
-    } else {
-      this.state = state;
-    }
+  constructor(private reducer: Reducer<T>, private state: T = getInitialState(reducer)) {
   }
 
   public handleEvent(event: Event): void {
