@@ -2,8 +2,7 @@ import { Readable } from "stream";
 import { makeDecisionReducer } from "../make-decision-reducer";
 import { InMemoryReduceProjection } from "../projection/in-memory-reduce-projection";
 import { PersistedEntityReduceProjection } from "../projection/persisted-entity-reduce-projection";
-import { DecisionSequence, Event, KeyValueStorage, Rebuildable, Reducer } from "../types";
-import { DecisionProvider } from "./decision-provider";
+import { DecisionProvider, DecisionSequence, Event, KeyValueStorage, Rebuildable, Reducer } from "../types";
 
 export class PersistedDecisionProvider<T> implements DecisionProvider<T>, Rebuildable {
   private decisionProjection: PersistedEntityReduceProjection<DecisionSequence<T>>;
