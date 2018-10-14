@@ -1,5 +1,5 @@
 import { EventEmitter } from "events";
-import { Event, EventStorage, Rebuildable } from "./types";
+import { Event, EventStorage } from "./types";
 
 export class EventBus {
   private bus = new EventEmitter();
