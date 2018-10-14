@@ -22,13 +22,13 @@ export class InMemoryEventStorage implements EventStorage {
     this.events.push(event);
   }
 
-  public getEvents(aggregate: string, id: string, fromSequence = -1) {
-    return arrayToStream(
-      this.events.filter((e) => e.aggregate === aggregate && e.id === id && e.sequence >= fromSequence),
-    );
-  }
-
-  public getAllEvents() {
-    return arrayToStream(this.events);
+  public getEvents(aggregate?: string, id?: string, fromSequence = -1) {
+    const filter = ((e: Event) => {
+      if (aggregate !== undefined && e.aggregate !== aggregate) { return false; }
+      if (id !== undefined && e.id !== id) { return false; }
+      if (fromSequence !== undefined && e.sequence < fromSequence) { return false; }
+      return true;
+    });
+    return arrayToStream(this.events.filter(filter));
   }
 }

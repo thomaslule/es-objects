@@ -1,4 +1,4 @@
-import { InMemoryReduceProjection } from "../../src";
+import { InMemoryEventStorage, InMemoryReduceProjection } from "../../src";
 import { catFedReducer, fedEvent, FedState } from "../util";
 
 describe("InMemoryReduceProjection", () => {
@@ -15,6 +15,13 @@ describe("InMemoryReduceProjection", () => {
   test("should handle events", () => {
     const proj = new InMemoryReduceProjection<FedState>(catFedReducer);
     proj.handleEvent(fedEvent);
+    expect(proj.getState()).toEqual({ fed: true });
+  });
+
+  test("rebuild should rebuild the projection from the events", async () => {
+    const events = new InMemoryEventStorage([fedEvent]);
+    const proj = new InMemoryReduceProjection<FedState>(catFedReducer);
+    await proj.rebuild(events.getEvents("cat", "felix"));
     expect(proj.getState()).toEqual({ fed: true });
   });
 });

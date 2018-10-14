@@ -21,9 +21,4 @@ export class EventBus {
     await this.eventStorage.store(event);
     this.bus.emit("event", event);
   }
-
-  public async replayEvents(rebuildables: Rebuildable[]) {
-    const stream = this.eventStorage.getAllEvents();
-    await Promise.all(rebuildables.map((rebuildable) => rebuildable.rebuild(stream)));
-  }
 }

@@ -16,7 +16,7 @@ describe("EventBus", () => {
   test("publish should add the event to the storage", async () => {
     await bus.publish(fedEvent);
 
-    const events = await toArray(storage.getAllEvents());
+    const events = await toArray(storage.getEvents());
     expect(events).toEqual([fedEvent]);
   });
 

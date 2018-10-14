@@ -58,7 +58,7 @@ describe("PersistedEntityReduceProjection", () => {
     );
     const events = new InMemoryEventStorage([fedEvent, { ...fedEvent, aggregate: "dog", id: "rex" }]);
 
-    await projection.rebuild(events.getAllEvents());
+    await projection.rebuild(events.getEvents());
 
     expect(await projection.getState("felix")).toEqual({ fed: true });
     expect(await projection.getState("rex")).toEqual({ fed: false }); // event doesn't match filter
@@ -66,7 +66,7 @@ describe("PersistedEntityReduceProjection", () => {
 
   test("rebuild should empty the state if no event was replayed", async () => {
     const events = new InMemoryEventStorage();
-    await projection.rebuild(events.getAllEvents());
+    await projection.rebuild(events.getEvents());
     expect(await projection.getState("felix")).toEqual({ fed: false });
   });
 });

@@ -33,9 +33,9 @@ describe("PersistedDecisionProvider", () => {
   test("rebuild should rebuild the provider", async () => {
     storage = new InMemoryKeyValueStorage<DecisionSequence<FedState>>();
     provider = new PersistedDecisionProvider("cat", catFedReducer, storage);
-    const bus = new EventBus(new InMemoryEventStorage([fedEvent]));
+    const events = new InMemoryEventStorage([fedEvent]);
 
-    await bus.replayEvents([provider]);
+    await provider.rebuild(events.getEvents());
 
     const proj = await provider.getDecisionProjection("felix");
     expect(proj.getState()).toEqual({ sequence: 0, decision: { fed: true } });

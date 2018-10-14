@@ -24,8 +24,7 @@ export interface Event {
 
 export interface EventStorage {
   store: (event: Event) => Promise<void>;
-  getEvents: (aggregate: string, id: string, fromSequence?: number) => Readable;
-  getAllEvents: () => Readable;
+  getEvents: (aggregate?: string, id?: string, fromSequence?: number) => Readable;
 }
 
 export interface KeyValueStorage<T> {

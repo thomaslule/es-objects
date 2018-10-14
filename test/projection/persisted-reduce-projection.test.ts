@@ -50,21 +50,21 @@ describe("PersistedReduceProjection", () => {
     const events = new InMemoryEventStorage([fedEvent]);
 
     expect(await projectionEmpty.getState()).toEqual({ fed: false });
-    await projectionEmpty.rebuild(events.getAllEvents());
+    await projectionEmpty.rebuild(events.getEvents());
     expect(await projectionEmpty.getState()).toEqual({ fed: true });
   });
 
   test("rebuild should ignore events that dont match filter", async () => {
     const events = new InMemoryEventStorage([{ ...fedEvent, aggregate: "dog" }]);
 
-    await projectionEmpty.rebuild(events.getAllEvents());
+    await projectionEmpty.rebuild(events.getEvents());
     expect(await projectionEmpty.getState()).toEqual({ fed: false });
   });
 
   test("rebuild should delete projection if no event was found", async () => {
     const events = new InMemoryEventStorage();
 
-    await projection.rebuild(events.getAllEvents());
+    await projection.rebuild(events.getEvents());
     expect(await projection.getState()).toEqual({ fed: false });
   });
 });
