@@ -1,6 +1,6 @@
 import { Readable } from "stream";
 import { consumeStream } from "../consume-stream";
-import { Dictionary, Event, KeyValueStorage, Rebuildable, Reducer, ValueStorage } from "../types";
+import { Dictionary, Event, KeyValueStorage, Rebuildable, Reducer } from "../types";
 import { getInitialState } from "./get-initial-state";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 
@@ -42,13 +42,5 @@ export class PersistedEntityReduceProjection<T> implements Rebuildable {
     const promises = Object.entries(projections)
       .map(([id, projection]) => this.storage.store(id, (projection as InMemoryReduceProjection<T>).getState()));
     await Promise.all(promises);
-  }
-
-  private getStorageFor(id: string): ValueStorage<T> {
-    return {
-      get: () => this.storage.get(id),
-      store: (state) => this.storage.store(id, state),
-      delete: () => this.storage.delete(id),
-    };
   }
 }
