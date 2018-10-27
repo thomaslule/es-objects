@@ -2,7 +2,7 @@ import { EventEmitter } from "events";
 import { Event, EventStorage } from "./types";
 
 export class EventBus {
-  private bus = new EventEmitter();
+  private bus = new EventEmitter().setMaxListeners(Infinity);
 
   constructor(private eventStorage: EventStorage, private errorHandler: (err: any) => void = () => {}) {
   }
