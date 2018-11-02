@@ -1,4 +1,4 @@
-import { EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, PersistedEntityReduceProjection } from "../../src";
+import { InMemoryEventStorage, InMemoryKeyValueStorage, PersistedEntityReduceProjection } from "../../src";
 import { catFedReducer, fedEvent, FedState } from "../util";
 
 describe("PersistedEntityReduceProjection", () => {
@@ -33,7 +33,7 @@ describe("PersistedEntityReduceProjection", () => {
     expect(await projection.getAll()).toEqual({ felix: { fed: true }, molotov: { fed: true }});
   });
 
-  test("rebuild should rebuild the projection state", async () => {
+  test("rebuildStream should rebuild the projection state", async () => {
     const emptyStorage = new InMemoryKeyValueStorage<FedState>();
     projection = new PersistedEntityReduceProjection<FedState>(
       catFedReducer,
@@ -42,15 +42,15 @@ describe("PersistedEntityReduceProjection", () => {
     );
     const events = new InMemoryEventStorage([fedEvent, { ...fedEvent, aggregate: "dog", id: "rex" }]);
 
-    await projection.rebuild(events.getEvents());
+    await new Promise((resolve) => events.getEvents().pipe(projection.rebuildStream()).on("finish", resolve));
 
     expect(await projection.getState("felix")).toEqual({ fed: true });
     expect(await projection.getState("rex")).toEqual({ fed: false }); // event doesn't match filter
   });
 
-  test("rebuild should empty the state if no event was replayed", async () => {
+  test("rebuildStream should empty the state if no event was replayed", async () => {
     const events = new InMemoryEventStorage();
-    await projection.rebuild(events.getEvents());
+    await new Promise((resolve) => events.getEvents().pipe(projection.rebuildStream()).on("finish", resolve));
     expect(await projection.getState("felix")).toEqual({ fed: false });
   });
 });

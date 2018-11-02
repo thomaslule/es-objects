@@ -1,4 +1,4 @@
-import { EventBus, InMemoryEventStorage, InMemoryValueStorage, PersistedReduceProjection } from "../../src";
+import { InMemoryEventStorage, InMemoryValueStorage, PersistedReduceProjection } from "../../src";
 import { catFedReducer, fedEvent, FedState } from "../util";
 
 describe("PersistedReduceProjection", () => {
@@ -32,25 +32,43 @@ describe("PersistedReduceProjection", () => {
     expect(await projectionEmpty.getState()).toEqual({ fed: false });
   });
 
-  test("rebuild should rebuild the projection state", async () => {
+  test("rebuildStream should rebuild the projection state", async () => {
     const events = new InMemoryEventStorage([fedEvent]);
-
     expect(await projectionEmpty.getState()).toEqual({ fed: false });
-    await projectionEmpty.rebuild(events.getEvents());
+
+    const stream = events.getEvents().pipe(projectionEmpty.rebuildStream());
+
+    await new Promise((resolve) => { stream.on("finish", resolve); });
     expect(await projectionEmpty.getState()).toEqual({ fed: true });
   });
 
-  test("rebuild should ignore events that dont match filter", async () => {
+  test("rebuildStream should ignore events that dont match filter", async () => {
     const events = new InMemoryEventStorage([{ ...fedEvent, aggregate: "dog" }]);
 
-    await projectionEmpty.rebuild(events.getEvents());
+    const stream = events.getEvents().pipe(projectionEmpty.rebuildStream());
+
+    await new Promise((resolve) => { stream.on("finish", resolve); });
     expect(await projectionEmpty.getState()).toEqual({ fed: false });
   });
 
-  test("rebuild should delete projection if no event was found", async () => {
+  test("rebuildStream should delete projection if no event was found", async () => {
     const events = new InMemoryEventStorage();
 
-    await projection.rebuild(events.getEvents());
+    const stream = events.getEvents().pipe(projection.rebuildStream());
+
+    await new Promise((resolve) => { stream.on("finish", resolve); });
     expect(await projection.getState()).toEqual({ fed: false });
+  });
+
+  test("rebuildStream should emit an error if there was an error during storage", async () => {
+    const events = new InMemoryEventStorage([fedEvent]);
+    storage.store = () => { throw new Error(); };
+    projection = new PersistedReduceProjection(catFedReducer, storage, (e) => e.aggregate === "cat");
+    const onError = jest.fn();
+
+    const stream = events.getEvents().pipe(projection.rebuildStream()).on("error", onError);
+
+    await new Promise((resolve) => { stream.on("finish", resolve); });
+    expect(onError).toHaveBeenCalled();
   });
 });

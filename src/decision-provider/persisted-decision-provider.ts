@@ -1,4 +1,3 @@
-import { Readable } from "stream";
 import { makeDecisionReducer } from "../make-decision-reducer";
 import { InMemoryReduceProjection } from "../projection/in-memory-reduce-projection";
 import { PersistedEntityReduceProjection } from "../projection/persisted-entity-reduce-projection";
@@ -26,7 +25,7 @@ export class PersistedDecisionProvider<T> implements DecisionProvider<T>, Rebuil
     await this.storage.store(event.id, decision);
   }
 
-  public async rebuild(eventStream: Readable) {
-    await this.decisionProjection.rebuild(eventStream);
+  public rebuildStream() {
+    return this.decisionProjection.rebuildStream();
   }
 }

@@ -1,4 +1,4 @@
-import { Readable } from "stream";
+import { Readable, Writable } from "stream";
 import { InMemoryReduceProjection } from "./projection/in-memory-reduce-projection";
 
 export interface DecisionProvider<TDecision> {
@@ -36,7 +36,7 @@ export interface KeyValueStorage<T> {
 }
 
 export interface Rebuildable {
-  rebuild: (eventStream: Readable) => Promise<void>;
+  rebuildStream: () => Writable;
 }
 
 export type Reducer<T> = (state: T | undefined, event: Event) => T;

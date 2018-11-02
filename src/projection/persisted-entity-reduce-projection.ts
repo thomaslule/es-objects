@@ -1,5 +1,4 @@
-import { Readable } from "stream";
-import { consumeStream } from "../consume-stream";
+import { Writable } from "stream";
 import { Dictionary, Event, KeyValueStorage, Rebuildable, Reducer } from "../types";
 import { getInitialState } from "./get-initial-state";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
@@ -28,19 +27,36 @@ export class PersistedEntityReduceProjection<T> implements Rebuildable {
     return this.storage.getAll();
   }
 
-  public async rebuild(eventStream: Readable) {
-    await this.storage.deleteAll();
+  public rebuildStream() {
     const projections: Dictionary<InMemoryReduceProjection<T>> = {};
-    await consumeStream(eventStream, (event) => {
-      if (this.eventFilter(event)) {
-        if (!projections[event.id]) {
-          projections[event.id] = new InMemoryReduceProjection<T>(this.reducer);
+    const eventFilter = (event: Event) => this.eventFilter(event);
+    const  { reducer, storage } = this;
+    return new Writable({
+      objectMode: true,
+      write(event, encoding, callback) {
+        try {
+          if (eventFilter(event)) {
+            if (!projections[event.id]) {
+              projections[event.id] = new InMemoryReduceProjection<T>(reducer);
+            }
+            (projections[event.id] as InMemoryReduceProjection<T>).handleEvent(event);
+          }
+          callback();
+        } catch (err) {
+          callback(err);
         }
-        (projections[event.id] as InMemoryReduceProjection<T>).handleEvent(event);
-      }
+      },
+      async final(callback) {
+        try {
+          await storage.deleteAll();
+          const promises = Object.entries(projections)
+            .map(([id, projection]) => storage.store(id, (projection as InMemoryReduceProjection<T>).getState()));
+          await Promise.all(promises);
+          callback();
+        } catch (err) {
+          callback(err);
+        }
+      },
     });
-    const promises = Object.entries(projections)
-      .map(([id, projection]) => this.storage.store(id, (projection as InMemoryReduceProjection<T>).getState()));
-    await Promise.all(promises);
   }
 }

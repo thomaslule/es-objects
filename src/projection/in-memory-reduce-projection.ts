@@ -1,7 +1,6 @@
-import { Readable } from "stream";
+import { Writable } from "stream";
 import { Event, Rebuildable, Reducer } from "../types";
 import { getInitialState } from "./get-initial-state";
-import { projectFromEvents } from "./project-from-events";
 
 export class InMemoryReduceProjection<T> implements Rebuildable {
   constructor(private reducer: Reducer<T>, private state: T = getInitialState(reducer)) {
@@ -15,7 +14,19 @@ export class InMemoryReduceProjection<T> implements Rebuildable {
     return this.state;
   }
 
-  public async rebuild(events: Readable) {
-    this.state = await projectFromEvents(this.reducer, events);
+  public rebuildStream() {
+    this.state = getInitialState(this.reducer);
+    const handleEvent = (e: Event) => this.handleEvent(e);
+    return new Writable({
+      objectMode: true,
+      write(data, encoding, callback) {
+        try {
+          handleEvent(data);
+          callback();
+        } catch (err) {
+          callback(err);
+        }
+      },
+    });
   }
 }

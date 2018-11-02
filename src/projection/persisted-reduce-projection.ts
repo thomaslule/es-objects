@@ -1,5 +1,4 @@
-import { Readable } from "stream";
-import { consumeStream } from "../consume-stream";
+import { Writable } from "stream";
 import { Event, Rebuildable, Reducer, ValueStorage } from "../types";
 import { getInitialState } from "./get-initial-state";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
@@ -24,14 +23,27 @@ export class PersistedReduceProjection<T> implements Rebuildable {
     return state !== undefined ? state : getInitialState(this.reducer);
   }
 
-  public async rebuild(eventStream: Readable) {
-    await this.storage.delete();
+  public rebuildStream() {
     const proj = new InMemoryReduceProjection(this.reducer);
-    await consumeStream(eventStream, (event) => {
-      if (this.eventFilter(event)) {
-        proj.handleEvent(event);
-      }
+    const { storage, eventFilter } = this;
+    return new Writable({
+      objectMode: true,
+      write(data, encoding, callback) {
+        try {
+          if (eventFilter(data)) { proj.handleEvent(data); }
+          callback();
+        } catch (err) {
+          callback(err);
+        }
+      },
+      async final(callback) {
+        try {
+          await storage.store(proj.getState());
+          callback();
+        } catch (err) {
+          callback(err);
+        }
+      },
     });
-    await this.storage.store(proj.getState());
   }
 }

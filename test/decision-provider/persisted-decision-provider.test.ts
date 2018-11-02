@@ -1,5 +1,5 @@
 import {
-  DecisionSequence, EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, PersistedDecisionProvider,
+  DecisionSequence, InMemoryEventStorage, InMemoryKeyValueStorage, PersistedDecisionProvider,
 } from "../../src";
 import { catFedReducer, fedEvent, FedState } from "../util";
 
@@ -30,12 +30,12 @@ describe("PersistedDecisionProvider", () => {
     expect(storedDecision).toEqual({ sequence: 15, decision: { fed: true }});
   });
 
-  test("rebuild should rebuild the provider", async () => {
+  test("rebuildStream should rebuild the provider", async () => {
     storage = new InMemoryKeyValueStorage<DecisionSequence<FedState>>();
     provider = new PersistedDecisionProvider("cat", catFedReducer, storage);
     const events = new InMemoryEventStorage([fedEvent]);
 
-    await provider.rebuild(events.getEvents());
+    await new Promise((resolve) => events.getEvents().pipe(provider.rebuildStream()).on("finish", resolve));
 
     const proj = await provider.getDecisionProjection("felix");
     expect(proj.getState()).toEqual({ sequence: 0, decision: { fed: true } });

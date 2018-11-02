@@ -18,10 +18,10 @@ describe("InMemoryReduceProjection", () => {
     expect(proj.getState()).toEqual({ fed: true });
   });
 
-  test("rebuild should rebuild the projection from the events", async () => {
+  test("rebuildStream should rebuild the projection from the events", async () => {
     const events = new InMemoryEventStorage([fedEvent]);
     const proj = new InMemoryReduceProjection<FedState>(catFedReducer);
-    await proj.rebuild(events.getEvents("cat", "felix"));
+    await new Promise((resolve) => events.getEvents("cat", "felix").pipe(proj.rebuildStream()).on("finish", resolve));
     expect(proj.getState()).toEqual({ fed: true });
   });
 });
