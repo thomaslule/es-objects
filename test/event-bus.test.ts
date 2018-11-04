@@ -10,7 +10,8 @@ describe("EventBus", () => {
   beforeEach(() => {
     storage = new InMemoryEventStorage();
     errorHandler = jest.fn();
-    bus = new EventBus(storage, errorHandler);
+    bus = new EventBus(storage);
+    bus.on("error", errorHandler);
   });
 
   test("publish should add the event to the storage", async () => {
@@ -29,7 +30,7 @@ describe("EventBus", () => {
     expect(handler).toHaveBeenCalledWith(fedEvent);
   });
 
-  test("onEventHandler catch sync handler errors", async () => {
+  test("an error should be sent if a handler throws", async () => {
     bus.onEvent(() => {
       throw new Error("any error");
     });
@@ -37,9 +38,9 @@ describe("EventBus", () => {
     expect(errorHandler).toHaveBeenCalledWith(new Error("any error"));
   });
 
-  test("onEventHandler catch async handler errors", async () => {
-    bus.onEvent(async () => {
-      throw new Error("any error");
+  test("an error should be sent if a handler returns a rejecting promise", async () => {
+    bus.onEvent(() => {
+      return Promise.reject(new Error("any error"));
     });
     await bus.publish(fedEvent);
     await Promise.resolve();

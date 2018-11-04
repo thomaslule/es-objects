@@ -1,24 +1,23 @@
 import { EventEmitter } from "events";
 import { Event, EventStorage } from "./types";
 
-export class EventBus {
-  private bus = new EventEmitter().setMaxListeners(Infinity);
-
-  constructor(private eventStorage: EventStorage, private errorHandler: (err: any) => void = () => {}) {
+export class EventBus extends EventEmitter {
+  constructor(private eventStorage: EventStorage) {
+    super();
   }
 
   public onEvent(handler: (event: Event) => void | Promise<void>) {
-    this.bus.on("event", async (event: Event) => {
+    this.on("event", async (event) => {
       try {
         await handler(event);
       } catch (err) {
-        this.errorHandler(err);
+        this.emit("error", err);
       }
     });
   }
 
   public async publish(event: Event) {
     await this.eventStorage.store(event);
-    this.bus.emit("event", event);
+    this.emit("event", event);
   }
 }
