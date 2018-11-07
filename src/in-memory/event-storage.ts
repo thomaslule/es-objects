@@ -31,4 +31,10 @@ export class InMemoryEventStorage implements EventStorage {
     });
     return arrayToStream(this.events.filter(filter));
   }
+
+  public async getCurrentSequence(aggregate: string, id: string) {
+    return this.events
+      .filter((e) => e.aggregate === aggregate && e.id === id)
+      .reduce((seq, event) => Math.max(seq, event.sequence), 0);
+  }
 }
