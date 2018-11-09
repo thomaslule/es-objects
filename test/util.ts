@@ -28,7 +28,7 @@ export class Cat extends Entity<FedState> {
     return "cat";
   }
 
-  protected getReducer() {
+  protected getDecisionReducer() {
     return catFedReducer;
   }
 }
