@@ -1,5 +1,4 @@
-import { makeDecisionProjection } from "../src";
-import { Cat, catFedReducer } from "./util";
+import { Cat } from "./util";
 
 describe("Entity", () => {
   let cat: Cat;
@@ -7,7 +6,7 @@ describe("Entity", () => {
 
   beforeEach(() => {
     publish = jest.fn();
-    cat = new Cat("felix", makeDecisionProjection(catFedReducer), publish);
+    cat = new Cat("felix", { decision: { fed: false }, sequence: -1 }, publish);
   });
 
   test("publishAndApply should publish the Event", async () => {

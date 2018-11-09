@@ -1,8 +1,7 @@
 import { makeDecisionReducer } from "../make-decision-reducer";
-import { InMemoryReduceProjection } from "../projection/in-memory-reduce-projection";
 import { PersistedEntityReduceProjection } from "../projection/persisted-entity-reduce-projection";
 import {
-  DecisionProjection, DecisionProvider, DecisionSequence, Event, KeyValueStorage, Rebuildable, Reducer,
+  DecisionProvider, DecisionSequence, Event, KeyValueStorage, Rebuildable, Reducer,
 } from "../types";
 
 export class PersistedDecisionProvider<T> implements DecisionProvider<T>, Rebuildable {
@@ -18,9 +17,8 @@ export class PersistedDecisionProvider<T> implements DecisionProvider<T>, Rebuil
     );
   }
 
-  public async getDecisionProjection(id: string): Promise<DecisionProjection<T>> {
-    const state = await this.decisionProjection.getState(id);
-    return new InMemoryReduceProjection(this.reducerWithSequence, state);
+  public async getDecisionSequence(id: string): Promise<DecisionSequence<T>> {
+    return await this.decisionProjection.getState(id);
   }
 
   public async handleEvent(event: Event, decision: DecisionSequence<T>) {

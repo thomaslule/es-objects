@@ -14,14 +14,14 @@ describe("PersistedDecisionProvider", () => {
     provider = new PersistedDecisionProvider("cat", catFedReducer, storage);
   });
 
-  test("getDecisionProjection should retrieve the decision from the storage", async () => {
-    const proj = await provider.getDecisionProjection("felix");
-    expect(proj.getState()).toEqual({ sequence: 3, decision: { fed: true } });
+  test("getDecisionSequence should retrieve the decision from the storage", async () => {
+    const proj = await provider.getDecisionSequence("felix");
+    expect(proj).toEqual({ sequence: 3, decision: { fed: true } });
   });
 
-  test("getDecisionProjection should initiate the default projection if not in storage", async () => {
-    const proj = await provider.getDecisionProjection("molotov");
-    expect(proj.getState()).toEqual({ sequence: -1, decision: { fed: false } });
+  test("getDecisionSequence should initiate the default projection if not in storage", async () => {
+    const proj = await provider.getDecisionSequence("molotov");
+    expect(proj).toEqual({ sequence: -1, decision: { fed: false } });
   });
 
   test("handleEvent should store the decision", async () => {
@@ -37,7 +37,7 @@ describe("PersistedDecisionProvider", () => {
 
     await new Promise((resolve) => events.getEvents().pipe(provider.rebuildStream()).on("finish", resolve));
 
-    const proj = await provider.getDecisionProjection("felix");
-    expect(proj.getState()).toEqual({ sequence: 0, decision: { fed: true } });
+    const proj = await provider.getDecisionSequence("felix");
+    expect(proj).toEqual({ sequence: 0, decision: { fed: true } });
   });
 });

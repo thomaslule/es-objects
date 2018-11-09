@@ -1,27 +1,35 @@
-import { DecisionProjection, DecisionSequence, Event } from "./types";
+import { makeDecisionReducer } from "./make-decision-reducer";
+import { DecisionSequence, Event, Reducer } from "./types";
 
 export abstract class Entity<TDecision> {
+  private decisionSequenceReducer: Reducer<DecisionSequence<TDecision>>;
+
   constructor(
-    private aggregate: string,
     private id: string,
-    private decisionProjection: DecisionProjection<TDecision>,
+    private decisionSequence: DecisionSequence<TDecision>,
     private publish: (event: Event, decisionSequence: DecisionSequence<TDecision>) => Promise<void>,
   ) {
+    this.decisionSequenceReducer = makeDecisionReducer(this.getReducer());
   }
 
+  protected abstract getAggregate(): string;
+
+  protected abstract getReducer(): Reducer<TDecision>;
+
   protected getDecision(): TDecision {
-    return this.decisionProjection.getState().decision;
+    return this.decisionSequence.decision;
   }
 
   protected async publishAndApply(eventData: any): Promise<Event> {
     const event: Event = {
       ...eventData,
-      aggregate: this.aggregate,
+      aggregate: this.getAggregate(),
       id: this.id,
-      sequence: this.decisionProjection.getState().sequence + 1,
+      sequence: this.decisionSequence.sequence + 1,
     };
-    this.decisionProjection.handleEvent(event);
-    await this.publish(event, this.decisionProjection.getState());
+    const newDecisionSequence = this.decisionSequenceReducer(this.decisionSequence, event);
+    await this.publish(event, newDecisionSequence);
+    this.decisionSequence = newDecisionSequence;
     return event;
   }
 }

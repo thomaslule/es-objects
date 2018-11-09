@@ -1,10 +1,10 @@
-import { DecisionProjection, DecisionProvider, DecisionSequence, Event } from "./types";
+import { DecisionProvider, DecisionSequence, Event } from "./types";
 
 export class Store<TEntity, TDecision> {
   constructor(
     private createEntity: (
       id: string,
-      decisionProjection: DecisionProjection<TDecision>,
+      decisionSequence: DecisionSequence<TDecision>,
       publish: (event: Event, decisionSequence: DecisionSequence<TDecision>) => Promise<void>,
     ) => TEntity,
     private decisionProvider: DecisionProvider<TDecision>,
@@ -15,7 +15,7 @@ export class Store<TEntity, TDecision> {
   public async get(id: string): Promise<TEntity> {
     return this.createEntity(
       id,
-      await this.decisionProvider.getDecisionProjection(id),
+      await this.decisionProvider.getDecisionSequence(id),
       (event, decisionSequence) => this.publish(event, decisionSequence),
     );
   }

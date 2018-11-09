@@ -12,7 +12,7 @@ describe("Store", () => {
     }));
     publish = jest.fn().mockReturnValue(Promise.resolve());
     store = new Store(
-      (id, decisionProjection, publish) => new Cat(id, decisionProjection, publish),
+      (id, decisionSequence, publish) => new Cat(id, decisionSequence, publish),
       decisionProvider,
       publish,
     );
@@ -48,12 +48,12 @@ describe("Store", () => {
     const molotov = await store.get("molotov");
 
     await molotov.pet();
-    const decisionProjection1 = await decisionProvider.getDecisionProjection("molotov");
-    expect(decisionProjection1.getState()).toEqual({ sequence: 0, decision: { fed: false }});
+    const decisionProjection1 = await decisionProvider.getDecisionSequence("molotov");
+    expect(decisionProjection1).toEqual({ sequence: 0, decision: { fed: false }});
 
     await molotov.feed();
-    const decisionProjection2 = await decisionProvider.getDecisionProjection("molotov");
-    expect(decisionProjection2.getState()).toEqual({ sequence: 1, decision: { fed: true }});
+    const decisionProjection2 = await decisionProvider.getDecisionSequence("molotov");
+    expect(decisionProjection2).toEqual({ sequence: 1, decision: { fed: true }});
   });
 
   test(
@@ -61,7 +61,7 @@ describe("Store", () => {
     async () => {
       const bus = new EventBus(new InMemoryEventStorage());
       const storeWithEventBus = new Store(
-        (id, decisionProjection, publish) => new Cat(id, decisionProjection, publish),
+        (id, decisionSequence, publish) => new Cat(id, decisionSequence, publish),
         decisionProvider,
         (event) => bus.publish(event),
       );
@@ -77,8 +77,8 @@ describe("Store", () => {
         .rejects.toEqual(new Error("an event with same aggregate, id and sequence already exists"));
 
       // the decision projection only got the published event
-      const decisionProjection = await decisionProvider.getDecisionProjection("molotov");
-      expect(decisionProjection.getState()).toEqual({ sequence: 0, decision: { fed: false }});
+      const decisionProjection = await decisionProvider.getDecisionSequence("molotov");
+      expect(decisionProjection).toEqual({ sequence: 0, decision: { fed: false }});
     },
   );
 });
