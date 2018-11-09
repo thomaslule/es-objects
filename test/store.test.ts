@@ -12,8 +12,7 @@ describe("Store", () => {
     }));
     publish = jest.fn().mockReturnValue(Promise.resolve());
     store = new Store(
-      "cat",
-      (id, decisionState, createAndPublish) => new Cat(id, decisionState, createAndPublish),
+      (id, decisionProjection, publish) => new Cat(id, decisionProjection, publish),
       decisionProvider,
       publish,
     );
@@ -62,8 +61,7 @@ describe("Store", () => {
     async () => {
       const bus = new EventBus(new InMemoryEventStorage());
       const storeWithEventBus = new Store(
-        "cat",
-        (id, decisionState, createAndPublish) => new Cat(id, decisionState, createAndPublish),
+        (id, decisionProjection, publish) => new Cat(id, decisionProjection, publish),
         decisionProvider,
         (event) => bus.publish(event),
       );

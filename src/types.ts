@@ -2,7 +2,7 @@ import { Readable, Writable } from "stream";
 import { InMemoryReduceProjection } from "./projection/in-memory-reduce-projection";
 
 export interface DecisionProvider<TDecision> {
-  getDecisionProjection: (id: string) => Promise<InMemoryReduceProjection<DecisionSequence<TDecision>>>;
+  getDecisionProjection: (id: string) => Promise<DecisionProjection<TDecision>>;
   handleEvent?: (event: Event, decision: DecisionSequence<TDecision>) => Promise<void>;
 }
 
@@ -10,6 +10,8 @@ export interface DecisionSequence<T> {
   decision: T;
   sequence: number;
 }
+
+export type DecisionProjection<T> = InMemoryReduceProjection<DecisionSequence<T>>;
 
 export interface Dictionary<T> {
   [key: string]: T | undefined;

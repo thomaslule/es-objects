@@ -1,12 +1,12 @@
-import { Entity, Event, Reducer } from "../src";
+import { DecisionProjection, DecisionSequence, Entity, Event, Reducer } from "../src";
 
 export class Cat extends Entity<FedState> {
   constructor(
-    private id: string,
-    decisionState: FedState,
-    createAndPublish: (eventData: any) => Promise<Event>,
+    id: string,
+    decisionProjection: DecisionProjection<FedState>,
+    publish: (event: Event, decisionSequence: DecisionSequence<FedState>) => Promise<void>,
   ) {
-    super(decisionState, catFedReducer, createAndPublish);
+    super("cat", id, decisionProjection, publish);
   }
 
   public async feed() {

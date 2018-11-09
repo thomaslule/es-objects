@@ -6,6 +6,7 @@ export { InMemoryEventStorage } from "./in-memory/event-storage";
 export { InMemoryKeyValueStorage } from "./in-memory/key-value-storage";
 export { InMemoryValueStorage } from "./in-memory/value-storage";
 export { makeDecisionReducer } from "./make-decision-reducer";
+export { makeDecisionProjection } from "./make-decision-projection";
 export { InMemoryReduceProjection } from "./projection/in-memory-reduce-projection";
 export { PersistedEntityReduceProjection } from "./projection/persisted-entity-reduce-projection";
 export { PersistedReduceProjection } from "./projection/persisted-reduce-projection";

@@ -1,20 +1,27 @@
-import { Event, Reducer } from "./types";
+import { DecisionProjection, DecisionSequence, Event } from "./types";
 
 export abstract class Entity<TDecision> {
   constructor(
-    private decisionState: TDecision,
-    private decisionReducer: Reducer<TDecision>,
-    private createAndPublish: (eventData: any) => Promise<Event>,
+    private aggregate: string,
+    private id: string,
+    private decisionProjection: DecisionProjection<TDecision>,
+    private publish: (event: Event, decisionSequence: DecisionSequence<TDecision>) => Promise<void>,
   ) {
   }
 
   protected getDecision(): TDecision {
-    return this.decisionState;
+    return this.decisionProjection.getState().decision;
   }
 
   protected async publishAndApply(eventData: any): Promise<Event> {
-    const event = await this.createAndPublish(eventData);
-    this.decisionState = this.decisionReducer(this.decisionState, event);
+    const event: Event = {
+      ...eventData,
+      aggregate: this.aggregate,
+      id: this.id,
+      sequence: this.decisionProjection.getState().sequence + 1,
+    };
+    this.decisionProjection.handleEvent(event);
+    await this.publish(event, this.decisionProjection.getState());
     return event;
   }
 }

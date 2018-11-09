@@ -20,13 +20,13 @@ const nbMealsReducer: Reducer<number> = (state = 0, event) => {
 
 test("usage example", async () => {
   const eventStorage = new InMemoryEventStorage();
-  const bus = new EventBus(eventStorage, (err) => { console.log("Error in event handler", err); });
+  const bus = new EventBus(eventStorage);
+  bus.on("error", (err) => { console.error(err); });
 
   const catDecisionProvider = new FromEventsDecisionProvider("cat", catFedReducer, eventStorage);
 
   const catStore = new Store<Cat, FedState>(
-    "cat",
-    (id, decisionState, publish) => new Cat(id, decisionState, publish),
+    (id, decisionProjection, publish) => new Cat(id, decisionProjection, publish),
     catDecisionProvider,
     (event) => bus.publish(event),
   );
