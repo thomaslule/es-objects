@@ -11,7 +11,7 @@ describe("EventBus", () => {
     storage = new InMemoryEventStorage();
     errorHandler = jest.fn();
     bus = new EventBus(storage);
-    bus.on("error", errorHandler);
+    bus.onError(errorHandler);
   });
 
   test("publish should add the event to the storage", async () => {

@@ -16,6 +16,10 @@ export class EventBus extends EventEmitter {
     });
   }
 
+  public onError(handler: (...args: any[]) => void) {
+    this.on("error", handler);
+  }
+
   public async publish(event: Event) {
     await this.eventStorage.store(event);
     this.emit("event", event);
