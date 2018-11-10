@@ -1,6 +1,6 @@
 {
   "name": "es-objects",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "objects to help build an event sourcing system",
   "main": "./lib/index.js",
   "types": "./lib/index.d.ts",
