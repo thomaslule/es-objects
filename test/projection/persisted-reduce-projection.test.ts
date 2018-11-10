@@ -1,45 +1,45 @@
 import { InMemoryEventStorage, InMemoryValueStorage, PersistedReduceProjection } from "../../src";
-import { catFedReducer, fedEvent, FedState } from "../util";
+import { catFedReducer, fedEvent } from "../util";
 
 describe("PersistedReduceProjection", () => {
-  let storage: InMemoryValueStorage<FedState>;
-  let storageEmpty: InMemoryValueStorage<FedState>;
-  let projection: PersistedReduceProjection<FedState>;
-  let projectionEmpty: PersistedReduceProjection<FedState>;
+  let storage: InMemoryValueStorage<boolean>;
+  let storageEmpty: InMemoryValueStorage<boolean>;
+  let projection: PersistedReduceProjection<boolean>;
+  let projectionEmpty: PersistedReduceProjection<boolean>;
 
   beforeEach(() => {
-    storage = new InMemoryValueStorage({ fed: true });
+    storage = new InMemoryValueStorage(true);
     storageEmpty = new InMemoryValueStorage();
     projection = new PersistedReduceProjection(catFedReducer, storage, (e) => e.aggregate === "cat");
     projectionEmpty = new PersistedReduceProjection(catFedReducer, storageEmpty, (e) => e.aggregate === "cat");
   });
 
   test("getState should get the state from storage", async () => {
-    expect(await projection.getState()).toEqual({ fed: true });
+    expect(await projection.getState()).toEqual(true);
   });
 
   test("getState should return the reducer's default state when not in storage", async () => {
-    expect(await projectionEmpty.getState()).toEqual({ fed: false });
+    expect(await projectionEmpty.getState()).toEqual(false);
   });
 
   test("handleEvent should calculate and store the new state", async () => {
     await projectionEmpty.handleEvent(fedEvent);
-    expect(await storageEmpty.get()).toEqual({ fed: true });
+    expect(await storageEmpty.get()).toEqual(true);
   });
 
   test("handleEvent should do nothing if the event doesnt match the filter", async () => {
     await projectionEmpty.handleEvent({ ...fedEvent, aggregate: "dog" });
-    expect(await projectionEmpty.getState()).toEqual({ fed: false });
+    expect(await projectionEmpty.getState()).toEqual(false);
   });
 
   test("rebuildStream should rebuild the projection state", async () => {
     const events = new InMemoryEventStorage([fedEvent]);
-    expect(await projectionEmpty.getState()).toEqual({ fed: false });
+    expect(await projectionEmpty.getState()).toEqual(false);
 
     const stream = events.getEvents().pipe(projectionEmpty.rebuildStream());
 
     await new Promise((resolve) => { stream.on("finish", resolve); });
-    expect(await projectionEmpty.getState()).toEqual({ fed: true });
+    expect(await projectionEmpty.getState()).toEqual(true);
   });
 
   test("rebuildStream should ignore events that dont match filter", async () => {
@@ -48,7 +48,7 @@ describe("PersistedReduceProjection", () => {
     const stream = events.getEvents().pipe(projectionEmpty.rebuildStream());
 
     await new Promise((resolve) => { stream.on("finish", resolve); });
-    expect(await projectionEmpty.getState()).toEqual({ fed: false });
+    expect(await projectionEmpty.getState()).toEqual(false);
   });
 
   test("rebuildStream should delete projection if no event was found", async () => {
@@ -57,7 +57,7 @@ describe("PersistedReduceProjection", () => {
     const stream = events.getEvents().pipe(projection.rebuildStream());
 
     await new Promise((resolve) => { stream.on("finish", resolve); });
-    expect(await projection.getState()).toEqual({ fed: false });
+    expect(await projection.getState()).toEqual(false);
   });
 
   test("rebuildStream should emit an error if there was an error during storage", async () => {

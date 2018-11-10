@@ -11,10 +11,10 @@ const arrayToStream = (arr: any[]): Readable => {
 
 describe("ProjectFromEvents", () => {
   test("it should project a state from an event stream and a reducer", async () => {
-    expect(await projectFromEvents(catFedReducer, arrayToStream([fedEvent]))).toEqual({fed: true});
+    expect(await projectFromEvents(catFedReducer, arrayToStream([fedEvent]))).toEqual(true);
   });
 
   test("it should return the reducer's default state when there is no event", async () => {
-    expect(await projectFromEvents(catFedReducer, arrayToStream([]))).toEqual({fed: false});
+    expect(await projectFromEvents(catFedReducer, arrayToStream([]))).toEqual(false);
   });
 });

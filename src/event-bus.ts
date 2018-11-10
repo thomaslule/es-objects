@@ -6,6 +6,11 @@ export class EventBus extends EventEmitter {
     super();
   }
 
+  public async publish(event: Event) {
+    await this.eventStorage.store(event);
+    this.emit("event", event);
+  }
+
   public onEvent(handler: (event: Event) => void | Promise<void>) {
     this.on("event", async (event) => {
       try {
@@ -18,10 +23,5 @@ export class EventBus extends EventEmitter {
 
   public onError(handler: (...args: any[]) => void) {
     this.on("error", handler);
-  }
-
-  public async publish(event: Event) {
-    await this.eventStorage.store(event);
-    this.emit("event", event);
   }
 }

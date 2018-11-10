@@ -6,7 +6,7 @@ describe("Entity", () => {
 
   beforeEach(() => {
     publish = jest.fn();
-    cat = new Cat("felix", { decision: { fed: false }, sequence: -1 }, publish);
+    cat = new Cat("felix", { decision: false, sequence: -1 }, publish);
   });
 
   test("publishAndApply should publish the Event", async () => {
@@ -14,7 +14,7 @@ describe("Entity", () => {
 
     expect(publish).toHaveBeenCalledWith(
       { aggregate: "cat", id: "felix", sequence: 0, type: "fed" },
-      { decision: { fed: true }, sequence: 0 },
+      { decision: true, sequence: 0 },
     );
   });
 

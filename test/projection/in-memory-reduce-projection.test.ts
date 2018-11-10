@@ -1,27 +1,27 @@
 import { InMemoryEventStorage, InMemoryReduceProjection } from "../../src";
-import { catFedReducer, fedEvent, FedState } from "../util";
+import { catFedReducer, fedEvent } from "../util";
 
 describe("InMemoryReduceProjection", () => {
   test("should be initialized with state if provided", () => {
-    const proj = new InMemoryReduceProjection<FedState>(catFedReducer, { fed: true });
-    expect(proj.getState()).toEqual({ fed: true });
+    const proj = new InMemoryReduceProjection<boolean>(catFedReducer, true);
+    expect(proj.getState()).toEqual(true);
   });
 
   test("should be initialized with init event if no state provided", () => {
-    const proj = new InMemoryReduceProjection<FedState>(catFedReducer);
-    expect(proj.getState()).toEqual({ fed: false });
+    const proj = new InMemoryReduceProjection<boolean>(catFedReducer);
+    expect(proj.getState()).toEqual(false);
   });
 
   test("should handle events", () => {
-    const proj = new InMemoryReduceProjection<FedState>(catFedReducer);
+    const proj = new InMemoryReduceProjection<boolean>(catFedReducer);
     proj.handleEvent(fedEvent);
-    expect(proj.getState()).toEqual({ fed: true });
+    expect(proj.getState()).toEqual(true);
   });
 
   test("rebuildStream should rebuild the projection from the events", async () => {
     const events = new InMemoryEventStorage([fedEvent]);
-    const proj = new InMemoryReduceProjection<FedState>(catFedReducer);
+    const proj = new InMemoryReduceProjection<boolean>(catFedReducer);
     await new Promise((resolve) => events.getEvents("cat", "felix").pipe(proj.rebuildStream()).on("finish", resolve));
-    expect(proj.getState()).toEqual({ fed: true });
+    expect(proj.getState()).toEqual(true);
   });
 });

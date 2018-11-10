@@ -1,14 +1,14 @@
 import { EventBus, InMemoryEventStorage, InMemoryKeyValueStorage, PersistedDecisionProvider, Store } from "../src";
-import { Cat, catFedReducer, FedState } from "./util";
+import { Cat, catFedReducer } from "./util";
 
 describe("Store", () => {
-  let store: Store<Cat, FedState>;
-  let decisionProvider: PersistedDecisionProvider<FedState>;
+  let store: Store<Cat, boolean>;
+  let decisionProvider: PersistedDecisionProvider<boolean>;
   let publish;
 
   beforeEach(() => {
     decisionProvider = new PersistedDecisionProvider("cat", catFedReducer, new InMemoryKeyValueStorage({
-      felix: { sequence: 1, decision: { fed: true }},
+      felix: { sequence: 1, decision: true},
     }));
     publish = jest.fn().mockReturnValue(Promise.resolve());
     store = new Store(
@@ -20,7 +20,7 @@ describe("Store", () => {
 
   test("get should create an entity with its decision retrieved from the provider", async () => {
     const felix = await store.get("felix");
-    expect(felix.isFed()).toBeTruthy();
+    await expect(felix.feed()).rejects.toThrow("cat already fed!");
   });
 
   test("get should create an entity that can publish an event", async () => {
@@ -49,11 +49,11 @@ describe("Store", () => {
 
     await molotov.pet();
     const decisionProjection1 = await decisionProvider.getDecisionSequence("molotov");
-    expect(decisionProjection1).toEqual({ sequence: 0, decision: { fed: false }});
+    expect(decisionProjection1).toEqual({ sequence: 0, decision: false});
 
     await molotov.feed();
     const decisionProjection2 = await decisionProvider.getDecisionSequence("molotov");
-    expect(decisionProjection2).toEqual({ sequence: 1, decision: { fed: true }});
+    expect(decisionProjection2).toEqual({ sequence: 1, decision: true});
   });
 
   test(
@@ -78,7 +78,7 @@ describe("Store", () => {
 
       // the decision projection only got the published event
       const decisionProjection = await decisionProvider.getDecisionSequence("molotov");
-      expect(decisionProjection).toEqual({ sequence: 0, decision: { fed: false }});
+      expect(decisionProjection).toEqual({ sequence: 0, decision: false});
     },
   );
 });
