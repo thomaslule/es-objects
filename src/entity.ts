@@ -14,6 +14,10 @@ export abstract class Entity<TDecision> {
 
   protected abstract getDecisionReducer(): Reducer<TDecision>;
 
+  protected getId() {
+    return this.id;
+  }
+
   protected getDecision(): TDecision {
     return this.decisionSequence.decision;
   }
