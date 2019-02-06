@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>InMemoryValueStorage | es-objects</title>
+	<title>EventBus | es-objects</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -912,8 +912,76 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="entity.html" class="tsd-kind-icon">Entity</a>
 		</li>
-		<li class=" tsd-kind-class">
+		<li class="current tsd-kind-class">
 			<a href="eventbus.html" class="tsd-kind-icon">Event<wbr>Bus</a>
+			<ul>
+				<li class=" tsd-kind-constructor tsd-parent-kind-class">
+					<a href="eventbus.html#constructor" class="tsd-kind-icon">constructor</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="eventbus.html#eventstorage" class="tsd-kind-icon">event<wbr>Storage</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a href="eventbus.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#emit" class="tsd-kind-icon">emit</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#listeners" class="tsd-kind-icon">listeners</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#off" class="tsd-kind-icon">off</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#on" class="tsd-kind-icon">on</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="eventbus.html#onerror" class="tsd-kind-icon">on<wbr>Error</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="eventbus.html#onevent" class="tsd-kind-icon">on<wbr>Event</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#once" class="tsd-kind-icon">once</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="eventbus.html#publish" class="tsd-kind-icon">publish</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<a href="eventbus.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<a href="eventbus.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a>
+				</li>
+			</ul>
 		</li>
 		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="fromeventsdecisionprovider.html" class="tsd-kind-icon">From<wbr>Events<wbr>Decision<wbr>Provider</a>
@@ -927,25 +995,8 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="inmemoryreduceprojection.html" class="tsd-kind-icon">In<wbr>Memory<wbr>Reduce<wbr>Projection</a>
 		</li>
-		<li class="current tsd-kind-class tsd-has-type-parameter">
+		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="inmemoryvaluestorage.html" class="tsd-kind-icon">In<wbr>Memory<wbr>Value<wbr>Storage</a>
-			<ul>
-				<li class=" tsd-kind-constructor tsd-parent-kind-class">
-					<a href="inmemoryvaluestorage.html#constructor" class="tsd-kind-icon">constructor</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="inmemoryvaluestorage.html#value" class="tsd-kind-icon">value</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="inmemoryvaluestorage.html#delete" class="tsd-kind-icon">delete</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="inmemoryvaluestorage.html#get" class="tsd-kind-icon">get</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="inmemoryvaluestorage.html#store" class="tsd-kind-icon">store</a>
-				</li>
-			</ul>
 		</li>
 		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="persisteddecisionprovider.html" class="tsd-kind-icon">Persisted<wbr>Decision<wbr>Provider</a>
@@ -1011,26 +1062,28 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<section class="tsd-panel tsd-type-parameters">
-			<h3>Type parameters</h3>
-			<ul class="tsd-type-parameters">
-				<li>
-					<h4>T</h4>
-				</li>
-			</ul>
+		<section class="tsd-panel tsd-comment">
+			<div class="tsd-comment tsd-typography">
+				<div class="lead">
+					<p>The <code>EventEmitter</code> that stores and publishes events.</p>
+				</div>
+				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> bus = <span class="hljs-keyword">new</span> EventBus(<span class="hljs-keyword">new</span> InMemoryEventStorage());
+bus.onError(<span class="hljs-function">(<span class="hljs-params">err</span>) =&gt;</span> { <span class="hljs-built_in">console</span>.error(err); });
+bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> { <span class="hljs-built_in">console</span>.log(<span class="hljs-string">`Something happened: <span class="hljs-subst">${event}</span>`</span>); });
+bus.publish({ aggregate: <span class="hljs-string">'cat'</span>, id: <span class="hljs-string">'felix'</span>, sequence: <span class="hljs-number">0</span>, <span class="hljs-keyword">type</span>: <span class="hljs-string">'fed'</span> });</code></pre>
+			</div>
 		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">InMemoryValueStorage</span>
+					<span class="tsd-signature-type">EventEmitter</span>
+					<ul class="tsd-hierarchy">
+						<li>
+							<span class="target">EventBus</span>
+						</li>
+					</ul>
 				</li>
-			</ul>
-		</section>
-		<section class="tsd-panel">
-			<h3>Implements</h3>
-			<ul class="tsd-hierarchy">
-				<li><a href="../interfaces/valuestorage.html" class="tsd-signature-type">ValueStorage</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1040,21 +1093,38 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="inmemoryvaluestorage.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="eventbus.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
-					<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
+					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="inmemoryvaluestorage.html#value" class="tsd-kind-icon">value</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="eventbus.html#eventstorage" class="tsd-kind-icon">event<wbr>Storage</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="eventbus.html#defaultmaxlisteners" class="tsd-kind-icon">default<wbr>Max<wbr>Listeners</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryvaluestorage.html#delete" class="tsd-kind-icon">delete</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryvaluestorage.html#get" class="tsd-kind-icon">get</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryvaluestorage.html#store" class="tsd-kind-icon">store</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#addlistener" class="tsd-kind-icon">add<wbr>Listener</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#emit" class="tsd-kind-icon">emit</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#eventnames" class="tsd-kind-icon">event<wbr>Names</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#getmaxlisteners" class="tsd-kind-icon">get<wbr>Max<wbr>Listeners</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#listenercount" class="tsd-kind-icon">listener<wbr>Count</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#listeners" class="tsd-kind-icon">listeners</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#off" class="tsd-kind-icon">off</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#on" class="tsd-kind-icon">on</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventbus.html#onerror" class="tsd-kind-icon">on<wbr>Error</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventbus.html#onevent" class="tsd-kind-icon">on<wbr>Event</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#once" class="tsd-kind-icon">once</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#prependlistener" class="tsd-kind-icon">prepend<wbr>Listener</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#prependoncelistener" class="tsd-kind-icon">prepend<wbr>Once<wbr>Listener</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="eventbus.html#publish" class="tsd-kind-icon">publish</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#rawlisteners" class="tsd-kind-icon">raw<wbr>Listeners</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#removealllisteners" class="tsd-kind-icon">remove<wbr>All<wbr>Listeners</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#removelistener" class="tsd-kind-icon">remove<wbr>Listener</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited"><a href="eventbus.html#setmaxlisteners" class="tsd-kind-icon">set<wbr>Max<wbr>Listeners</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static"><a href="eventbus.html#listenercount-1" class="tsd-kind-icon">listener<wbr>Count</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1066,95 +1136,745 @@ img { max-width: 100%; }
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>InMemory<wbr>Value<wbr>Storage<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">T</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="inmemoryvaluestorage.html" class="tsd-signature-type">InMemoryValueStorage</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>Event<wbr>Bus<span class="tsd-signature-symbol">(</span>eventStorage<span class="tsd-signature-symbol">: </span><a href="../interfaces/eventstorage.html" class="tsd-signature-type">EventStorage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="eventbus.html" class="tsd-signature-type">EventBus</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/in-memory/value-storage.ts#L3">in-memory/value-storage.ts:3</a></li>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/event-bus.ts#L14">event-bus.ts:14</a></li>
 							</ul>
 						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Instanciate the bus with an underlying <code>EventStorage</code>.</p>
+							</div>
+						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <a href="" class="tsd-signature-type">T</a></h5>
+								<h5>eventStorage: <a href="../interfaces/eventstorage.html" class="tsd-signature-type">EventStorage</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<div class="lead">
+										<p>where your events will be stored.</p>
+									</div>
+								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="inmemoryvaluestorage.html" class="tsd-signature-type">InMemoryValueStorage</a></h4>
+						<h4 class="tsd-returns-title">Returns <a href="eventbus.html" class="tsd-signature-type">EventBus</a></h4>
 					</li>
 				</ul>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
+		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="value" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> value</h3>
-				<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">T</a></div>
+				<a name="eventstorage" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> event<wbr>Storage</h3>
+				<div class="tsd-signature tsd-kind-icon">event<wbr>Storage<span class="tsd-signature-symbol">:</span> <a href="../interfaces/eventstorage.html" class="tsd-signature-type">EventStorage</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/in-memory/value-storage.ts#L4">in-memory/value-storage.ts:4</a></li>
+						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/event-bus.ts#L20">event-bus.ts:20</a></li>
+					</ul>
+				</aside>
+				<div class="tsd-comment tsd-typography">
+					<div class="lead">
+						<p>where your events will be stored.</p>
+					</div>
+				</div>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<a name="defaultmaxlisteners" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> default<wbr>Max<wbr>Listeners</h3>
+				<div class="tsd-signature tsd-kind-icon">default<wbr>Max<wbr>Listeners<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">number</span></div>
+				<aside class="tsd-sources">
+					<p>Inherited from EventEmitter.defaultMaxListeners</p>
+					<ul>
+						<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1030</li>
 					</ul>
 				</aside>
 			</section>
 		</section>
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="delete" class="tsd-anchor"></a>
-				<h3>delete</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="addlistener" class="tsd-anchor"></a>
+				<h3>add<wbr>Listener</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">add<wbr>Listener<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.addListener</p>
+							<p>Overrides EventEmitter.addListener</p>
 							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/in-memory/value-storage.ts#L15">in-memory/value-storage.ts:15</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="get" class="tsd-anchor"></a>
-				<h3>get</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/in-memory/value-storage.ts#L7">in-memory/value-storage.ts:7</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="store" class="tsd-anchor"></a>
-				<h3>store</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">(</span>newValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/in-memory/value-storage.ts#L11">in-memory/value-storage.ts:11</a></li>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1032</li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>newValue: <span class="tsd-signature-type">T</span></h5>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+							<li>
+								<h5>listener: <span class="tsd-signature-type">function</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="emit" class="tsd-anchor"></a>
+				<h3>emit</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">emit<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, <span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.emit</p>
+							<p>Overrides EventEmitter.emit</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1044</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="eventnames" class="tsd-anchor"></a>
+				<h3>event<wbr>Names</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">event<wbr>Names<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.eventNames</p>
+							<p>Overrides EventEmitter.eventNames</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1045</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Array</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="getmaxlisteners" class="tsd-anchor"></a>
+				<h3>get<wbr>Max<wbr>Listeners</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Max<wbr>Listeners<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.getMaxListeners</p>
+							<p>Overrides EventEmitter.getMaxListeners</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1041</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="listenercount" class="tsd-anchor"></a>
+				<h3>listener<wbr>Count</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">listener<wbr>Count<span class="tsd-signature-symbol">(</span>type<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.listenerCount</p>
+							<p>Overrides EventEmitter.listenerCount</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1046</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>type: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="listeners" class="tsd-anchor"></a>
+				<h3>listeners</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">listeners<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">[]</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.listeners</p>
+							<p>Overrides EventEmitter.listeners</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1042</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">[]</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="off" class="tsd-anchor"></a>
+				<h3>off</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">off<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.off</p>
+							<p>Overrides EventEmitter.off</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1038</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+							<li>
+								<h5>listener: <span class="tsd-signature-type">function</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="on" class="tsd-anchor"></a>
+				<h3>on</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">on<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.on</p>
+							<p>Overrides EventEmitter.on</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1033</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+							<li>
+								<h5>listener: <span class="tsd-signature-type">function</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="onerror" class="tsd-anchor"></a>
+				<h3>on<wbr>Error</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">on<wbr>Error<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/event-bus.ts#L57">event-bus.ts:57</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>Listen to <code>error</code>. You really should write at least one error handler because <code>EventBus</code> is an instance of
+								<code>EventEmitter</code>, if it emits an <code>error</code> while no listener is attached, it throws.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>handler: <span class="tsd-signature-type">function</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>error handler</p>
+								</div>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="onevent" class="tsd-anchor"></a>
+				<h3>on<wbr>Event</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">on<wbr>Event<span class="tsd-signature-symbol">(</span>handler<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/event-bus.ts#L41">event-bus.ts:41</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>The handler is called for every published event.</p>
+							</div>
+							<p>If the handler throws or returns a rejecting promise, an <code>error</code> will be emitted.</p>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>handler: <span class="tsd-signature-type">function</span></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>event handler</p>
+								</div>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5>event: <a href="../interfaces/event.html" class="tsd-signature-type">Event</a></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span>
+													<span class="tsd-signature-symbol"> | </span>
+													<span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span>
+												</h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="once" class="tsd-anchor"></a>
+				<h3>once</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">once<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.once</p>
+							<p>Overrides EventEmitter.once</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1034</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+							<li>
+								<h5>listener: <span class="tsd-signature-type">function</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="prependlistener" class="tsd-anchor"></a>
+				<h3>prepend<wbr>Listener</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">prepend<wbr>Listener<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.prependListener</p>
+							<p>Overrides EventEmitter.prependListener</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1035</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+							<li>
+								<h5>listener: <span class="tsd-signature-type">function</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="prependoncelistener" class="tsd-anchor"></a>
+				<h3>prepend<wbr>Once<wbr>Listener</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">prepend<wbr>Once<wbr>Listener<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.prependOnceListener</p>
+							<p>Overrides EventEmitter.prependOnceListener</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1036</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+							<li>
+								<h5>listener: <span class="tsd-signature-type">function</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="publish" class="tsd-anchor"></a>
+				<h3>publish</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">publish<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/event-bus.ts#L29">event-bus.ts:29</a></li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<div class="lead">
+								<p>When you <code>publish</code> an event, it is first stored in the EventStorage then it is emitted to every subscribers.</p>
+							</div>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>event: <a href="../interfaces/event.html" class="tsd-signature-type">Event</a></h5>
+								<div class="tsd-comment tsd-typography">
+									<p>the event to publish</p>
+								</div>
 							</li>
 						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="rawlisteners" class="tsd-anchor"></a>
+				<h3>raw<wbr>Listeners</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">raw<wbr>Listeners<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">[]</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.rawListeners</p>
+							<p>Overrides EventEmitter.rawListeners</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1043</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Function</span><span class="tsd-signature-symbol">[]</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="removealllisteners" class="tsd-anchor"></a>
+				<h3>remove<wbr>All<wbr>Listeners</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>All<wbr>Listeners<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.removeAllListeners</p>
+							<p>Overrides EventEmitter.removeAllListeners</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1039</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="removelistener" class="tsd-anchor"></a>
+				<h3>remove<wbr>Listener</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">remove<wbr>Listener<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span>, listener<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.removeListener</p>
+							<p>Overrides EventEmitter.removeListener</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1037</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+							<li>
+								<h5>listener: <span class="tsd-signature-type">function</span></h5>
+								<ul class="tsd-parameters">
+									<li class="tsd-parameter-siganture">
+										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
+											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">...</span>args<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+										</ul>
+										<ul class="tsd-descriptions">
+											<li class="tsd-description">
+												<h4 class="tsd-parameters-title">Parameters</h4>
+												<ul class="tsd-parameters">
+													<li>
+														<h5><span class="tsd-flag ts-flagRest">Rest</span> <span class="tsd-signature-symbol">...</span>args: <span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">[]</span></h5>
+													</li>
+												</ul>
+												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
+											</li>
+										</ul>
+									</li>
+								</ul>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+				<a name="setmaxlisteners" class="tsd-anchor"></a>
+				<h3>set<wbr>Max<wbr>Listeners</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-overwrite tsd-is-inherited">
+					<li class="tsd-signature tsd-kind-icon">set<wbr>Max<wbr>Listeners<span class="tsd-signature-symbol">(</span>n<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">this</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.setMaxListeners</p>
+							<p>Overrides EventEmitter.setMaxListeners</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1040</li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>n: <span class="tsd-signature-type">number</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">this</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+				<a name="listenercount-1" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagStatic">Static</span> listener<wbr>Count</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-inherited tsd-is-static">
+					<li class="tsd-signature tsd-kind-icon">listener<wbr>Count<span class="tsd-signature-symbol">(</span>emitter<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">EventEmitter</span>, event<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">number</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<p>Inherited from EventEmitter.listenerCount</p>
+							<ul>
+								<li>Defined in D:/Codes/es-objects/node_modules/@types/node/index.d.ts:1029</li>
+							</ul>
+						</aside>
+						<div class="tsd-comment tsd-typography">
+							<dl class="tsd-comment-tags">
+								<dt>deprecated</dt>
+								<dd><p>since v4.0.0</p>
+								</dd>
+							</dl>
+						</div>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>emitter: <span class="tsd-signature-type">EventEmitter</span></h5>
+							</li>
+							<li>
+								<h5>event: <span class="tsd-signature-type">string</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">symbol</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">number</span></h4>
 					</li>
 				</ul>
 			</section>

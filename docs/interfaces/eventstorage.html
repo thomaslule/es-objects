@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>ValueStorage | es-objects</title>
+	<title>EventStorage | es-objects</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -954,8 +954,19 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-interface">
 			<a href="event.html" class="tsd-kind-icon">Event</a>
 		</li>
-		<li class=" tsd-kind-interface">
+		<li class="current tsd-kind-interface">
 			<a href="eventstorage.html" class="tsd-kind-icon">Event<wbr>Storage</a>
+			<ul>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="eventstorage.html#getcurrentsequence" class="tsd-kind-icon">get<wbr>Current<wbr>Sequence</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="eventstorage.html#getevents" class="tsd-kind-icon">get<wbr>Events</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-interface">
+					<a href="eventstorage.html#store" class="tsd-kind-icon">store</a>
+				</li>
+			</ul>
 		</li>
 		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="keyvaluestorage.html" class="tsd-kind-icon">Key<wbr>Value<wbr>Storage</a>
@@ -963,19 +974,8 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-interface">
 			<a href="rebuildable.html" class="tsd-kind-icon">Rebuildable</a>
 		</li>
-		<li class="current tsd-kind-interface tsd-has-type-parameter">
+		<li class=" tsd-kind-interface tsd-has-type-parameter">
 			<a href="valuestorage.html" class="tsd-kind-icon">Value<wbr>Storage</a>
-			<ul>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="valuestorage.html#delete" class="tsd-kind-icon">delete</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="valuestorage.html#get" class="tsd-kind-icon">get</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-interface">
-					<a href="valuestorage.html#store" class="tsd-kind-icon">store</a>
-				</li>
-			</ul>
 		</li>
 		<li class=" tsd-kind-type-alias tsd-has-type-parameter">
 			<a href="../globals.html#reducer" class="tsd-kind-icon">Reducer</a>
@@ -1005,26 +1005,18 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<section class="tsd-panel tsd-type-parameters">
-			<h3>Type parameters</h3>
-			<ul class="tsd-type-parameters">
-				<li>
-					<h4>T</h4>
-				</li>
-			</ul>
-		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">ValueStorage</span>
+					<span class="target">EventStorage</span>
 				</li>
 			</ul>
 		</section>
 		<section class="tsd-panel">
 			<h3>Implemented by</h3>
 			<ul class="tsd-hierarchy">
-				<li><a href="../classes/inmemoryvaluestorage.html" class="tsd-signature-type">InMemoryValueStorage</a></li>
+				<li><a href="../classes/inmemoryeventstorage.html" class="tsd-signature-type">InMemoryEventStorage</a></li>
 			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1034,9 +1026,9 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="valuestorage.html#delete" class="tsd-kind-icon">delete</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="valuestorage.html#get" class="tsd-kind-icon">get</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="valuestorage.html#store" class="tsd-kind-icon">store</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="eventstorage.html#getcurrentsequence" class="tsd-kind-icon">get<wbr>Current<wbr>Sequence</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="eventstorage.html#getevents" class="tsd-kind-icon">get<wbr>Events</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-interface"><a href="eventstorage.html#store" class="tsd-kind-icon">store</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1045,12 +1037,12 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="delete" class="tsd-anchor"></a>
-				<h3>delete</h3>
-				<div class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<a name="getcurrentsequence" class="tsd-anchor"></a>
+				<h3>get<wbr>Current<wbr>Sequence</h3>
+				<div class="tsd-signature tsd-kind-icon">get<wbr>Current<wbr>Sequence<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/types.ts#L82">types.ts:82</a></li>
+						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/types.ts#L62">types.ts:62</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -1058,11 +1050,20 @@ img { max-width: 100%; }
 					<ul class="tsd-parameters">
 						<li class="tsd-parameter-siganture">
 							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>aggregate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 							</ul>
 							<ul class="tsd-descriptions">
 								<li class="tsd-description">
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5>aggregate: <span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li>
+											<h5>id: <span class="tsd-signature-type">string</span></h5>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 								</li>
 							</ul>
 						</li>
@@ -1070,12 +1071,12 @@ img { max-width: 100%; }
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-interface">
-				<a name="get" class="tsd-anchor"></a>
-				<h3>get</h3>
-				<div class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<a name="getevents" class="tsd-anchor"></a>
+				<h3>get<wbr>Events</h3>
+				<div class="tsd-signature tsd-kind-icon">get<wbr>Events<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/types.ts#L80">types.ts:80</a></li>
+						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/types.ts#L61">types.ts:61</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -1083,11 +1084,23 @@ img { max-width: 100%; }
 					<ul class="tsd-parameters">
 						<li class="tsd-parameter-siganture">
 							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>aggregate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, fromSequence<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span></li>
 							</ul>
 							<ul class="tsd-descriptions">
 								<li class="tsd-description">
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
+									<h4 class="tsd-parameters-title">Parameters</h4>
+									<ul class="tsd-parameters">
+										<li>
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> aggregate: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li>
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> id: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+										</li>
+										<li>
+											<h5><span class="tsd-flag ts-flagOptional">Optional</span> fromSequence: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">number</span></h5>
+										</li>
+									</ul>
+									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Readable</span></h4>
 								</li>
 							</ul>
 						</li>
@@ -1100,7 +1113,7 @@ img { max-width: 100%; }
 				<div class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/types.ts#L81">types.ts:81</a></li>
+						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/types.ts#L60">types.ts:60</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-type-declaration">
@@ -1108,14 +1121,14 @@ img { max-width: 100%; }
 					<ul class="tsd-parameters">
 						<li class="tsd-parameter-siganture">
 							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-property tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 							</ul>
 							<ul class="tsd-descriptions">
 								<li class="tsd-description">
 									<h4 class="tsd-parameters-title">Parameters</h4>
 									<ul class="tsd-parameters">
 										<li>
-											<h5>value: <span class="tsd-signature-type">T</span></h5>
+											<h5>event: <a href="event.html" class="tsd-signature-type">Event</a></h5>
 										</li>
 									</ul>
 									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>

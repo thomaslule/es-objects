@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>Entity | es-objects</title>
+	<title>FromEventsDecisionProvider | es-objects</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -909,43 +909,31 @@ img { max-width: 100%; }
 </header>
 <nav class="tsd-navigation secondary">
 	<ul>
-		<li class="current tsd-kind-class tsd-has-type-parameter">
+		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="entity.html" class="tsd-kind-icon">Entity</a>
-			<ul>
-				<li class=" tsd-kind-constructor tsd-parent-kind-class">
-					<a href="entity.html#constructor" class="tsd-kind-icon">constructor</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="entity.html#decisionsequence" class="tsd-kind-icon">decision<wbr>Sequence</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="entity.html#id" class="tsd-kind-icon">id</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="entity.html#publish" class="tsd-kind-icon">publish</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a href="entity.html#getaggregate" class="tsd-kind-icon">get<wbr>Aggregate</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a href="entity.html#getdecision" class="tsd-kind-icon">get<wbr>Decision</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a href="entity.html#getdecisionreducer" class="tsd-kind-icon">get<wbr>Decision<wbr>Reducer</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a href="entity.html#getid" class="tsd-kind-icon">get<wbr>Id</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<a href="entity.html#publishandapply" class="tsd-kind-icon">publish<wbr>And<wbr>Apply</a>
-				</li>
-			</ul>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="eventbus.html" class="tsd-kind-icon">Event<wbr>Bus</a>
 		</li>
-		<li class=" tsd-kind-class tsd-has-type-parameter">
+		<li class="current tsd-kind-class tsd-has-type-parameter">
 			<a href="fromeventsdecisionprovider.html" class="tsd-kind-icon">From<wbr>Events<wbr>Decision<wbr>Provider</a>
+			<ul>
+				<li class=" tsd-kind-constructor tsd-parent-kind-class">
+					<a href="fromeventsdecisionprovider.html#constructor" class="tsd-kind-icon">constructor</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="fromeventsdecisionprovider.html#aggregate" class="tsd-kind-icon">aggregate</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="fromeventsdecisionprovider.html#eventstorage" class="tsd-kind-icon">event<wbr>Storage</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="fromeventsdecisionprovider.html#reducer" class="tsd-kind-icon">reducer</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="fromeventsdecisionprovider.html#getdecisionsequence" class="tsd-kind-icon">get<wbr>Decision<wbr>Sequence</a>
+				</li>
+			</ul>
 		</li>
 		<li class=" tsd-kind-class">
 			<a href="inmemoryeventstorage.html" class="tsd-kind-icon">In<wbr>Memory<wbr>Event<wbr>Storage</a>
@@ -1026,16 +1014,9 @@ img { max-width: 100%; }
 		<section class="tsd-panel tsd-comment">
 			<div class="tsd-comment tsd-typography">
 				<div class="lead">
-					<p>When writing entity classes, you can inherit from this class to write less code.</p>
+					<p>A <a href="../interfaces/decisionprovider.html">DecisionProvider</a> that stores nothing in memory: to provide a decision,
+					it reads the event stream of the aggregate.</p>
 				</div>
-				<pre><code class="language-typescript"><span class="hljs-keyword">class</span> Cat <span class="hljs-keyword">extends</span> Entity&lt;<span class="hljs-built_in">boolean</span>&gt; {
-  <span class="hljs-keyword">constructor</span>(<span class="hljs-params">id, decisionSequence, publish</span>) {
-    <span class="hljs-keyword">super</span>(id, decisionSequence, publish);
-  }
-  <span class="hljs-keyword">public</span> <span class="hljs-keyword">async</span> pet() { <span class="hljs-keyword">await</span> <span class="hljs-keyword">this</span>.publishAndApply({ <span class="hljs-keyword">type</span>: <span class="hljs-string">"pet"</span> }); }
-  <span class="hljs-keyword">protected</span> getAggregate() { <span class="hljs-keyword">return</span> <span class="hljs-string">"cat"</span>; }
-  <span class="hljs-keyword">protected</span> getDecisionReducer() { <span class="hljs-keyword">return</span> catFedReducer; }
-}</code></pre>
 			</div>
 		</section>
 		<section class="tsd-panel tsd-type-parameters">
@@ -1050,8 +1031,14 @@ img { max-width: 100%; }
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">Entity</span>
+					<span class="target">FromEventsDecisionProvider</span>
 				</li>
+			</ul>
+		</section>
+		<section class="tsd-panel">
+			<h3>Implements</h3>
+			<ul class="tsd-hierarchy">
+				<li><a href="../interfaces/decisionprovider.html" class="tsd-signature-type">DecisionProvider</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span></li>
 			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1061,25 +1048,21 @@ img { max-width: 100%; }
 					<section class="tsd-index-section ">
 						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="entity.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="fromeventsdecisionprovider.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="entity.html#decisionsequence" class="tsd-kind-icon">decision<wbr>Sequence</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="entity.html#id" class="tsd-kind-icon">id</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="entity.html#publish" class="tsd-kind-icon">publish</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="fromeventsdecisionprovider.html#aggregate" class="tsd-kind-icon">aggregate</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="fromeventsdecisionprovider.html#eventstorage" class="tsd-kind-icon">event<wbr>Storage</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="fromeventsdecisionprovider.html#reducer" class="tsd-kind-icon">reducer</a></li>
 						</ul>
 					</section>
-					<section class="tsd-index-section tsd-is-private-protected">
+					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="entity.html#getaggregate" class="tsd-kind-icon">get<wbr>Aggregate</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="entity.html#getdecision" class="tsd-kind-icon">get<wbr>Decision</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="entity.html#getdecisionreducer" class="tsd-kind-icon">get<wbr>Decision<wbr>Reducer</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="entity.html#getid" class="tsd-kind-icon">get<wbr>Id</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class tsd-is-protected"><a href="entity.html#publishandapply" class="tsd-kind-icon">publish<wbr>And<wbr>Apply</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="fromeventsdecisionprovider.html#getdecisionsequence" class="tsd-kind-icon">get<wbr>Decision<wbr>Sequence</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1091,76 +1074,45 @@ img { max-width: 100%; }
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Entity<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, decisionSequence<span class="tsd-signature-symbol">: </span><a href="../interfaces/decisionsequence.html" class="tsd-signature-type">DecisionSequence</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span>, publish<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="entity.html" class="tsd-signature-type">Entity</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>From<wbr>Events<wbr>Decision<wbr>Provider<span class="tsd-signature-symbol">(</span>aggregate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, reducer<span class="tsd-signature-symbol">: </span><a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span>, eventStorage<span class="tsd-signature-symbol">: </span><a href="../interfaces/eventstorage.html" class="tsd-signature-type">EventStorage</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="fromeventsdecisionprovider.html" class="tsd-signature-type">FromEventsDecisionProvider</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/entity.ts#L18">entity.ts:18</a></li>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/decision-provider/from-events-decision-provider.ts#L10">decision-provider/from-events-decision-provider.ts:10</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
-							<div class="lead">
-								<p>The constructor has the same arguments that the <a href="store.html">Store</a> provides to create an entity, which makes interfacing
-								easy.</p>
-							</div>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>id: <span class="tsd-signature-type">string</span></h5>
+								<h5>aggregate: <span class="tsd-signature-type">string</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
-										<p>the id of the entity</p>
+										<p>the aggregate name</p>
 									</div>
 								</div>
 							</li>
 							<li>
-								<h5>decisionSequence: <a href="../interfaces/decisionsequence.html" class="tsd-signature-type">DecisionSequence</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span></h5>
+								<h5>reducer: <a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
-										<p>the current DecisionSequence (decision projection + sequence of last event)</p>
+										<p>the decision reducer</p>
 									</div>
 								</div>
 							</li>
 							<li>
-								<h5>publish: <span class="tsd-signature-type">function</span></h5>
+								<h5>eventStorage: <a href="../interfaces/eventstorage.html" class="tsd-signature-type">EventStorage</a></h5>
 								<div class="tsd-comment tsd-typography">
 									<div class="lead">
-										<p>the publish method to call when the entity wants to emit an event</p>
+										<p>the event store</p>
 									</div>
 								</div>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-siganture">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a>, decisionSequence<span class="tsd-signature-symbol">: </span><a href="../interfaces/decisionsequence.html" class="tsd-signature-type">DecisionSequence</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>event: <a href="../interfaces/event.html" class="tsd-signature-type">Event</a></h5>
-														<div class="tsd-comment tsd-typography">
-															<p>the event to publish</p>
-														</div>
-													</li>
-													<li>
-														<h5>decisionSequence: <a href="../interfaces/decisionsequence.html" class="tsd-signature-type">DecisionSequence</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span></h5>
-														<div class="tsd-comment tsd-typography">
-															<p>the DecisionSequence up to date with the event to publish</p>
-														</div>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="entity.html" class="tsd-signature-type">Entity</a></h4>
+						<h4 class="tsd-returns-title">Returns <a href="fromeventsdecisionprovider.html" class="tsd-signature-type">FromEventsDecisionProvider</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -1168,187 +1120,76 @@ img { max-width: 100%; }
 		<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="decisionsequence" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> decision<wbr>Sequence</h3>
-				<div class="tsd-signature tsd-kind-icon">decision<wbr>Sequence<span class="tsd-signature-symbol">:</span> <a href="../interfaces/decisionsequence.html" class="tsd-signature-type">DecisionSequence</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<a name="aggregate" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> aggregate</h3>
+				<div class="tsd-signature tsd-kind-icon">aggregate<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/entity.ts#L32">entity.ts:32</a></li>
+						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/decision-provider/from-events-decision-provider.ts#L17">decision-provider/from-events-decision-provider.ts:17</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>the current DecisionSequence (decision projection + sequence of last event)</p>
+						<p>the aggregate name</p>
 					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="id" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> id</h3>
-				<div class="tsd-signature tsd-kind-icon">id<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">string</span></div>
+				<a name="eventstorage" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> event<wbr>Storage</h3>
+				<div class="tsd-signature tsd-kind-icon">event<wbr>Storage<span class="tsd-signature-symbol">:</span> <a href="../interfaces/eventstorage.html" class="tsd-signature-type">EventStorage</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/entity.ts#L31">entity.ts:31</a></li>
+						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/decision-provider/from-events-decision-provider.ts#L17">decision-provider/from-events-decision-provider.ts:17</a></li>
 					</ul>
 				</aside>
 				<div class="tsd-comment tsd-typography">
 					<div class="lead">
-						<p>the id of the entity</p>
+						<p>the event store</p>
 					</div>
 				</div>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="publish" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> publish</h3>
-				<div class="tsd-signature tsd-kind-icon">publish<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<a name="reducer" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> reducer</h3>
+				<div class="tsd-signature tsd-kind-icon">reducer<span class="tsd-signature-symbol">:</span> <a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/decisionsequence.html" class="tsd-signature-type">DecisionSequence</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/entity.ts#L33">entity.ts:33</a></li>
+						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/decision-provider/from-events-decision-provider.ts#L10">decision-provider/from-events-decision-provider.ts:10</a></li>
 					</ul>
 				</aside>
-				<div class="tsd-comment tsd-typography">
-					<div class="lead">
-						<p>the publish method to call when the entity wants to emit an event</p>
-					</div>
-				</div>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a>, decisionSequence<span class="tsd-signature-symbol">: </span><a href="../interfaces/decisionsequence.html" class="tsd-signature-type">DecisionSequence</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5>event: <a href="../interfaces/event.html" class="tsd-signature-type">Event</a></h5>
-										</li>
-										<li>
-											<h5>decisionSequence: <a href="../interfaces/decisionsequence.html" class="tsd-signature-type">DecisionSequence</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
 			</section>
 		</section>
-		<section class="tsd-panel-group tsd-member-group tsd-is-private-protected">
+		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-				<a name="getaggregate" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> get<wbr>Aggregate</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Aggregate<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="getdecisionsequence" class="tsd-anchor"></a>
+				<h3>get<wbr>Decision<wbr>Sequence</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Decision<wbr>Sequence<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/decisionsequence.html" class="tsd-signature-type">DecisionSequence</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/entity.ts#L40">entity.ts:40</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						<p>the entity&#39;s aggregate</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-				<a name="getdecision" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Decision</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Decision<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">TDecision</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/entity.ts#L57">entity.ts:57</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">TDecision</span></h4>
-						<p>the current decision state</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-				<a name="getdecisionreducer" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagProtected">Protected</span> <span class="tsd-flag ts-flagAbstract">Abstract</span> get<wbr>Decision<wbr>Reducer</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Decision<wbr>Reducer<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/entity.ts#L45">entity.ts:45</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-						</div>
-						<h4 class="tsd-returns-title">Returns <a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>the aggregate&#39;s decision reducer</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-				<a name="getid" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagProtected">Protected</span> get<wbr>Id</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>Id<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/entity.ts#L50">entity.ts:50</a></li>
-							</ul>
-						</aside>
-						<div class="tsd-comment tsd-typography">
-						</div>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">string</span></h4>
-						<p>the entity&#39;s id</p>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-				<a name="publishandapply" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagProtected">Protected</span> publish<wbr>And<wbr>Apply</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class tsd-is-protected">
-					<li class="tsd-signature tsd-kind-icon">publish<wbr>And<wbr>Apply<span class="tsd-signature-symbol">(</span>eventData<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">any</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/entity.ts#L68">entity.ts:68</a></li>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/decision-provider/from-events-decision-provider.ts#L26">decision-provider/from-events-decision-provider.ts:26</a></li>
 							</ul>
 						</aside>
 						<div class="tsd-comment tsd-typography">
 							<div class="lead">
-								<p>Call this method with only the custom event fields, it will set for you the mandatory fields, emit the event and
-								apply it to itself to update its decision projection.</p>
+								<p>Get the latest <a href="../interfaces/decisionsequence.html">DecisionSequence</a> for an entity.</p>
 							</div>
 						</div>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>eventData: <span class="tsd-signature-type">any</span></h5>
+								<h5>id: <span class="tsd-signature-type">string</span></h5>
 								<div class="tsd-comment tsd-typography">
-									<p>the event&#39;s custom properties</p>
+									<p>the entity&#39;s id</p>
 								</div>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">&gt;</span></h4>
-						<p>the complete event object</p>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/decisionsequence.html" class="tsd-signature-type">DecisionSequence</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">TDecision</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>

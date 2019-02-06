@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>InMemoryReduceProjection | es-objects</title>
+	<title>InMemoryEventStorage | es-objects</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -918,34 +918,31 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="fromeventsdecisionprovider.html" class="tsd-kind-icon">From<wbr>Events<wbr>Decision<wbr>Provider</a>
 		</li>
-		<li class=" tsd-kind-class">
+		<li class="current tsd-kind-class">
 			<a href="inmemoryeventstorage.html" class="tsd-kind-icon">In<wbr>Memory<wbr>Event<wbr>Storage</a>
+			<ul>
+				<li class=" tsd-kind-constructor tsd-parent-kind-class">
+					<a href="inmemoryeventstorage.html#constructor" class="tsd-kind-icon">constructor</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="inmemoryeventstorage.html#events" class="tsd-kind-icon">events</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="inmemoryeventstorage.html#getcurrentsequence" class="tsd-kind-icon">get<wbr>Current<wbr>Sequence</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="inmemoryeventstorage.html#getevents" class="tsd-kind-icon">get<wbr>Events</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="inmemoryeventstorage.html#store" class="tsd-kind-icon">store</a>
+				</li>
+			</ul>
 		</li>
 		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="inmemorykeyvaluestorage.html" class="tsd-kind-icon">In<wbr>Memory<wbr>Key<wbr>Value<wbr>Storage</a>
 		</li>
-		<li class="current tsd-kind-class tsd-has-type-parameter">
+		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="inmemoryreduceprojection.html" class="tsd-kind-icon">In<wbr>Memory<wbr>Reduce<wbr>Projection</a>
-			<ul>
-				<li class=" tsd-kind-constructor tsd-parent-kind-class">
-					<a href="inmemoryreduceprojection.html#constructor" class="tsd-kind-icon">constructor</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="inmemoryreduceprojection.html#reducer" class="tsd-kind-icon">reducer</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="inmemoryreduceprojection.html#state" class="tsd-kind-icon">state</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="inmemoryreduceprojection.html#getstate" class="tsd-kind-icon">get<wbr>State</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="inmemoryreduceprojection.html#handleevent" class="tsd-kind-icon">handle<wbr>Event</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="inmemoryreduceprojection.html#rebuildstream" class="tsd-kind-icon">rebuild<wbr>Stream</a>
-				</li>
-			</ul>
 		</li>
 		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="inmemoryvaluestorage.html" class="tsd-kind-icon">In<wbr>Memory<wbr>Value<wbr>Storage</a>
@@ -1014,36 +1011,18 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<section class="tsd-panel tsd-comment">
-			<div class="tsd-comment tsd-typography">
-				<div class="lead">
-					<p>A projection that stores its latest state in memory so you can access it synchronously.</p>
-				</div>
-				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> projection = <span class="hljs-keyword">new</span> InMemoryReduceProjection(nbMealsReducer);
-bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> projection.handleEvent(event));
-<span class="hljs-keyword">const</span> nbMeals = projection.getState();</code></pre>
-			</div>
-		</section>
-		<section class="tsd-panel tsd-type-parameters">
-			<h3>Type parameters</h3>
-			<ul class="tsd-type-parameters">
-				<li>
-					<h4>T</h4>
-				</li>
-			</ul>
-		</section>
 		<section class="tsd-panel tsd-hierarchy">
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">InMemoryReduceProjection</span>
+					<span class="target">InMemoryEventStorage</span>
 				</li>
 			</ul>
 		</section>
 		<section class="tsd-panel">
 			<h3>Implements</h3>
 			<ul class="tsd-hierarchy">
-				<li><a href="../interfaces/rebuildable.html" class="tsd-signature-type">Rebuildable</a></li>
+				<li><a href="../interfaces/eventstorage.html" class="tsd-signature-type">EventStorage</a></li>
 			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1053,22 +1032,21 @@ bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>)
 					<section class="tsd-index-section ">
 						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="inmemoryreduceprojection.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="inmemoryeventstorage.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="inmemoryreduceprojection.html#reducer" class="tsd-kind-icon">reducer</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="inmemoryreduceprojection.html#state" class="tsd-kind-icon">state</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="inmemoryeventstorage.html#events" class="tsd-kind-icon">events</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryreduceprojection.html#getstate" class="tsd-kind-icon">get<wbr>State</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryreduceprojection.html#handleevent" class="tsd-kind-icon">handle<wbr>Event</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryreduceprojection.html#rebuildstream" class="tsd-kind-icon">rebuild<wbr>Stream</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryeventstorage.html#getcurrentsequence" class="tsd-kind-icon">get<wbr>Current<wbr>Sequence</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryeventstorage.html#getevents" class="tsd-kind-icon">get<wbr>Events</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryeventstorage.html#store" class="tsd-kind-icon">store</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1080,25 +1058,22 @@ bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>)
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>InMemory<wbr>Reduce<wbr>Projection<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, state<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="inmemoryreduceprojection.html" class="tsd-signature-type">InMemoryReduceProjection</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>InMemory<wbr>Event<wbr>Storage<span class="tsd-signature-symbol">(</span>events<span class="tsd-signature-symbol">?: </span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="inmemoryeventstorage.html" class="tsd-signature-type">InMemoryEventStorage</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/in-memory-reduce-projection.ts#L14">projection/in-memory-reduce-projection.ts:14</a></li>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/in-memory/event-storage.ts#L14">in-memory/event-storage.ts:14</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>reducer: <a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> state: <span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> =&nbsp;getInitialState(reducer)</span></h5>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> events: <a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">[]</span><span class="tsd-signature-symbol"> =&nbsp;[]</span></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="inmemoryreduceprojection.html" class="tsd-signature-type">InMemoryReduceProjection</a></h4>
+						<h4 class="tsd-returns-title">Returns <a href="inmemoryeventstorage.html" class="tsd-signature-type">InMemoryEventStorage</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -1106,22 +1081,12 @@ bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>)
 		<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="reducer" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> reducer</h3>
-				<div class="tsd-signature tsd-kind-icon">reducer<span class="tsd-signature-symbol">:</span> <a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
+				<a name="events" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> events</h3>
+				<div class="tsd-signature tsd-kind-icon">events<span class="tsd-signature-symbol">:</span> <a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">[]</span></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/in-memory-reduce-projection.ts#L16">projection/in-memory-reduce-projection.ts:16</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="state" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> state</h3>
-				<div class="tsd-signature tsd-kind-icon">state<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">T</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/in-memory-reduce-projection.ts#L16">projection/in-memory-reduce-projection.ts:16</a></li>
+						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/in-memory/event-storage.ts#L15">in-memory/event-storage.ts:15</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1129,33 +1094,71 @@ bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>)
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="getstate" class="tsd-anchor"></a>
-				<h3>get<wbr>State</h3>
+				<a name="getcurrentsequence" class="tsd-anchor"></a>
+				<h3>get<wbr>Current<wbr>Sequence</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>State<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span></li>
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Current<wbr>Sequence<span class="tsd-signature-symbol">(</span>aggregate<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span>, id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/in-memory-reduce-projection.ts#L23">projection/in-memory-reduce-projection.ts:23</a></li>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/in-memory/event-storage.ts#L35">in-memory/event-storage.ts:35</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">T</span></h4>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>aggregate: <span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5>id: <span class="tsd-signature-type">string</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="handleevent" class="tsd-anchor"></a>
-				<h3>handle<wbr>Event</h3>
+				<a name="getevents" class="tsd-anchor"></a>
+				<h3>get<wbr>Events</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">handle<wbr>Event<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">void</span></li>
+					<li class="tsd-signature tsd-kind-icon">get<wbr>Events<span class="tsd-signature-symbol">(</span>aggregate<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, id<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span>, fromSequence<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">number</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Readable</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/in-memory-reduce-projection.ts#L19">projection/in-memory-reduce-projection.ts:19</a></li>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/in-memory/event-storage.ts#L25">in-memory/event-storage.ts:25</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> aggregate: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> id: <span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">string</span></h5>
+							</li>
+							<li>
+								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> fromSequence: <span class="tsd-signature-type">number</span><span class="tsd-signature-symbol"> =&nbsp;-1</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Readable</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="store" class="tsd-anchor"></a>
+				<h3>store</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/in-memory/event-storage.ts#L18">in-memory/event-storage.ts:18</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
@@ -1164,24 +1167,7 @@ bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>)
 								<h5>event: <a href="../interfaces/event.html" class="tsd-signature-type">Event</a></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">void</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="rebuildstream" class="tsd-anchor"></a>
-				<h3>rebuild<wbr>Stream</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">rebuild<wbr>Stream<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Writable</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/in-memory-reduce-projection.ts#L27">projection/in-memory-reduce-projection.ts:27</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Writable</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>

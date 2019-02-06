@@ -8,7 +8,7 @@
     "prepublishOnly": "npm run build",
     "build": "rimraf ./lib && tsc",
     "test": "jest",
-    "doc": "typedoc --out doc --tsconfig ./tsconfig.json --mode file --theme minimal"
+    "doc": "typedoc --out docs --tsconfig ./tsconfig.json --mode file --theme minimal"
   },
   "repository": {
     "type": "git",

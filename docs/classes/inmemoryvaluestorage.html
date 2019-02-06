@@ -3,7 +3,7 @@
 <head>
 	<meta charset="utf-8">
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<title>PersistedEntityReduceProjection | es-objects</title>
+	<title>InMemoryValueStorage | es-objects</title>
 	<meta name="description" content="">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<style type="text/css">/*! normalize.css v1.1.3 | MIT License | git.io/normalize */
@@ -927,40 +927,31 @@ img { max-width: 100%; }
 		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="inmemoryreduceprojection.html" class="tsd-kind-icon">In<wbr>Memory<wbr>Reduce<wbr>Projection</a>
 		</li>
-		<li class=" tsd-kind-class tsd-has-type-parameter">
+		<li class="current tsd-kind-class tsd-has-type-parameter">
 			<a href="inmemoryvaluestorage.html" class="tsd-kind-icon">In<wbr>Memory<wbr>Value<wbr>Storage</a>
+			<ul>
+				<li class=" tsd-kind-constructor tsd-parent-kind-class">
+					<a href="inmemoryvaluestorage.html#constructor" class="tsd-kind-icon">constructor</a>
+				</li>
+				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
+					<a href="inmemoryvaluestorage.html#value" class="tsd-kind-icon">value</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="inmemoryvaluestorage.html#delete" class="tsd-kind-icon">delete</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="inmemoryvaluestorage.html#get" class="tsd-kind-icon">get</a>
+				</li>
+				<li class=" tsd-kind-method tsd-parent-kind-class">
+					<a href="inmemoryvaluestorage.html#store" class="tsd-kind-icon">store</a>
+				</li>
+			</ul>
 		</li>
 		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="persisteddecisionprovider.html" class="tsd-kind-icon">Persisted<wbr>Decision<wbr>Provider</a>
 		</li>
-		<li class="current tsd-kind-class tsd-has-type-parameter">
+		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="persistedentityreduceprojection.html" class="tsd-kind-icon">Persisted<wbr>Entity<wbr>Reduce<wbr>Projection</a>
-			<ul>
-				<li class=" tsd-kind-constructor tsd-parent-kind-class">
-					<a href="persistedentityreduceprojection.html#constructor" class="tsd-kind-icon">constructor</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="persistedentityreduceprojection.html#eventfilter" class="tsd-kind-icon">event<wbr>Filter</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="persistedentityreduceprojection.html#reducer" class="tsd-kind-icon">reducer</a>
-				</li>
-				<li class=" tsd-kind-property tsd-parent-kind-class tsd-is-private">
-					<a href="persistedentityreduceprojection.html#storage" class="tsd-kind-icon">storage</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="persistedentityreduceprojection.html#getall" class="tsd-kind-icon">get<wbr>All</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="persistedentityreduceprojection.html#getstate" class="tsd-kind-icon">get<wbr>State</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="persistedentityreduceprojection.html#handleevent" class="tsd-kind-icon">handle<wbr>Event</a>
-				</li>
-				<li class=" tsd-kind-method tsd-parent-kind-class">
-					<a href="persistedentityreduceprojection.html#rebuildstream" class="tsd-kind-icon">rebuild<wbr>Stream</a>
-				</li>
-			</ul>
 		</li>
 		<li class=" tsd-kind-class tsd-has-type-parameter">
 			<a href="persistedreduceprojection.html" class="tsd-kind-icon">Persisted<wbr>Reduce<wbr>Projection</a>
@@ -1020,16 +1011,6 @@ img { max-width: 100%; }
 </nav>
 <div class="container container-main">
 	<div class="content-wrap">
-		<section class="tsd-panel tsd-comment">
-			<div class="tsd-comment tsd-typography">
-				<div class="lead">
-					<p>A projection that stores a state for each entity in its storage.</p>
-				</div>
-				<pre><code class="language-typescript"><span class="hljs-keyword">const</span> projection = <span class="hljs-keyword">new</span> PersistedEntityReduceProjection(catFedReducer, storage);
-bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>) =&gt;</span> projection.handleEvent(event));
-<span class="hljs-keyword">const</span> felixFed = <span class="hljs-keyword">await</span> projection.getState(<span class="hljs-string">"felix"</span>);</code></pre>
-			</div>
-		</section>
 		<section class="tsd-panel tsd-type-parameters">
 			<h3>Type parameters</h3>
 			<ul class="tsd-type-parameters">
@@ -1042,14 +1023,14 @@ bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>)
 			<h3>Hierarchy</h3>
 			<ul class="tsd-hierarchy">
 				<li>
-					<span class="target">PersistedEntityReduceProjection</span>
+					<span class="target">InMemoryValueStorage</span>
 				</li>
 			</ul>
 		</section>
 		<section class="tsd-panel">
 			<h3>Implements</h3>
 			<ul class="tsd-hierarchy">
-				<li><a href="../interfaces/rebuildable.html" class="tsd-signature-type">Rebuildable</a></li>
+				<li><a href="../interfaces/valuestorage.html" class="tsd-signature-type">ValueStorage</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
 			</ul>
 		</section>
 		<section class="tsd-panel-group tsd-index-group">
@@ -1059,24 +1040,21 @@ bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>)
 					<section class="tsd-index-section ">
 						<h3>Constructors</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="persistedentityreduceprojection.html#constructor" class="tsd-kind-icon">constructor</a></li>
+							<li class="tsd-kind-constructor tsd-parent-kind-class"><a href="inmemoryvaluestorage.html#constructor" class="tsd-kind-icon">constructor</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section tsd-is-private tsd-is-private-protected">
 						<h3>Properties</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="persistedentityreduceprojection.html#eventfilter" class="tsd-kind-icon">event<wbr>Filter</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="persistedentityreduceprojection.html#reducer" class="tsd-kind-icon">reducer</a></li>
-							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="persistedentityreduceprojection.html#storage" class="tsd-kind-icon">storage</a></li>
+							<li class="tsd-kind-property tsd-parent-kind-class tsd-is-private"><a href="inmemoryvaluestorage.html#value" class="tsd-kind-icon">value</a></li>
 						</ul>
 					</section>
 					<section class="tsd-index-section ">
 						<h3>Methods</h3>
 						<ul class="tsd-index-list">
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="persistedentityreduceprojection.html#getall" class="tsd-kind-icon">get<wbr>All</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="persistedentityreduceprojection.html#getstate" class="tsd-kind-icon">get<wbr>State</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="persistedentityreduceprojection.html#handleevent" class="tsd-kind-icon">handle<wbr>Event</a></li>
-							<li class="tsd-kind-method tsd-parent-kind-class"><a href="persistedentityreduceprojection.html#rebuildstream" class="tsd-kind-icon">rebuild<wbr>Stream</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryvaluestorage.html#delete" class="tsd-kind-icon">delete</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryvaluestorage.html#get" class="tsd-kind-icon">get</a></li>
+							<li class="tsd-kind-method tsd-parent-kind-class"><a href="inmemoryvaluestorage.html#store" class="tsd-kind-icon">store</a></li>
 						</ul>
 					</section>
 				</div>
@@ -1088,46 +1066,22 @@ bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>)
 				<a name="constructor" class="tsd-anchor"></a>
 				<h3>constructor</h3>
 				<ul class="tsd-signatures tsd-kind-constructor tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">new <wbr>Persisted<wbr>Entity<wbr>Reduce<wbr>Projection<span class="tsd-signature-symbol">(</span>reducer<span class="tsd-signature-symbol">: </span><a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, storage<span class="tsd-signature-symbol">: </span><a href="../interfaces/keyvaluestorage.html" class="tsd-signature-type">KeyValueStorage</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span>, eventFilter<span class="tsd-signature-symbol">?: </span><span class="tsd-signature-type">function</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="persistedentityreduceprojection.html" class="tsd-signature-type">PersistedEntityReduceProjection</a></li>
+					<li class="tsd-signature tsd-kind-icon">new <wbr>InMemory<wbr>Value<wbr>Storage<span class="tsd-signature-symbol">(</span>value<span class="tsd-signature-symbol">?: </span><a href="" class="tsd-signature-type">T</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><a href="inmemoryvaluestorage.html" class="tsd-signature-type">InMemoryValueStorage</a></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/persisted-entity-reduce-projection.ts#L15">projection/persisted-entity-reduce-projection.ts:15</a></li>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/in-memory/value-storage.ts#L3">in-memory/value-storage.ts:3</a></li>
 							</ul>
 						</aside>
 						<h4 class="tsd-parameters-title">Parameters</h4>
 						<ul class="tsd-parameters">
 							<li>
-								<h5>reducer: <a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5>storage: <a href="../interfaces/keyvaluestorage.html" class="tsd-signature-type">KeyValueStorage</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h5>
-							</li>
-							<li>
-								<h5><span class="tsd-flag ts-flagDefault value">Default value</span> eventFilter: <span class="tsd-signature-type">function</span><span class="tsd-signature-symbol"> =&nbsp;(e) &#x3D;&gt; true</span></h5>
-								<ul class="tsd-parameters">
-									<li class="tsd-parameter-siganture">
-										<ul class="tsd-signatures tsd-kind-type-literal tsd-is-not-exported">
-											<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-										</ul>
-										<ul class="tsd-descriptions">
-											<li class="tsd-description">
-												<h4 class="tsd-parameters-title">Parameters</h4>
-												<ul class="tsd-parameters">
-													<li>
-														<h5>e: <a href="../interfaces/event.html" class="tsd-signature-type">Event</a></h5>
-													</li>
-												</ul>
-												<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-											</li>
-										</ul>
-									</li>
-								</ul>
+								<h5><span class="tsd-flag ts-flagOptional">Optional</span> value: <a href="" class="tsd-signature-type">T</a></h5>
 							</li>
 						</ul>
-						<h4 class="tsd-returns-title">Returns <a href="persistedentityreduceprojection.html" class="tsd-signature-type">PersistedEntityReduceProjection</a></h4>
+						<h4 class="tsd-returns-title">Returns <a href="inmemoryvaluestorage.html" class="tsd-signature-type">InMemoryValueStorage</a></h4>
 					</li>
 				</ul>
 			</section>
@@ -1135,53 +1089,12 @@ bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>)
 		<section class="tsd-panel-group tsd-member-group tsd-is-private tsd-is-private-protected">
 			<h2>Properties</h2>
 			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="eventfilter" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> event<wbr>Filter</h3>
-				<div class="tsd-signature tsd-kind-icon">event<wbr>Filter<span class="tsd-signature-symbol">:</span> <span class="tsd-signature-type">function</span></div>
+				<a name="value" class="tsd-anchor"></a>
+				<h3><span class="tsd-flag ts-flagPrivate">Private</span> <span class="tsd-flag ts-flagOptional">Optional</span> value</h3>
+				<div class="tsd-signature tsd-kind-icon">value<span class="tsd-signature-symbol">:</span> <a href="" class="tsd-signature-type">T</a></div>
 				<aside class="tsd-sources">
 					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/persisted-entity-reduce-projection.ts#L19">projection/persisted-entity-reduce-projection.ts:19</a></li>
-					</ul>
-				</aside>
-				<div class="tsd-type-declaration">
-					<h4>Type declaration</h4>
-					<ul class="tsd-parameters">
-						<li class="tsd-parameter-siganture">
-							<ul class="tsd-signatures tsd-kind-type-literal tsd-parent-kind-class tsd-is-not-exported">
-								<li class="tsd-signature tsd-kind-icon"><span class="tsd-signature-symbol">(</span>e<span class="tsd-signature-symbol">: </span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">boolean</span></li>
-							</ul>
-							<ul class="tsd-descriptions">
-								<li class="tsd-description">
-									<h4 class="tsd-parameters-title">Parameters</h4>
-									<ul class="tsd-parameters">
-										<li>
-											<h5>e: <a href="../interfaces/event.html" class="tsd-signature-type">Event</a></h5>
-										</li>
-									</ul>
-									<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">boolean</span></h4>
-								</li>
-							</ul>
-						</li>
-					</ul>
-				</div>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="reducer" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> reducer</h3>
-				<div class="tsd-signature tsd-kind-icon">reducer<span class="tsd-signature-symbol">:</span> <a href="../globals.html#reducer" class="tsd-signature-type">Reducer</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/persisted-entity-reduce-projection.ts#L17">projection/persisted-entity-reduce-projection.ts:17</a></li>
-					</ul>
-				</aside>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-property tsd-parent-kind-class tsd-is-private">
-				<a name="storage" class="tsd-anchor"></a>
-				<h3><span class="tsd-flag ts-flagPrivate">Private</span> storage</h3>
-				<div class="tsd-signature tsd-kind-icon">storage<span class="tsd-signature-symbol">:</span> <a href="../interfaces/keyvaluestorage.html" class="tsd-signature-type">KeyValueStorage</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></div>
-				<aside class="tsd-sources">
-					<ul>
-						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/persisted-entity-reduce-projection.ts#L18">projection/persisted-entity-reduce-projection.ts:18</a></li>
+						<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/in-memory/value-storage.ts#L4">in-memory/value-storage.ts:4</a></li>
 					</ul>
 				</aside>
 			</section>
@@ -1189,82 +1102,59 @@ bus.onEvent(<span class="hljs-function">(<span class="hljs-params">event</span>)
 		<section class="tsd-panel-group tsd-member-group ">
 			<h2>Methods</h2>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="getall" class="tsd-anchor"></a>
-				<h3>get<wbr>All</h3>
+				<a name="delete" class="tsd-anchor"></a>
+				<h3>delete</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>All<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/dictionary.html" class="tsd-signature-type">Dictionary</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></li>
+					<li class="tsd-signature tsd-kind-icon">delete<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/persisted-entity-reduce-projection.ts#L35">projection/persisted-entity-reduce-projection.ts:35</a></li>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/in-memory/value-storage.ts#L15">in-memory/value-storage.ts:15</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><a href="../interfaces/dictionary.html" class="tsd-signature-type">Dictionary</a><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="getstate" class="tsd-anchor"></a>
-				<h3>get<wbr>State</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">get<wbr>State<span class="tsd-signature-symbol">(</span>id<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">string</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/persisted-entity-reduce-projection.ts#L30">projection/persisted-entity-reduce-projection.ts:30</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>id: <span class="tsd-signature-type">string</span></h5>
-							</li>
-						</ul>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">&gt;</span></h4>
-					</li>
-				</ul>
-			</section>
-			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="handleevent" class="tsd-anchor"></a>
-				<h3>handle<wbr>Event</h3>
-				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">handle<wbr>Event<span class="tsd-signature-symbol">(</span>event<span class="tsd-signature-symbol">: </span><a href="../interfaces/event.html" class="tsd-signature-type">Event</a><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
-				</ul>
-				<ul class="tsd-descriptions">
-					<li class="tsd-description">
-						<aside class="tsd-sources">
-							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/persisted-entity-reduce-projection.ts#L22">projection/persisted-entity-reduce-projection.ts:22</a></li>
-							</ul>
-						</aside>
-						<h4 class="tsd-parameters-title">Parameters</h4>
-						<ul class="tsd-parameters">
-							<li>
-								<h5>event: <a href="../interfaces/event.html" class="tsd-signature-type">Event</a></h5>
-							</li>
-						</ul>
 						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
 			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
-				<a name="rebuildstream" class="tsd-anchor"></a>
-				<h3>rebuild<wbr>Stream</h3>
+				<a name="get" class="tsd-anchor"></a>
+				<h3>get</h3>
 				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
-					<li class="tsd-signature tsd-kind-icon">rebuild<wbr>Stream<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Writable</span></li>
+					<li class="tsd-signature tsd-kind-icon">get<span class="tsd-signature-symbol">(</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></li>
 				</ul>
 				<ul class="tsd-descriptions">
 					<li class="tsd-description">
 						<aside class="tsd-sources">
 							<ul>
-								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/a5d0481/src/projection/persisted-entity-reduce-projection.ts#L39">projection/persisted-entity-reduce-projection.ts:39</a></li>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/in-memory/value-storage.ts#L7">in-memory/value-storage.ts:7</a></li>
 							</ul>
 						</aside>
-						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Writable</span></h4>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol"> | </span><span class="tsd-signature-type">undefined</span><span class="tsd-signature-symbol">&gt;</span></h4>
+					</li>
+				</ul>
+			</section>
+			<section class="tsd-panel tsd-member tsd-kind-method tsd-parent-kind-class">
+				<a name="store" class="tsd-anchor"></a>
+				<h3>store</h3>
+				<ul class="tsd-signatures tsd-kind-method tsd-parent-kind-class">
+					<li class="tsd-signature tsd-kind-icon">store<span class="tsd-signature-symbol">(</span>newValue<span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">T</span><span class="tsd-signature-symbol">)</span><span class="tsd-signature-symbol">: </span><span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></li>
+				</ul>
+				<ul class="tsd-descriptions">
+					<li class="tsd-description">
+						<aside class="tsd-sources">
+							<ul>
+								<li>Defined in <a href="https://github.com/thomaslule/es-objects/blob/d8066bd/src/in-memory/value-storage.ts#L11">in-memory/value-storage.ts:11</a></li>
+							</ul>
+						</aside>
+						<h4 class="tsd-parameters-title">Parameters</h4>
+						<ul class="tsd-parameters">
+							<li>
+								<h5>newValue: <span class="tsd-signature-type">T</span></h5>
+							</li>
+						</ul>
+						<h4 class="tsd-returns-title">Returns <span class="tsd-signature-type">Promise</span><span class="tsd-signature-symbol">&lt;</span><span class="tsd-signature-type">void</span><span class="tsd-signature-symbol">&gt;</span></h4>
 					</li>
 				</ul>
 			</section>
