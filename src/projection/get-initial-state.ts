@@ -6,6 +6,11 @@ const INIT_EVENT = {
   sequence: -1,
 };
 
+/**
+ * Get the initial state of a reducer, the default value of its state parameter.
+ *
+ * @param reducer any reducer
+ */
 export function getInitialState<T>(reducer: Reducer<T>): T {
   return reducer(undefined, INIT_EVENT);
 }

@@ -3,6 +3,15 @@ import { Dictionary, Event, KeyValueStorage, Rebuildable, Reducer } from "../typ
 import { getInitialState } from "./get-initial-state";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 
+/**
+ * A projection that stores a state for each entity in its storage.
+ *
+ * ```typescript
+ * const projection = new PersistedEntityReduceProjection(catFedReducer, storage);
+ * bus.onEvent((event) => projection.handleEvent(event));
+ * const felixFed = await projection.getState("felix");
+ * ```
+ */
 export class PersistedEntityReduceProjection<T> implements Rebuildable {
   constructor(
     private reducer: Reducer<T>,

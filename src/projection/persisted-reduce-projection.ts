@@ -3,6 +3,15 @@ import { Event, Rebuildable, Reducer, ValueStorage } from "../types";
 import { getInitialState } from "./get-initial-state";
 import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
 
+/**
+ * A projection that stores its latest state in a storage.
+ *
+ * ```typescript
+ * const projection = new PersistedReduceProjection(nbMealsReducer);
+ * bus.onEvent((event) => projection.handleEvent(event));
+ * const nbMeals = await projection.getState();
+ * ```
+ */
 export class PersistedReduceProjection<T> implements Rebuildable {
   constructor(
     private reducer: Reducer<T>,
