@@ -2,6 +2,10 @@
 
 A collection of objects to help you build an event-sourced architecture.
 
+## Reference
+
+https://thomaslule.github.io/es-objects/
+
 ## What does it look like?
 
 Here is an example in typescript:
