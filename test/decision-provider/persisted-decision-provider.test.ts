@@ -1,5 +1,8 @@
 import {
-  DecisionSequence, InMemoryEventStorage, InMemoryKeyValueStorage, PersistedDecisionProvider,
+  DecisionSequence,
+  InMemoryEventStorage,
+  InMemoryKeyValueStorage,
+  PersistedDecisionProvider
 } from "../../src";
 import { catFedReducer, fedEvent } from "../util";
 
@@ -9,7 +12,7 @@ describe("PersistedDecisionProvider", () => {
 
   beforeEach(() => {
     storage = new InMemoryKeyValueStorage<DecisionSequence<boolean>>({
-      felix: { sequence: 3, decision: true },
+      felix: { sequence: 3, decision: true }
     });
     provider = new PersistedDecisionProvider("cat", catFedReducer, storage);
   });
@@ -25,9 +28,12 @@ describe("PersistedDecisionProvider", () => {
   });
 
   test("handleEvent should store the decision", async () => {
-    await provider.handleEvent({ ...fedEvent, id: "molotov", sequence: 15 }, { sequence: 15, decision: true});
+    await provider.handleEvent(
+      { ...fedEvent, id: "molotov", sequence: 15 },
+      { sequence: 15, decision: true }
+    );
     const storedDecision = await storage.get("molotov");
-    expect(storedDecision).toEqual({ sequence: 15, decision: true});
+    expect(storedDecision).toEqual({ sequence: 15, decision: true });
   });
 
   test("rebuildStream should rebuild the provider", async () => {
@@ -35,7 +41,12 @@ describe("PersistedDecisionProvider", () => {
     provider = new PersistedDecisionProvider("cat", catFedReducer, storage);
     const events = new InMemoryEventStorage([fedEvent]);
 
-    await new Promise((resolve) => events.getEvents().pipe(provider.rebuildStream()).on("finish", resolve));
+    await new Promise(resolve =>
+      events
+        .getEvents()
+        .pipe(provider.rebuildStream())
+        .on("finish", resolve)
+    );
 
     const proj = await provider.getDecisionSequence("felix");
     expect(proj).toEqual({ sequence: 0, decision: true });

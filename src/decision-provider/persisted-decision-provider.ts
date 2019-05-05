@@ -1,14 +1,22 @@
 import { makeDecisionReducer } from "../make-decision-reducer";
 import { PersistedEntityReduceProjection } from "../projection/persisted-entity-reduce-projection";
 import {
-  DecisionProvider, DecisionSequence, Event, KeyValueStorage, Rebuildable, Reducer,
+  DecisionProvider,
+  DecisionSequence,
+  Event,
+  KeyValueStorage,
+  Rebuildable,
+  Reducer
 } from "../types";
 
 /**
  * A {@link DecisionProvider} that persists the latest {@link DecisionSequence} in a storage everytime an event happens.
  */
-export class PersistedDecisionProvider<T> implements DecisionProvider<T>, Rebuildable {
-  private decisionProjection: PersistedEntityReduceProjection<DecisionSequence<T>>;
+export class PersistedDecisionProvider<T>
+  implements DecisionProvider<T>, Rebuildable {
+  private decisionProjection: PersistedEntityReduceProjection<
+    DecisionSequence<T>
+  >;
   private reducerWithSequence: Reducer<DecisionSequence<T>>;
 
   /**
@@ -16,12 +24,16 @@ export class PersistedDecisionProvider<T> implements DecisionProvider<T>, Rebuil
    * @param reducer the decision reducer
    * @param storage where to persist our decision projections
    */
-  constructor(aggregate: string, reducer: Reducer<T>, private storage: KeyValueStorage<DecisionSequence<T>>) {
+  constructor(
+    aggregate: string,
+    reducer: Reducer<T>,
+    private storage: KeyValueStorage<DecisionSequence<T>>
+  ) {
     this.reducerWithSequence = makeDecisionReducer<T>(reducer);
     this.decisionProjection = new PersistedEntityReduceProjection(
       this.reducerWithSequence,
       this.storage,
-      (event) => event.aggregate === aggregate,
+      event => event.aggregate === aggregate
     );
   }
 

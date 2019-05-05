@@ -12,7 +12,10 @@ export interface DecisionProvider<TDecision> {
   /**
    * If present, this method must be called by any entity willing to publish a new event.
    */
-  handleEvent?: (event: Event, decision: DecisionSequence<TDecision>) => Promise<void>;
+  handleEvent?: (
+    event: Event,
+    decision: DecisionSequence<TDecision>
+  ) => Promise<void>;
 }
 
 /**
@@ -34,7 +37,6 @@ export interface Dictionary<T> {
  * and as much custom properties that you need to describe what happened.
  */
 export interface Event {
-
   /**
    * An event is always related to a specific aggregate.
    */
@@ -58,7 +60,11 @@ export interface Event {
 
 export interface EventStorage {
   store: (event: Event) => Promise<void>;
-  getEvents: (aggregate?: string, id?: string, fromSequence?: number) => Readable;
+  getEvents: (
+    aggregate?: string,
+    id?: string,
+    fromSequence?: number
+  ) => Readable;
   getCurrentSequence: (aggregate: string, id: string) => Promise<number>;
 }
 

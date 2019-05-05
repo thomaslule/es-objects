@@ -9,7 +9,10 @@ import { InMemoryReduceProjection } from "./in-memory-reduce-projection";
  * @param reducer a reducer
  * @param events a stream of events
  */
-export async function projectFromEvents<T>(reducer: Reducer<T>, events: Readable): Promise<T> {
+export async function projectFromEvents<T>(
+  reducer: Reducer<T>,
+  events: Readable
+): Promise<T> {
   const projection = new InMemoryReduceProjection(reducer);
   await consumeStream(events, (event: Event) => {
     projection.handleEvent(event);

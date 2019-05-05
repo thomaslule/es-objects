@@ -12,9 +12,10 @@ import { getInitialState } from "./get-initial-state";
  * ```
  */
 export class InMemoryReduceProjection<T> implements Rebuildable {
-
-  constructor(private reducer: Reducer<T>, private state: T = getInitialState(reducer)) {
-  }
+  constructor(
+    private reducer: Reducer<T>,
+    private state: T = getInitialState(reducer)
+  ) {}
 
   public handleEvent(event: Event): void {
     this.state = this.reducer(this.state, event);
@@ -36,7 +37,7 @@ export class InMemoryReduceProjection<T> implements Rebuildable {
         } catch (err) {
           callback(err);
         }
-      },
+      }
     });
   }
 }

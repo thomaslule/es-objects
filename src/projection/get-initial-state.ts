@@ -3,7 +3,7 @@ import { Reducer } from "../types";
 const INIT_EVENT = {
   aggregate: "__init__",
   id: "__init__",
-  sequence: -1,
+  sequence: -1
 };
 
 /**

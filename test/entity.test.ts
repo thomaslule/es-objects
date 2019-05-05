@@ -14,7 +14,7 @@ describe("Entity", () => {
 
     expect(publish).toHaveBeenCalledWith(
       { aggregate: "cat", id: "felix", sequence: 0, type: "fed" },
-      { decision: true, sequence: 0 },
+      { decision: true, sequence: 0 }
     );
   });
 

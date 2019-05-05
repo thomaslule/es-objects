@@ -16,8 +16,8 @@ export class PersistedReduceProjection<T> implements Rebuildable {
   constructor(
     private reducer: Reducer<T>,
     private storage: ValueStorage<T>,
-    private eventFilter: (e: Event) => boolean = (e) => true) {
-  }
+    private eventFilter: (e: Event) => boolean = e => true
+  ) {}
 
   public async handleEvent(event: Event) {
     if (this.eventFilter(event)) {
@@ -39,7 +39,9 @@ export class PersistedReduceProjection<T> implements Rebuildable {
       objectMode: true,
       write(data, encoding, callback) {
         try {
-          if (eventFilter(data)) { proj.handleEvent(data); }
+          if (eventFilter(data)) {
+            proj.handleEvent(data);
+          }
           callback();
         } catch (err) {
           callback(err);
@@ -52,7 +54,7 @@ export class PersistedReduceProjection<T> implements Rebuildable {
         } catch (err) {
           callback(err);
         }
-      },
+      }
     });
   }
 }

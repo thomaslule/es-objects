@@ -28,12 +28,14 @@ export class Store<TEntity, TDecision> {
     private createEntity: (
       id: string,
       decisionSequence: DecisionSequence<TDecision>,
-      publish: (event: Event, decisionSequence: DecisionSequence<TDecision>) => Promise<void>,
+      publish: (
+        event: Event,
+        decisionSequence: DecisionSequence<TDecision>
+      ) => Promise<void>
     ) => TEntity,
     private decisionProvider: DecisionProvider<TDecision>,
-    private publishEvent: (event: Event) => Promise<void>,
-  ) {
-  }
+    private publishEvent: (event: Event) => Promise<void>
+  ) {}
 
   /**
    * @param id an entity id
@@ -43,11 +45,14 @@ export class Store<TEntity, TDecision> {
     return this.createEntity(
       id,
       await this.decisionProvider.getDecisionSequence(id),
-      (event, decisionSequence) => this.publish(event, decisionSequence),
+      (event, decisionSequence) => this.publish(event, decisionSequence)
     );
   }
 
-  private async publish(event: Event, decisionSequence: DecisionSequence<TDecision>) {
+  private async publish(
+    event: Event,
+    decisionSequence: DecisionSequence<TDecision>
+  ) {
     await this.publishEvent(event);
     if (this.decisionProvider.handleEvent) {
       await this.decisionProvider.handleEvent(event, decisionSequence);

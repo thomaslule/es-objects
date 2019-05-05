@@ -14,7 +14,9 @@ Here is an example in typescript:
 // Create an event bus that will store the events before publishing them
 const eventStorage = new InMemoryEventStorage();
 const bus = new EventBus(eventStorage);
-bus.onError((err) => { console.error(err); });
+bus.onError(err => {
+  console.error(err);
+});
 
 // Create an entity class, this is where the business logic goes.
 class Cat extends Entity<boolean> {
@@ -32,8 +34,12 @@ class Cat extends Entity<boolean> {
   }
 
   // Those methods are needed by the Entity class
-  protected getAggregate() { return "cat"; }
-  protected getDecisionReducer() { return catFedReducer; }
+  protected getAggregate() {
+    return "cat";
+  }
+  protected getDecisionReducer() {
+    return catFedReducer;
+  }
 }
 
 // This is the reducer that creates a decision projection from a stream of events
@@ -46,13 +52,17 @@ function catFedReducer(state = false, event) {
 }
 
 // The store needs an object that provides the decision projection, this one builds it from the published events
-const catDecisionProvider = new FromEventsDecisionProvider("cat", catFedReducer, eventStorage);
+const catDecisionProvider = new FromEventsDecisionProvider(
+  "cat",
+  catFedReducer,
+  eventStorage
+);
 
 // The store is the object that will create the entities we need
 const catStore = new Store<Cat, boolean>(
   (id, decisionProjection, publish) => new Cat(id, decisionProjection, publish),
   catDecisionProvider,
-  (event) => bus.publish(event),
+  event => bus.publish(event)
 );
 
 // Now everything is set up on the write side, lets add projections to query our events
@@ -69,19 +79,19 @@ function nbMealsReducer(state = 0, event) {
 const nbMealsServedProjection = new PersistedReduceProjection<number>(
   nbMealsReducer,
   new InMemoryValueStorage(),
-  (e) => e.aggregate === "cat",
+  e => e.aggregate === "cat"
 );
 // Every time an event is published, it will be passed to the projection
-bus.onEvent((event) => nbMealsServedProjection.handleEvent(event));
+bus.onEvent(event => nbMealsServedProjection.handleEvent(event));
 
 // This entity projection gives a state for each Cat: is it fed?
 // For the sake of concision I re-use our catFedReducer
 const catFedProjection = new PersistedEntityReduceProjection<boolean>(
   catFedReducer,
   new InMemoryKeyValueStorage(),
-  (e) => e.aggregate === "cat",
+  e => e.aggregate === "cat"
 );
-bus.onEvent((event) => catFedProjection.handleEvent(event));
+bus.onEvent(event => catFedProjection.handleEvent(event));
 
 // Let's get a Cat, it has no event yet
 const felix = await catStore.get("felix");

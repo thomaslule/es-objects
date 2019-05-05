@@ -4,7 +4,10 @@ export class Cat extends Entity<boolean> {
   constructor(
     id: string,
     decisionSequence: DecisionSequence<boolean>,
-    publish: (event: Event, decisionSequence: DecisionSequence<boolean>) => Promise<void>,
+    publish: (
+      event: Event,
+      decisionSequence: DecisionSequence<boolean>
+    ) => Promise<void>
   ) {
     super(id, decisionSequence, publish);
   }
@@ -40,5 +43,5 @@ export const fedEvent: Event = {
   aggregate: "cat",
   id: "felix",
   sequence: 0,
-  type: "fed",
+  type: "fed"
 };

@@ -8,7 +8,7 @@ describe("makeDecisionReducer", () => {
     const state = reducer(undefined, fedEvent);
     expect(state).toEqual({
       sequence: 0,
-      decision: true,
+      decision: true
     });
   });
 });

@@ -39,7 +39,7 @@ export class EventBus extends EventEmitter {
    * @param handler event handler
    */
   public onEvent(handler: (event: Event) => void | Promise<void>) {
-    this.on("event", async (event) => {
+    this.on("event", async event => {
       try {
         await handler(event);
       } catch (err) {

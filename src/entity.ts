@@ -16,7 +16,6 @@ import { DecisionSequence, Event, Reducer } from "./types";
  * ```
  */
 export abstract class Entity<TDecision> {
-
   /**
    * The constructor has the same arguments that the {@link Store} provides to create an entity, which makes interfacing
    * easy.
@@ -30,9 +29,11 @@ export abstract class Entity<TDecision> {
   constructor(
     private id: string,
     private decisionSequence: DecisionSequence<TDecision>,
-    private publish: (event: Event, decisionSequence: DecisionSequence<TDecision>) => Promise<void>,
-  ) {
-  }
+    private publish: (
+      event: Event,
+      decisionSequence: DecisionSequence<TDecision>
+    ) => Promise<void>
+  ) {}
 
   /**
    * @returns the entity's aggregate
@@ -70,9 +71,12 @@ export abstract class Entity<TDecision> {
       ...eventData,
       aggregate: this.getAggregate(),
       id: this.id,
-      sequence: this.decisionSequence.sequence + 1,
+      sequence: this.decisionSequence.sequence + 1
     };
-    const newDecisionSequence = makeDecisionReducer(this.getDecisionReducer())(this.decisionSequence, event);
+    const newDecisionSequence = makeDecisionReducer(this.getDecisionReducer())(
+      this.decisionSequence,
+      event
+    );
     await this.publish(event, newDecisionSequence);
     this.decisionSequence = newDecisionSequence;
     return event;
