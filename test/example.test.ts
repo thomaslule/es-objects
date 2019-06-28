@@ -15,6 +15,7 @@ test("usage example", async () => {
   const eventStorage = new InMemoryEventStorage();
   const bus = new EventBus(eventStorage);
   bus.onError(err => {
+    // eslint-disable-next-line no-console
     console.error(err);
   });
 
